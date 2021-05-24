@@ -1,0 +1,12 @@
+.header {
+  padding: 5px 10px 25px 10px;
+  width: 100%;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Amatic SC';
+  font-size: 2.2rem;
+}
