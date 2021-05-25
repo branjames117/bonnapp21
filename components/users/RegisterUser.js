@@ -1,9 +1,10 @@
 import { useRef } from 'react'
-import styles from './AdminShows.module.css'
+import styles from './RegisterUser.module.css'
 
-export default function AdminUsers(props) {
+export default function RegisterUser(props) {
   const usernameInputRef = useRef()
   const passwordInputRef = useRef()
+  const confirmPasswordInputRef = useRef()
   const bioInputRef = useRef()
   const locationInputRef = useRef()
 
@@ -12,12 +13,14 @@ export default function AdminUsers(props) {
 
     const enteredUsername = usernameInputRef.current.value
     const enteredPassword = passwordInputRef.current.value
+    const enteredConfirmedPassword = confirmedPasswordInputRef.current.value
     const enteredBio = bioInputRef.current.value
     const enteredLocation = locationInputRef.current.value
 
     const userData = {
       username: enteredUsername,
       password: enteredPassword,
+      confirmedPassword: enteredConfirmedPassword,
       bio: enteredBio,
       location: enteredLocation,
     }
@@ -27,10 +30,10 @@ export default function AdminUsers(props) {
 
   return (
     <>
-      <h2>Add User</h2>
+      <h2>Register</h2>
       <form className={styles.form} onSubmit={submitHandler}>
         <div className={styles.control}>
-          <label htmlFor='username'>Username</label>
+          <label htmlFor='username'>Email Address</label>
           <input type='text' required id='username' ref={usernameInputRef} />
         </div>
         <div className={styles.control}>
@@ -38,15 +41,21 @@ export default function AdminUsers(props) {
           <input type='text' required id='password' ref={passwordInputRef} />
         </div>
         <div className={styles.control}>
-          <label htmlFor='bio'>Bio</label>
-          <textarea required id='bio' rows='3' ref={bioInputRef}></textarea>
+          <label htmlFor='confirmPassword'>Confirm Password</label>
+          <input
+            type='text'
+            required
+            id='confirmPassword'
+            ref={confirmPasswordInputRef}
+          />
         </div>
-        <div className={styles.control}>
-          <label htmlFor='location'>Location</label>
-          <input type='text' id='location' ref={locationInputRef} />
-        </div>
+        <p>
+          You will be sent an email containing a confirmation link. Your account
+          will need to be confirmed before you can edit your profile, comment on
+          pages, or add friends. <em>Use a unique throwaway password.</em>
+        </p>
         <div className={styles.actions}>
-          <button>Add User</button>
+          <button>Register</button>
         </div>
       </form>
     </>

@@ -1,27 +1,26 @@
+import { useRouter } from 'next/router'
 import AdminShows from '../../components/admin/AdminShows'
-import AdminUsers from '../../components/admin/AdminUsers'
 import Main from '../../components/layout/Main'
 
 export default function Admin() {
-  const shows = [{ title: 'Muse' }, { title: 'Flogging Molly' }]
+  const router = useRouter()
 
-  const addShowHandler = (showData) => {
-    console.log(showData)
-  }
+  async function addShowHandler(showData) {
+    const response = await fetch('/api/new-show', {
+      method: 'POST',
+      body: JSON.stringify(showData),
+      headers: { 'Content-Type': 'application/json' },
+    })
 
-  const users = [{ username: 'corpse' }, { username: 'sally' }]
+    const data = await response.json()
+    console.log(data)
 
-  const addUserHandler = (userData) => {
-    console.log(userData)
+    router.push('/')
   }
 
   return (
-    <>
-      <Main>
-        <AdminShows onAddShow={addShowHandler} />
-        <AdminUsers onAddUser={addUserHandler} />
-        <AdminUsers onAddUser={addUserHandler} />
-      </Main>
-    </>
+    <Main>
+      <AdminShows onAddShow={addShowHandler} />
+    </Main>
   )
 }

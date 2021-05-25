@@ -1,0 +1,29 @@
+.container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 10px;
+  width: 80%;
+}
+
+.h1 {
+  color: pink;
+}
+
+.boxLabel {
+  border-bottom: 1px solid white;
+}
+
+.genreBox {
+  padding: 5px 25px;
+  border: 1px solid white;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.genreBox:hover {
+  color: red;
+}
+
+.videoBox {
+  text-align: center;
+}
