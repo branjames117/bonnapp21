@@ -1,12 +1,14 @@
 import { MongoClient } from 'mongodb'
-
-const uri = process.env.DB_URL
+import { connectToDatabase } from '../../lib/db'
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     const data = req.body
 
-    const client = await MongoClient.connect(uri, { useUnifiedTopology: true })
+    const client = await MongoClient.connect(process.env.DB_URL, {
+      useUnifiedTopology: true,
+    })
+
     const db = client.db()
 
     const showsCollection = db.collection('shows')

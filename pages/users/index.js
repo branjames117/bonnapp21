@@ -50,6 +50,8 @@ export async function getStaticProps() {
 export default function Users(props) {
   return (
     <Main>
+      <p>This page to be deleted.</p>
+      <br />
       <UserList users={props.users} />
     </Main>
   )

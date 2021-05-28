@@ -1,0 +1,21 @@
+.btn {
+  background-color: rgb(255, 155, 41);
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px 7px;
+  transition: transform 0.15s linear;
+  font: inherit;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(255, 155, 41);
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px 7px;
+  transform: scale(0.98);
+}
+
+.btn:not(:last-of-type) {
+  margin-right: 10px;
+}

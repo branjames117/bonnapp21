@@ -1,0 +1,81 @@
+.center {
+  text-align: center;
+}
+
+.day {
+  letter-spacing: -5px;
+  color: white;
+  font-size: 2.2rem;
+  text-transform: uppercase;
+}
+
+.day:not(:first-child) {
+  padding-top: 35px;
+}
+
+.headliner span {
+  font-size: 1.5rem;
+  transition: font-size 0.2s linear;
+}
+
+.headliner span:hover {
+  font-size: 1.6rem;
+}
+
+.headliner span:not(:first-child)::before {
+  content: ' ';
+}
+
+.subliner span:not(:first-child)::before {
+  content: ' • ';
+}
+
+.subliner span {
+  font-size: 1.2rem;
+  transition: font-size 0.2s linear;
+}
+
+.subliner span:hover {
+  font-size: 1.3rem;
+}
+
+.unliner span {
+  font-size: 0.9rem;
+  transition: font-size 0.2s linear;
+}
+
+.unliner span:hover {
+  font-size: 1rem;
+}
+
+.unliner span:nth-child(even) {
+  color: rgb(173, 173, 173);
+}
+
+.unliner span:not(:first-child)::before {
+  content: ' • ';
+}
+
+.blue {
+  color: rgb(59, 131, 224);
+}
+
+.green {
+  color: rgb(88, 226, 111);
+}
+
+.pink {
+  color: rgb(215, 88, 231);
+}
+
+.orange {
+  color: rgb(255, 155, 41);
+}
+
+.yellow {
+  color: yellow;
+}
+
+.small {
+  font-size: 0.8rem;
+}

@@ -1,12 +1,14 @@
 import Main from '../../components/layout/Main'
 import ShowProfile from '../../components/shows/ShowProfile'
 import { MongoClient } from 'mongodb'
+import { connectToDatabase } from '../../lib/db'
 
 // the [] in the filename tells Next.js that this is a dynamic page name
-const uri = process.env.DB_URL
 
 export async function getStaticProps(context) {
-  const client = await MongoClient.connect(uri, { useUnifiedTopology: true })
+  const client = await MongoClient.connect(process.env.DB_URL, {
+    useUnifiedTopology: true,
+  })
   const db = client.db()
 
   const showsCollection = db.collection('shows')
@@ -34,7 +36,7 @@ export async function getStaticProps(context) {
 
 // go over each item in the database to generate static page paths for each show
 export async function getStaticPaths() {
-  const client = await MongoClient.connect(uri, { useUnifiedTopology: true })
+  const client = await connectToDatabase()
   const db = client.db()
 
   const showsCollection = db.collection('shows')

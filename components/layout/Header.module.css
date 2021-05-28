@@ -1,5 +1,8 @@
 .header {
-  padding: 5px 10px 25px 10px;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  padding: 8px 70px;
   width: 100%;
 }
 
@@ -9,4 +12,26 @@
   justify-content: space-between;
   font-family: 'Amatic SC';
   font-size: 2.2rem;
+}
+
+.ul {
+  list-style-type: none;
+  margin: 0;
+}
+
+.ul li {
+  display: inline;
+  padding: 0 10px;
+}
+
+@media screen and (min-width: 1400px) {
+  .header {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .header {
+    width: 60%;
+  }
 }

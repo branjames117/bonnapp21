@@ -1,29 +1,73 @@
 .container {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-column-gap: 10px;
-  width: 80%;
+  grid-template-columns: 1fr 325px;
 }
 
-.h1 {
-  color: pink;
-}
-
-.boxLabel {
-  border-bottom: 1px solid white;
-}
-
-.genreBox {
-  padding: 5px 25px;
-  border: 1px solid white;
-  border-radius: 5px;
-  margin-right: 10px;
+.genreBox:not(:last-child) {
+  margin-right: 20px;
 }
 
 .genreBox:hover {
   color: red;
 }
 
+.form {
+  padding-bottom: 20px;
+}
+
+.control {
+  margin-bottom: 0.5rem;
+}
+
+.control label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.control input,
+.control textarea {
+  background-color: #eee;
+  display: block;
+  font: inherit;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 0.25rem;
+  width: 100%;
+  resize: none;
+}
+
+.actions {
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.comment {
+  padding: 10px;
+  background-color: rgb(179, 68, 201);
+  border-radius: 10px;
+}
+
+.commentBody {
+  padding: 5px;
+}
+
+.commentAuthor {
+  text-align: right;
+}
+
+.commentAuthor:before {
+  content: 'posted by ';
+  font-size: 0.8rem;
+}
+
 .videoBox {
   text-align: center;
+}
+
+@media screen and (max-width: 770px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
 }
