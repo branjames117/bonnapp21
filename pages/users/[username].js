@@ -1,53 +1,90 @@
 import Main from '../../components/layout/Main'
 import UserProfile from '../../components/users/UserProfile'
-
-// the [] in the filename tells Next.js that this is a dynamic page name
+import { connectToDatabase } from '../../lib/db'
+import { useRouter } from 'next/router'
 
 export async function getStaticProps(context) {
-  const username = context.params.username
-  // code written in here is executed during the build process, never seen by client
-  // fetch API data or use data from files in filesystem, whatever
+  const client = await connectToDatabase()
+  const db = client.db()
+  const requestedUser = context.params.userName
+
+  const users = db.collection('users')
+
+  /* use the dynamic page URL to choose which username to pull from db */
+  const fetchedUser = await users.findOne({
+    username: requestedUser,
+  })
+
+  /* use rest operator to separate out the _id and password keys we don't
+  need to pass as props: user is all we care about now */
+  const { _id, password, ...user } = fetchedUser
+  console.log(user)
+  client.close()
+  /* send the requested user as a prop */
   return {
     props: {
-      users: {
-        userID: 1,
-        username: username,
-        password: 'sticklebuns',
-        profile: 'bio',
-      },
+      user,
     },
-    // setting this tells the server to regenerate the page every 10 seconds
-    // important for when data is changing frequently
-    revalidate: 10,
+    /* setting this tells the server to regenerate the page every second;
+    important for when data is changing frequently like with commenting */
+    revalidate: 1,
   }
 }
 
-// needs exported in any page component file that's a dynamic page which also uses static props
-export function getStaticPaths() {
+/* go over each item in the database to generate static page paths for each user */
+export async function getStaticPaths() {
+  const client = await connectToDatabase()
+  const db = client.db()
+
+  const users = db.collection('users')
+
+  /* grab a list of every user in the db and convert it to an array */
+  const userList = await users.find({}, { username: 1 }).toArray()
+
+  client.close()
+
   return {
-    paths: [
-      // String variant:
-      '/users/username',
-      // Object variant:
-      { params: { username: 'failbandit' } },
-      { params: { username: 'sallyfields' } },
-      { params: { username: 'chxnlittle' } },
-    ],
     fallback: false,
+    /* for each user, create a new static param */
+    paths: userList.map((user) => ({ params: { userName: user.username } })),
   }
 }
 
 export default function User(props) {
-  // To do:
-  // use userID to fetch user profile information from database
+  const router = useRouter()
+
+  /* CREATE COMMENT HANDLER */
+  async function onAddCommentHandler(commentData) {
+    const response = await fetch('/api/user/edit-comments', {
+      method: 'POST',
+      body: JSON.stringify(commentData),
+      headers: { 'Content-Type': 'application/json' },
+    })
+
+    const data = await response.json()
+    console.log(data)
+    router.push(props.user.username)
+  }
+
+  /* DELETE COMMENT HANDLER */
+  async function onDeleteCommentHandler(commentData) {
+    const response = await fetch('/api/user/edit-comments', {
+      method: 'DELETE',
+      body: JSON.stringify(commentData),
+      headers: { 'Content-Type': 'application/json' },
+    })
+
+    const data = await response.json()
+    console.log(data)
+    router.push(props.user.username)
+  }
 
   return (
     <Main>
       <UserProfile
-        userID={props.users.userID}
-        username={props.users.username}
-        password={props.users.password}
-        profile={props.users.profile}
+        user={props.user}
+        onAddComment={onAddCommentHandler}
+        onDeleteComment={onDeleteCommentHandler}
       />
     </Main>
   )

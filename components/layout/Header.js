@@ -1,37 +1,50 @@
 import classes from './Header.module.css'
 import Link from 'next/link'
-import { signIn, signOut, useSession } from 'next-auth/client'
+import { signout, useSession } from 'next-auth/client'
 
 export default function Header(props) {
-  const [session, loadingSession] = useSession()
+  const [session, _] = useSession()
+
+  function logoutHandler() {
+    signout({ callbackUrl: '/' })
+  }
+
   return (
     <header className={classes.header}>
       <nav className={classes.nav}>
         <div>
-          <Link href='/'>FestyFriend</Link>
+          <Link href='/'>BonnApp21</Link>
         </div>
         <div>
           <ul className={classes.ul}>
             <li>
-              <Link href='/users'>Users</Link>
+              <Link href='/'>Shows</Link>
             </li>
-            <li>
-              <Link href='/admin'>Admin</Link>
-            </li>
-            <li>
-              <Link href='/users/register'>Register</Link>
-            </li>
+            {/* render if no active session */}
             {!session && (
-              <li>
-                <span onClick={() => signIn()}>Login</span>
-              </li>
+              <>
+                <li>
+                  <Link href='/users/register'>Register</Link>
+                </li>
+                <li>
+                  <Link href='/users/login'>Login</Link>
+                </li>
+              </>
             )}
+            {/* render if active session */}
             {session && (
               <>
                 <li>
-                  <span onClick={() => signOut()}>Logout</span>
+                  <Link href={`/users/${session.user.name}`}>My Profile</Link>
                 </li>
-                <li>{JSON.stringify(session.user.email)}</li>
+                {session.user.name === 'admin' && (
+                  <li>
+                    <Link href='/admin'>Admin</Link>
+                  </li>
+                )}
+                <li className={classes.link} onClick={logoutHandler}>
+                  Logout
+                </li>
               </>
             )}
           </ul>

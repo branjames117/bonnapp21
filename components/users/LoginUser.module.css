@@ -1,0 +1,35 @@
+.form {
+  padding: 1rem;
+  min-width: 400px;
+}
+
+.control {
+  margin-bottom: 0.5rem;
+}
+
+.control label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.control input,
+.control textarea {
+  display: block;
+  font: inherit;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+.actions {
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.error {
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 5px;
+  margin: 15px 0;
+}

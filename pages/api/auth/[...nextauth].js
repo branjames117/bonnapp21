@@ -1,15 +1,50 @@
+/* NextAuth logic for handling user log in attempts */
+
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
+import { verifyPassword } from '../../../lib/auth'
+import { connectToDatabase } from '../../../lib/db'
 
 export default NextAuth({
+  /* use a JSON web token to store authentication */
+  session: { jwt: true },
   providers: [
-    Providers.Google({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      authorizationUrl:
-        'https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code',
-      scope:
-        'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
+    Providers.Credentials({
+      async authorize(credentials) {
+        /* access the users collection */
+        const client = await connectToDatabase()
+        const db = client.db()
+        const usersCollection = db.collection('users')
+
+        /* seek out the user in the database */
+        const user = await usersCollection.findOne({
+          username: credentials.username,
+        })
+
+        /* if user doesn't exist, error
+        client shouldn't see these errors due to client-side validation */
+        if (!user) {
+          client.close()
+          throw new Error('No user found')
+        }
+
+        /* compare entered password with stored hashed password */
+        const isValid = await verifyPassword(
+          credentials.password,
+          user.password
+        )
+
+        /* if passwords don't match, error */
+        if (!isValid) {
+          client.close()
+          throw new Error('Password does not match')
+        }
+
+        client.close()
+
+        /* returning this allows us to access logged-in username via session.user.name */
+        return { name: user.username }
+      },
     }),
   ],
   secret: process.env.SECRET,

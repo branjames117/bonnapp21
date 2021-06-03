@@ -15,15 +15,14 @@ export default function ShowProfile(props) {
             <span className={classes.genreBox}>{genre}</span>
           ))}
           <h2 className={classes.h2}>Bio</h2>
-          <span className={classes.box}>{props.bio}</span>
+          <span className={classes.box}>
+            {props.bio} - <a href={props.wiki}>Wikipedia</a>
+          </span>
         </Card>
         <Card color='rgb(215, 88, 231)'>
           <h2 className={classes.h2}>Who's Excited</h2>
-          <span className={classes.box}>{props.interestedUsers}</span>
+          <span className={classes.box}>{props.excitedUsers}</span>
           <span>branjames117</span>
-          <h2 className={classes.h2}>Who's Curious</h2>
-          <span className={classes.box}>{props.curiousUsers}</span>
-          <span>shannonhaze</span>
           <h2 className={classes.h2}>Comments</h2>
           <span className={classes.box}>{props.comments}</span>
           <form className={classes.form} onSubmit={null}>
@@ -51,7 +50,7 @@ export default function ShowProfile(props) {
                 width='100%'
                 src={video.replace('watch?v=', 'embed/')}
                 title='YouTube video player'
-                frameborder='1'
+                frameBorder='1'
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
               ></iframe>
             </p>

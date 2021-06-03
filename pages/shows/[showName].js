@@ -1,14 +1,11 @@
 import Main from '../../components/layout/Main'
 import ShowProfile from '../../components/shows/ShowProfile'
-import { MongoClient } from 'mongodb'
 import { connectToDatabase } from '../../lib/db'
 
 // the [] in the filename tells Next.js that this is a dynamic page name
 
 export async function getStaticProps(context) {
-  const client = await MongoClient.connect(process.env.DB_URL, {
-    useUnifiedTopology: true,
-  })
+  const client = await connectToDatabase()
   const db = client.db()
 
   const showsCollection = db.collection('shows')
@@ -22,9 +19,9 @@ export async function getStaticProps(context) {
         title: show.title,
         genres: show.genres,
         bio: show.bio,
+        wiki: show.wiki,
         videos: show.videos,
-        interestedUsers: show.interestedUsers,
-        notInterestedUsers: show.notInterestedUsers,
+        excitedUsers: show.excitedUsers,
         comments: show.comments,
       },
     },
@@ -58,9 +55,9 @@ export default function Show(props) {
         title={props.show.title}
         genres={props.show.genres}
         bio={props.show.bio}
+        wiki={props.show.wiki}
         videos={props.show.videos}
-        interestedUsers={props.show.interestedUsers}
-        notInterestedUsers={props.show.notInterestedUsers}
+        excitedUsers={props.show.excitedUsers}
         comments={props.show.comments}
       />
     </Main>

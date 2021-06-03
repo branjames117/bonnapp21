@@ -10,7 +10,9 @@ export default class Lineup extends React.Component {
 
         <div className={classes.headliner}>
           <span className={classes.blue}>
-            Grand Ole Opry feat. Special Guests
+            <Link href='/shows/Grand Ole Opry feat. Special Guests'>
+              Grand Ole Opry feat. Special Guests
+            </Link>
           </span>
         </div>
         <div className={classes.unliner}>

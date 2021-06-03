@@ -1,11 +1,16 @@
+import { getSession } from 'next-auth/client'
 import RegisterUser from '../../components/users/RegisterUser'
 import Main from '../../components/layout/Main'
-import { MongoClient } from 'mongodb'
+import { connectToDatabase } from '../../lib/db'
 
-export async function getStaticProps() {
-  const client = await MongoClient.connect(process.env.DB_URL, {
-    useUnifiedTopology: true,
-  })
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req })
+
+  if (session) {
+    return { redirect: { destination: `/users/${session.user.name}` } }
+  }
+
+  const client = await connectToDatabase()
   const db = client.db()
 
   const usersCollection = db.collection('users')
@@ -17,9 +22,6 @@ export async function getStaticProps() {
     props: {
       users: users.map((user) => user.username),
     },
-    // setting this tells the server to regenerate the page every 10 seconds
-    // important for when data is changing frequently
-    revalidate: 1,
   }
 }
 

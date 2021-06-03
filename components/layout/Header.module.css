@@ -24,6 +24,11 @@
   padding: 0 10px;
 }
 
+.link,
+.link:hover {
+  cursor: pointer;
+}
+
 @media screen and (min-width: 1400px) {
   .header {
     width: 80%;

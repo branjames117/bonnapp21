@@ -1,4 +1,6 @@
 import { useRef, useState } from 'react'
+import { useRouter } from 'next/router'
+import { signIn } from 'next-auth/client'
 import styles from './RegisterUser.module.css'
 import Card from '../layout/Card'
 import Button from '../layout/Button'
@@ -27,6 +29,7 @@ export default function RegisterUser(props) {
   const usernameInputRef = useRef()
   const passwordInputRef = useRef()
   const confirmPasswordInputRef = useRef()
+  const router = useRouter()
 
   async function submitHandler(e) {
     e.preventDefault()
@@ -42,26 +45,21 @@ export default function RegisterUser(props) {
 
     if (props.users.includes(enteredUsername)) {
       setExistingUsername(true)
+      return
     }
 
     if (enteredUsername.trim().length < 5) {
       setInvalidUsername(true)
+      return
     }
 
     if (enteredPassword.trim().length < 8) {
       setInvalidPassword(true)
+      return
     }
 
     if (enteredPassword !== enteredConfirmPassword) {
       setUnmatchedPassword(true)
-    }
-
-    if (
-      existingUsername ||
-      invalidUsername ||
-      invalidPassword ||
-      UnmatchedPassword
-    ) {
       return
     }
 
@@ -71,16 +69,36 @@ export default function RegisterUser(props) {
       setInvalidUsername(false)
       setInvalidPassword(false)
       setUnmatchedPassword(false)
-      console.log(result)
     } catch (err) {
       console.log(err)
+    }
+
+    const result = await signIn('credentials', {
+      redirect: false,
+      username: enteredUsername,
+      password: enteredPassword,
+    })
+
+    /* if no username in database, give that feedback */
+    if (result.error === 'No user found') {
+      setUsernameExists(false)
+    }
+
+    /* if passwords don't match, give that feedback */
+    if (result.error === 'Password does not match') {
+      setPasswordIncorrect(true)
+    }
+
+    /* if no error, proceed! */
+    if (!result.error) {
+      router.replace(`/users/${enteredUsername}`)
     }
   }
 
   return (
     <>
       <Card color='rgb(215, 88, 231)'>
-        <h2>Register</h2>
+        <h2>Register Account</h2>
         <form className={styles.form} onSubmit={submitHandler}>
           <div className={styles.control}>
             <label htmlFor='username'>Username</label>
