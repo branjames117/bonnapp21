@@ -7,9 +7,7 @@ export default async function handler(req, res) {
 
     const client = await connectToDatabase()
     const db = client.db()
-    const usersCollection = db.collection('users')
-
-    const hashedPassword = await hashPassword(data.newPassword)
+    const users = db.collection('users')
 
     const userData = {
       bio: data.bio,
@@ -23,13 +21,21 @@ export default async function handler(req, res) {
       instaURL: data.instaURL,
       friendsEnabled: data.friendsEnabled,
       commentsEnabled: data.commentsEnabled,
-      password: hashedPassword,
     }
 
-    await usersCollection.updateOne(
+    await users.updateOne(
       { username: data.username },
       { $set: { ...userData } }
     )
+
+    /* follow up with a password update only if new password entered */
+    if (data.newPassword) {
+      const hashedPassword = await hashPassword(data.newPassword)
+      await users.updateOne(
+        { username: data.username },
+        { $set: { password: hashedPassword } }
+      )
+    }
 
     client.close()
 

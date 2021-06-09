@@ -108,7 +108,12 @@
   fill: black;
 }
 
-@media screen and (max-width: 770px) {
+.hr hr {
+  width: 80%;
+  margin: 15px auto;
+}
+
+@media screen and (max-width: 820px) {
   .container {
     display: grid;
     grid-template-columns: 1fr;

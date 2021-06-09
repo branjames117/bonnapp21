@@ -23,8 +23,12 @@ async function createUser(username, password) {
 
 export default function RegisterUser(props) {
   const [existingUsername, setExistingUsername] = useState(false)
-  const [invalidUsername, setInvalidUsername] = useState(false)
-  const [invalidPassword, setInvalidPassword] = useState(false)
+  const [invalidLengthUsername, setInvalidLengthUsername] = useState(false)
+  const [invalidCharactersUsername, setInvalidCharactersUsername] =
+    useState(false)
+  const [invalidLengthPassword, setInvalidLengthPassword] = useState(false)
+  const [invalidCharactersPassword, setInvalidCharactersPassword] =
+    useState(false)
   const [unmatchedPassword, setUnmatchedPassword] = useState(false)
   const usernameInputRef = useRef()
   const passwordInputRef = useRef()
@@ -35,26 +39,43 @@ export default function RegisterUser(props) {
     e.preventDefault()
 
     setExistingUsername(false)
-    setInvalidUsername(false)
-    setInvalidPassword(false)
+    setInvalidLengthUsername(false)
+    setInvalidCharactersUsername(false)
+    setInvalidLengthPassword(false)
+    setInvalidCharactersPassword(false)
     setUnmatchedPassword(false)
 
     const enteredUsername = usernameInputRef.current.value
     const enteredPassword = passwordInputRef.current.value
     const enteredConfirmPassword = confirmPasswordInputRef.current.value
+    var usernameRegex = /^[a-zA-Z0-9\-]+$/
+    var passwordRegex = /^[a-zA-Z0-9!@#$%^&*\-]+$/
 
     if (props.users.includes(enteredUsername)) {
       setExistingUsername(true)
       return
     }
 
-    if (enteredUsername.trim().length < 5) {
-      setInvalidUsername(true)
+    if (
+      enteredUsername.trim().length < 5 ||
+      enteredUsername.trim().length > 14
+    ) {
+      setInvalidLengthUsername(true)
+      return
+    }
+
+    if (!enteredUsername.match(usernameRegex)) {
+      setInvalidCharactersUsername(true)
       return
     }
 
     if (enteredPassword.trim().length < 8) {
-      setInvalidPassword(true)
+      setInvalidLengthPassword(true)
+      return
+    }
+
+    if (!enteredPassword.match(passwordRegex)) {
+      setInvalidCharactersPassword(true)
       return
     }
 
@@ -64,10 +85,12 @@ export default function RegisterUser(props) {
     }
 
     try {
-      const result = await createUser(enteredUsername, enteredPassword)
+      await createUser(enteredUsername, enteredPassword)
       setExistingUsername(false)
-      setInvalidUsername(false)
-      setInvalidPassword(false)
+      setInvalidLengthUsername(false)
+      setInvalidCharactersUsername(false)
+      setInvalidLengthPassword(false)
+      setInvalidCharactersPassword(false)
       setUnmatchedPassword(false)
     } catch (err) {
       console.log(err)
@@ -81,7 +104,7 @@ export default function RegisterUser(props) {
 
     /* if no username in database, give that feedback */
     if (result.error === 'No user found') {
-      setUsernameExists(false)
+      setExistingUsername(false)
     }
 
     /* if passwords don't match, give that feedback */
@@ -132,18 +155,32 @@ export default function RegisterUser(props) {
               Please choose something else.
             </p>
           )}
-          {invalidUsername && (
+          {invalidLengthUsername && (
             <p className={styles.error}>
               Invalid username.
               <br />
-              Username must be at least 5 characters long.
+              Username must be between 5 and 14 characters long.
             </p>
           )}
-          {invalidPassword && (
+          {invalidCharactersUsername && (
             <p className={styles.error}>
-              Invalid password entries.
+              Invalid username.
+              <br />
+              Use only letters, numbers, and dashes.
+            </p>
+          )}
+          {invalidLengthPassword && (
+            <p className={styles.error}>
+              Invalid password entry.
               <br />
               Passwords must be at least 8 characters long.
+            </p>
+          )}
+          {invalidCharactersPassword && (
+            <p className={styles.error}>
+              Invalid password entry.
+              <br />
+              Use only letters, numbers, and -!@#$%^&*.
             </p>
           )}
           {unmatchedPassword && (

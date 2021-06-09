@@ -1,5 +1,6 @@
-.center {
+.container {
   text-align: center;
+  max-width: 800px;
 }
 
 .day {
@@ -13,47 +14,29 @@
   padding-top: 35px;
 }
 
-.headliner span {
+.headliner a {
   font-size: 1.5rem;
   transition: font-size 0.2s linear;
 }
 
-.headliner span:hover {
-  font-size: 1.6rem;
-}
-
-.headliner span:not(:first-child)::before {
+.headliner a:not(:first-child)::before {
   content: ' ';
 }
 
-.subliner span:not(:first-child)::before {
-  content: ' • ';
-}
-
-.subliner span {
-  font-size: 1.2rem;
-  transition: font-size 0.2s linear;
-}
-
-.subliner span:hover {
+.subliner a {
   font-size: 1.3rem;
 }
 
-.unliner span {
-  font-size: 0.9rem;
-  transition: font-size 0.2s linear;
-}
-
-.unliner span:hover {
-  font-size: 1rem;
-}
-
-.unliner span:nth-child(even) {
-  color: rgb(173, 173, 173);
-}
-
-.unliner span:not(:first-child)::before {
+.subliner a:not(:first-child)::before {
   content: ' • ';
+}
+
+.unliner a:not(:first-child)::before {
+  content: ' • ';
+}
+
+.unliner a:nth-child(even) {
+  color: white;
 }
 
 .blue {
@@ -74,8 +57,4 @@
 
 .yellow {
   color: yellow;
-}
-
-.small {
-  font-size: 0.8rem;
 }

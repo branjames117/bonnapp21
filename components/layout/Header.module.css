@@ -2,8 +2,8 @@
   background-color: black;
   position: fixed;
   top: 0;
-  padding: 8px 70px;
-  width: 100%;
+  padding: 8px 0;
+  width: 800px;
 }
 
 .nav {
@@ -24,19 +24,45 @@
   padding: 0 10px;
 }
 
-.link,
-.link:hover {
-  cursor: pointer;
-}
-
-@media screen and (min-width: 1400px) {
+/* galaxy fold, so small */
+@media screen and (min-width: 280px) {
   .header {
-    width: 80%;
+    top: 0;
+    padding: 8px 8px;
+  }
+  .nav {
+    font-size: 1.8rem;
+  }
+  .ul li {
+    display: inline;
+    padding: 0 5px;
   }
 }
 
-@media screen and (min-width: 1800px) {
+/* iPhone5, very small screen */
+@media screen and (min-width: 320px) {
   .header {
-    width: 60%;
+    top: 0;
+    padding: 8px 8px;
+  }
+  .nav {
+    font-size: 2rem;
+  }
+  .ul li {
+    display: inline;
+    padding: 0 7px;
+  }
+}
+
+/* at this size we have to ditch the logo */
+@media screen and (max-width: 480px) {
+  .navLogo {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .header {
+    width: 87%;
   }
 }

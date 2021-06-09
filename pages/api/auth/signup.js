@@ -34,6 +34,7 @@ export default async function handler(req, res) {
     username: username,
     password: hashedPassword,
     bio: 'My profile is so blank right now.',
+    firstname: '',
     birthday: '',
     bonnaroos: '',
     location: '',
@@ -43,9 +44,12 @@ export default async function handler(req, res) {
     genres: [],
     videoURL: '',
     friends: [],
+    friendOf: [],
     excited: [],
     comments: [],
-    joined: new Date().toDateString().slice(4),
+    friendsEnabled: true,
+    commentsEnabled: true,
+    joined: new Date().toISOString().slice(0, 10),
   })
 
   res.status(201).json({ message: 'User created!' })

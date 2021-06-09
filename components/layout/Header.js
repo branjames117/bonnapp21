@@ -1,6 +1,7 @@
 import classes from './Header.module.css'
 import Link from 'next/link'
 import { signout, useSession } from 'next-auth/client'
+import randomColorGenerator from '../../lib/random-colors'
 
 export default function Header(props) {
   const [session, _] = useSession()
@@ -13,21 +14,36 @@ export default function Header(props) {
     <header className={classes.header}>
       <nav className={classes.nav}>
         <div>
-          <Link href='/'>BonnApp21</Link>
+          <span className={classes.navLogo}>
+            <Link href='/'>
+              <a style={{ color: randomColorGenerator() }}>BonnApp21</a>
+            </Link>
+          </span>
         </div>
         <div>
           <ul className={classes.ul}>
             <li>
-              <Link href='/'>Shows</Link>
+              <Link href='/lineup'>
+                <a style={{ color: randomColorGenerator() }}>Lineup</a>
+              </Link>
+            </li>
+            <li>
+              <Link href='/genres'>
+                <a style={{ color: randomColorGenerator() }}>Genres</a>
+              </Link>
             </li>
             {/* render if no active session */}
             {!session && (
               <>
                 <li>
-                  <Link href='/users/register'>Register</Link>
+                  <Link href='/users/register'>
+                    <a style={{ color: randomColorGenerator() }}>Register</a>
+                  </Link>
                 </li>
                 <li>
-                  <Link href='/users/login'>Login</Link>
+                  <Link href='/users/login'>
+                    <a style={{ color: randomColorGenerator() }}>Login</a>
+                  </Link>
                 </li>
               </>
             )}
@@ -35,15 +51,22 @@ export default function Header(props) {
             {session && (
               <>
                 <li>
-                  <Link href={`/users/${session.user.name}`}>My Profile</Link>
+                  <Link href={`/users/${session.user.name}`}>
+                    <a
+                      style={{
+                        color: randomColorGenerator(),
+                      }}
+                    >
+                      Profile
+                    </a>
+                  </Link>
                 </li>
-                {session.user.name === 'admin' && (
-                  <li>
-                    <Link href='/admin'>Admin</Link>
-                  </li>
-                )}
-                <li className={classes.link} onClick={logoutHandler}>
-                  Logout
+                <li onClick={logoutHandler}>
+                  <a
+                    style={{ color: randomColorGenerator(), cursor: 'pointer' }}
+                  >
+                    Logout
+                  </a>
                 </li>
               </>
             )}

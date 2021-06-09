@@ -10,6 +10,8 @@ import { connectToDatabase } from '../../lib/db'
 export async function getServerSideProps(context) {
   const session = await getSession({ req: context.req })
 
+  /* redirect if user has no active session and therefore
+  no profile page to edit */
   if (!session) {
     return { redirect: { destination: '/users/login' } }
   }

@@ -18,7 +18,6 @@ export async function getStaticProps(context) {
   /* use rest operator to separate out the _id and password keys we don't
   need to pass as props: user is all we care about now */
   const { _id, password, ...user } = fetchedUser
-  console.log(user)
   client.close()
   /* send the requested user as a prop */
   return {
@@ -79,12 +78,51 @@ export default function User(props) {
     router.push(props.user.username)
   }
 
+  async function onAddFriendHandler(friendData) {
+    const response = await fetch('/api/user/edit-friends', {
+      method: 'POST',
+      body: JSON.stringify(friendData),
+      headers: { 'Content-Type': 'application/json' },
+    })
+
+    const data = await response.json()
+    console.log(data)
+    router.push(props.user.username)
+  }
+
+  async function onDeleteFriendHandler(friendData) {
+    const response = await fetch('/api/user/edit-friends', {
+      method: 'DELETE',
+      body: JSON.stringify(friendData),
+      headers: { 'Content-Type': 'application/json' },
+    })
+
+    const data = await response.json()
+    console.log(data)
+    router.push(props.user.username)
+  }
+
+  async function onDeleteExcitedUserHandler(excitedData) {
+    const response = await fetch('/api/show/edit-excited', {
+      method: 'DELETE',
+      body: JSON.stringify(excitedData),
+      headers: { 'Content-Type': 'application/json' },
+    })
+
+    const data = await response.json()
+    console.log(data)
+    router.push(props.user.username)
+  }
+
   return (
     <Main>
       <UserProfile
         user={props.user}
         onAddComment={onAddCommentHandler}
         onDeleteComment={onDeleteCommentHandler}
+        onAddFriend={onAddFriendHandler}
+        onDeleteFriend={onDeleteFriendHandler}
+        onDeleteExcitedUser={onDeleteExcitedUserHandler}
       />
     </Main>
   )

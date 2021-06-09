@@ -32,6 +32,10 @@
   margin-top: 20px;
 }
 
+.genre:not(:first-child)::before {
+  content: ' • ';
+}
+
 .table {
   margin-top: 20px;
   width: 100%;

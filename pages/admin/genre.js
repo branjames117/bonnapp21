@@ -1,7 +1,7 @@
 /* Secret admin page for uploading show documents to the db */
 
 import { useRouter } from 'next/router'
-import AdminShows from '../../components/admin/AdminShows'
+import AdminGenres from '../../components/admin/AdminGenres'
 import Main from '../../components/layout/Main'
 import { getSession } from 'next-auth/client'
 
@@ -10,7 +10,7 @@ export async function getServerSideProps(context) {
   const session = await getSession({ req: context.req })
 
   /* if user tries to visit /admin without auth, redir to login */
-  if (!session || session.user.name !== 'branjames117') {
+  if (!session || session.user.name !== 'admin') {
     return { redirect: { destination: '/users/login' } }
   }
 
@@ -23,10 +23,10 @@ export default function Admin() {
   const router = useRouter()
 
   /* get data from the AdminShows component, send to API */
-  async function addShowHandler(showData) {
-    const response = await fetch('/api/admin/new-show', {
+  async function addGenreHandler(genreData) {
+    const response = await fetch('/api/admin/new-genre', {
       method: 'POST',
-      body: JSON.stringify(showData),
+      body: JSON.stringify(genreData),
       headers: { 'Content-Type': 'application/json' },
     })
 
@@ -38,7 +38,7 @@ export default function Admin() {
 
   return (
     <Main>
-      <AdminShows onAddShow={addShowHandler} />
+      <AdminGenres onAddGenre={addGenreHandler} />
     </Main>
   )
 }

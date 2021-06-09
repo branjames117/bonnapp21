@@ -1,8 +1,12 @@
 import classes from './Card.module.css'
+import randomColorGenerator from '../../lib/random-colors'
 
 export default function Card(props) {
   return (
-    <div style={{ backgroundColor: props.color }} className={classes.card}>
+    <div
+      style={{ borderColor: randomColorGenerator() }}
+      className={classes.card}
+    >
       {props.children}
     </div>
   )

@@ -2,14 +2,26 @@ import { useRef } from 'react'
 import classes from './UserProfile.module.css'
 import Card from '../layout/Card'
 import Button from '../layout/Button'
+import SmallButton from '../layout/SmallButton'
+import SmallButtonRight from '../layout/SmallButtonRight'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
+import randomColorGenerator from '../../lib/random-colors'
 
 export default function UserProfile(props) {
   const [session, _] = useSession()
   const commentInputRef = useRef()
   const router = useRouter()
+
+  /* logic to determine profile ownership */
+  let loggedIn = session ? true : false
+  let myPage
+  if (loggedIn) {
+    myPage = session.user.name === props.user.username ? true : false
+  } else {
+    myPage = false
+  }
 
   function onAddCommentHandler(e) {
     e.preventDefault()
@@ -44,18 +56,62 @@ export default function UserProfile(props) {
     router.push('/users/edit')
   }
 
+  function onAddFriend() {
+    const friendData = {
+      username: session.user.name,
+      friendName: props.user.username,
+    }
+
+    props.onAddFriend(friendData)
+  }
+
+  function onDeleteFriend(friend = props.user.username) {
+    const friendData = {
+      username: session.user.name,
+      friendName: friend,
+    }
+
+    props.onDeleteFriend(friendData)
+  }
+
+  function onDeleteExcitedUser(show = props.show.title) {
+    const excitedData = {
+      user: session.user.name,
+      show: show,
+    }
+
+    props.onDeleteExcitedUser(excitedData)
+  }
+
   return (
     <div className={classes.container}>
       {/* LEFT-SIDE PANE */}
       <div>
-        <Card color='brown'>
-          <h1 className={classes.h1}>{props.user.username}</h1>
-          {session && session.user.name === props.user.username && (
-            <Button onClick={editProfileHandler}>edit profile</Button>
+        <Card>
+          <h1 className={classes.h1} style={{ color: randomColorGenerator() }}>
+            {props.user.username}
+          </h1>
+          {/* Conditionally allow user to edit profile */}
+          {myPage && <Button onClick={editProfileHandler}>edit profile</Button>}
+          {myPage && session.user.name === 'admin' && (
+            <>
+              <br />
+              <Link href='/admin/show'>
+                <Button>add show</Button>
+              </Link>
+              <br />
+              <Link href='/admin/genre'>
+                <Button>add genre</Button>
+              </Link>
+            </>
           )}
-
           <div className={classes.body}>
-            <h2 className={classes.h2}>About Me</h2>
+            <h2
+              className={classes.h2}
+              style={{ color: randomColorGenerator() }}
+            >
+              About Me
+            </h2>
             <p className={classes.p}>{props.user.bio}</p>
             {/* Conditionally display available information */}
             <table className={classes.table}>
@@ -82,7 +138,7 @@ export default function UserProfile(props) {
                     <td align='right'>{props.user.location}</td>
                   </tr>
                 )}
-                {props.user.location && (
+                {props.user.bonnaroos && (
                   <tr>
                     <td>Roos Attended</td>
                     <td align='right'>{props.user.bonnaroos}</td>
@@ -94,7 +150,12 @@ export default function UserProfile(props) {
               props.user.instaURL ||
               props.user.twitterURL) && (
               <>
-                <h2 className={classes.h2}>Social</h2>
+                <h2
+                  className={classes.h2}
+                  style={{ color: randomColorGenerator() }}
+                >
+                  Social
+                </h2>
                 <div className={classes.social}>
                   {props.user.facebookURL && (
                     <div>
@@ -146,39 +207,84 @@ export default function UserProfile(props) {
             )}
             {props.user.genres.length !== 0 && (
               <div className={classes.body}>
-                <h2 className={classes.h2}>Preferred Genres</h2>
+                <h2
+                  className={classes.h2}
+                  style={{ color: randomColorGenerator() }}
+                >
+                  Preferred Genres
+                </h2>
                 {props.user.genres.map((genre) => (
-                  <span className={classes.box}>{genre}</span>
+                  <>
+                    <Link href={`/genres/${genre}`}>{genre}</Link>
+                    <br />
+                  </>
                 ))}
               </div>
             )}
-            <h2 className={classes.h2}>Excited to See...</h2>
+            <h2
+              className={classes.h2}
+              style={{ color: randomColorGenerator() }}
+            >
+              Excited to See...
+            </h2>
             <div className={classes.body}>
-              {props.user.excited.length === 0 && (
-                <span className={classes.box}>No one yet.</span>
+              {(props.user.excited.length === 0 && (
+                <span>No one yet.</span>
+              )) || (
+                <ul className={classes.ul}>
+                  {props.user.excited.map((show, idx) => (
+                    <li key={idx}>
+                      {myPage && (
+                        <SmallButton onClick={() => onDeleteExcitedUser(show)}>
+                          x
+                        </SmallButton>
+                      )}
+                      <Link href={`/shows/${show}`}>
+                        <a className={classes.box}>{show}</a>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               )}
-              {props.user.excited.map((show) => (
-                <span className={classes.box}>{show}</span>
-              ))}
             </div>
           </div>
         </Card>
-        {/* only show this card if Friends is enabled */}
+        {/* Only show this card if Friends is enabled */}
         {props.user.friendsEnabled && (
-          <Card color='rgb(88, 226, 111)'>
-            <h2 className={classes.h2}>Friends</h2>
-            {props.user.friends.length === 0 && (
-              <p>No friends yet. Try inviting people you know.</p>
-            )}
-            {props.user.friends.length !== 0 && (
-              <ul className={classes.ul}>
-                {props.user.friends.map((friend) => (
-                  <li>
-                    <Link href={`/users/${friend}`}>{friend}</Link>
-                  </li>
-                ))}
-              </ul>
-            )}
+          <Card>
+            <h2
+              className={classes.h2}
+              style={{ color: randomColorGenerator() }}
+            >
+              Friends
+            </h2>
+            {loggedIn &&
+              !myPage &&
+              !props.user.friendOf.includes(session.user.name) && (
+                <Button onClick={onAddFriend}>add friend</Button>
+              )}
+            {loggedIn &&
+              !myPage &&
+              props.user.friendOf.includes(session.user.name) && (
+                <Button onClick={onDeleteFriend}>remove friend</Button>
+              )}
+            <div className={classes.body}>
+              {props.user.friends.length === 0 && <p>No friends yet.</p>}
+              {props.user.friends.length !== 0 && (
+                <ul className={classes.ul}>
+                  {props.user.friends.map((friend, idx) => (
+                    <li key={idx}>
+                      {myPage && (
+                        <SmallButton onClick={() => onDeleteFriend(friend)}>
+                          x
+                        </SmallButton>
+                      )}
+                      <Link href={`/users/${friend}`}>{friend}</Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </Card>
         )}
       </div>
@@ -186,12 +292,17 @@ export default function UserProfile(props) {
       {/* RIGHT-SIDE PANE */}
       <div>
         {props.user.videoURL && (
-          <Card color='rgb(255, 155, 41)'>
-            <h2 className={classes.h2}>Video of the Moment</h2>
+          <Card>
+            <h2
+              className={classes.h2}
+              style={{ color: randomColorGenerator() }}
+            >
+              Video of the Moment
+            </h2>
             <p className={classes.videoBox}>
               <iframe
                 width='100%'
-                height='320px'
+                height='280px'
                 src={props.user.videoURL.replace('watch?v=', 'embed/')}
                 title='YouTube video player'
                 frameBorder='1'
@@ -202,8 +313,13 @@ export default function UserProfile(props) {
         )}
         {/* only show this card if Comments is enabled */}
         {props.user.commentsEnabled && (
-          <Card color='rgb(215, 88, 231)'>
-            <h2 className={classes.h2}>Comment Wall</h2>
+          <Card>
+            <h2
+              className={classes.h2}
+              style={{ color: randomColorGenerator() }}
+            >
+              Comment Wall
+            </h2>
             <span className={classes.box}></span>
             {!session && <p>You must log in to leave comments.</p>}
             {session && (
@@ -217,7 +333,7 @@ export default function UserProfile(props) {
                   ></textarea>
                 </div>
                 <div className={classes.actions}>
-                  <Button>Leave Comment</Button>
+                  <Button>leave comment</Button>
                 </div>
               </form>
             )}
@@ -235,16 +351,19 @@ export default function UserProfile(props) {
                         {/* Is active session also author of comment? If so, let them delete it */}
                         {session && session.user.name === comment.author && (
                           <>
-                            &middot;{' '}
-                            <button
+                            {' '}
+                            <SmallButtonRight
                               value={comment.id}
                               onClick={onDeleteCommentHandler}
                             >
-                              delete
-                            </button>
+                              x
+                            </SmallButtonRight>
                           </>
                         )}
                       </div>
+                    </div>
+                    <div className={classes.hr}>
+                      <hr />
                     </div>
                   </>
                 ))}

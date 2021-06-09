@@ -10,8 +10,16 @@ body {
 }
 
 a {
-  color: inherit;
+  color: rgb(173, 173, 173);
   text-decoration: none;
+}
+
+a:hover {
+  color: red;
+}
+
+img {
+  width: 100%;
 }
 
 * {
