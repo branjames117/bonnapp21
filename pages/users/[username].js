@@ -43,7 +43,7 @@ export async function getStaticPaths() {
   client.close()
 
   return {
-    fallback: false,
+    fallback: true,
     /* for each user, create a new static param */
     paths: userList.map((user) => ({ params: { userName: user.username } })),
   }

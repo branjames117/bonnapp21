@@ -19,7 +19,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function Admin() {
+export default function GenreAdmin() {
   const router = useRouter()
 
   /* get data from the AdminShows component, send to API */

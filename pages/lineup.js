@@ -1,4 +1,3 @@
-import { useSession } from 'next-auth/client'
 import Main from '../components/layout/Main'
 import Lineup from '../components/shows/Lineup'
 

@@ -76,7 +76,7 @@ export async function getStaticPaths() {
   client.close()
 
   return {
-    fallback: false,
+    fallback: true,
     paths: uniqueGenres.map((genre) => ({ params: { genreName: genre } })),
   }
 }

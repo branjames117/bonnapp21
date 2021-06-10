@@ -41,7 +41,7 @@ export async function getStaticPaths() {
   let paths = allShows.map((show) => ({ params: { showName: show.title } }))
 
   return {
-    fallback: false,
+    fallback: true,
     paths: allShows.map((show) => ({ params: { showName: show.title } })),
   }
 }

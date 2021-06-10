@@ -1,6 +1,8 @@
 import { useRef } from 'react'
-import styles from './AdminGenres.module.css'
+import styles from './AdminShows.module.css'
 import Card from '../layout/Card'
+
+/* this component will only ever be visible to the admin account */
 
 export default function AdminGenres(props) {
   const genreNameInputRef = useRef()
