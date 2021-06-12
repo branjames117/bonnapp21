@@ -57,27 +57,16 @@ export async function getStaticPaths() {
   const client = await connectToDatabase()
   const db = client.db()
 
-  const shows = db.collection('shows')
+  const genres = db.collection('genres')
 
-  /* snatch all the shows from the db */
-  const fetchedShows = await shows.find({}, { genres: 1 }).toArray()
-
-  /* pull the genre data from each show, then flatten to array, then
-  add to new array if not already present */
-  const genres = []
-  const uniqueGenres = []
-  fetchedShows.forEach((show) => genres.push(show.genres))
-  genres
-    .flat()
-    .forEach((genre) =>
-      uniqueGenres.includes(genre) ? null : uniqueGenres.push(genre)
-    )
+  const allGenres = await genres.find({}).toArray()
 
   client.close()
+  let paths = allGenres.map((genre) => ({ params: { genreName: genre.name } }))
 
   return {
-    fallback: true,
-    paths: uniqueGenres.map((genre) => ({ params: { genreName: genre } })),
+    fallback: false,
+    paths: paths,
   }
 }
 

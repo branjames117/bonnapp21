@@ -10,7 +10,6 @@ import randomColorGenerator from '../../lib/random-colors'
 export default function ShowProfile(props) {
   const [session, _] = useSession()
   const commentInputRef = useRef()
-  const router = useRouter()
 
   function onAddCommentHandler(e) {
     e.preventDefault()

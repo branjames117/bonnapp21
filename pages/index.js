@@ -3,10 +3,10 @@ import Home from '../components/home/Home'
 
 // this is the home page of the website, the / route
 
-export default function HomePage(props) {
+export default function HomePage() {
   return (
     <Main>
-      <Home>Hi</Home>
+      <Home />
     </Main>
   )
 }

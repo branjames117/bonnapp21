@@ -1,44 +1,27 @@
-/* Secret admin page for uploading show documents to the db */
-
-import { useRouter } from 'next/router'
-import AdminShows from '../../components/admin/AdminShows'
+import AddShow from '../../components/admin/AddShow'
 import Main from '../../components/layout/Main'
 import { getSession } from 'next-auth/client'
+
+/* secret page for adding new shows to the database
+only visible to user 'admin' */
+
+export default function AdminShowPage() {
+  return (
+    <Main>
+      <AddShow />
+    </Main>
+  )
+}
 
 /* using getServerSideProps as a server-side page gate */
 export async function getServerSideProps(context) {
   const session = await getSession({ req: context.req })
 
-  /* if user tries to visit /admin without auth, redir to login */
   if (!session || session.user.name !== 'admin') {
-    return { redirect: { destination: '/users/login' } }
+    return { redirect: { destination: '/' } }
   }
 
   return {
     props: {},
   }
-}
-
-export default function ShowAdmin() {
-  const router = useRouter()
-
-  /* get data from the AdminShows component, send to API */
-  async function addShowHandler(showData) {
-    const response = await fetch('/api/admin/new-show', {
-      method: 'POST',
-      body: JSON.stringify(showData),
-      headers: { 'Content-Type': 'application/json' },
-    })
-
-    const data = await response.json()
-
-    /* send us back to root after we hit submit */
-    router.push('/')
-  }
-
-  return (
-    <Main>
-      <AdminShows onAddShow={addShowHandler} />
-    </Main>
-  )
 }

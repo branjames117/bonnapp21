@@ -1,8 +1,8 @@
-/* Custom 404 page for broken routes */
-
 import Main from '../components/layout/Main'
 
-export default function Home() {
+/* custom 404 page for broken routes */
+
+export default function NoPageFound() {
   return (
     <Main>
       <h1>404</h1>

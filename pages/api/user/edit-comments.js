@@ -39,6 +39,7 @@ export default async function handler(req, res) {
   if (req.method === 'DELETE') {
     /* object destructuring */
     const { username, commentID } = req.body
+    console.log(req.body)
 
     /* Use the $pull operator to remove the ID'd comment from the comments array */
     const result = await users.updateOne(

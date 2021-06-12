@@ -41,7 +41,9 @@ export default function Show(props) {
   return (
     <Main>
       {props.uniqueGenres.map((genre) => (
-        <Link href={`/genres/${genre}`}>{genre}</Link>
+        <Link href={`/genres/${genre}`} id={genre}>
+          {genre}
+        </Link>
       ))}
     </Main>
   )

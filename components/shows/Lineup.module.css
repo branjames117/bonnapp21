@@ -39,6 +39,10 @@
   color: white;
 }
 
+.unliner a:nth-child(even):hover {
+  color: red;
+}
+
 .blue {
   color: rgb(59, 131, 224);
 }
