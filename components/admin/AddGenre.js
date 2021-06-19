@@ -12,19 +12,7 @@ export default function AddGenre() {
 
   const router = useRouter()
 
-  /* send data to API */
-  async function addGenreHandler(genreData) {
-    await fetch('/api/admin/new-genre', {
-      method: 'POST',
-      body: JSON.stringify(genreData),
-      headers: { 'Content-Type': 'application/json' },
-    })
-
-    /* send us back to root after we hit submit */
-    router.push('/')
-  }
-
-  function submitHandler(e) {
+  async function submitHandler(e) {
     e.preventDefault()
 
     const enteredName = genreNameInputRef.current.value
@@ -37,7 +25,14 @@ export default function AddGenre() {
       wiki: enteredWiki,
     }
 
-    addGenreHandler(genreData)
+    await fetch('/api/admin/new-genre', {
+      method: 'POST',
+      body: JSON.stringify(genreData),
+      headers: { 'Content-Type': 'application/json' },
+    })
+
+    /* send us back to root after we hit submit */
+    router.push(`/genres/${enteredName}`)
   }
 
   return (

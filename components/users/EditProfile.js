@@ -1,275 +1,612 @@
-import { useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/client'
+import { useRouter } from 'next/router'
 import classes from './EditProfile.module.css'
 import Card from '../layout/Card'
+import BigHeadline from '../layout/BigHeadline'
+import Headline from '../layout/Headline'
 import Button from '../layout/Button'
-import { useSession } from 'next-auth/client'
+import randomColorGenerator from '../../lib/random-colors'
 
 export default function EditProfile(props) {
-  const [invalidPassword, setInvalidPassword] = useState(false)
-  const [unmatchedPassword, setUnmatchedPassword] = useState(false)
   const [session, _] = useSession()
-  const bioInputRef = useRef()
-  const firstnameInputRef = useRef()
-  const birthdayInputRef = useRef()
-  const locationInputRef = useRef()
-  const bonnaroosInputRef = useRef()
-  const videoInputRef = useRef()
-  const facebookInputRef = useRef()
-  const instaInputRef = useRef()
-  const twitterInputRef = useRef()
-  const friendsEnabledInputRef = useRef()
-  const commentsEnabledInputRef = useRef()
-  const newPasswordInputRef = useRef()
-  const confirmedPasswordInputRef = useRef()
+  const router = useRouter()
 
-  function submitHandler(e) {
+  const [userData, setUserData] = useState({
+    password: '',
+    confirmed: '',
+    bio: '',
+    firstname: '',
+    birthday: '',
+    location: '',
+    bonnaroos: '',
+    videoURL: '',
+    facebookURL: '',
+    instaURL: '',
+    twitterURL: '',
+    friendsEnabled: '',
+    commentsEnabled: '',
+  })
+
+  const [errors, setErrors] = useState({
+    bio: false,
+    firstname: false,
+    location: false,
+    videoURL: false,
+    social: false,
+    password: false,
+    confirmed: false,
+  })
+
+  /* use pre-existing info to fill out form on first load */
+  useEffect(() => {
+    setUserData({
+      bio: props.user.bio,
+      firstname: props.user.firstname,
+      birthday: props.user.birthday,
+      location: props.user.location,
+      bonnaroos: props.user.bonnaroos,
+      videoURL: props.user.videoURL,
+      facebookURL: props.user.facebookURL,
+      instaURL: props.user.instaURL,
+      twitterURL: props.user.twitterURL,
+      friendsEnabled: props.user.friendsEnabled,
+      commentsEnabled: props.user.commentsEnabled,
+    })
+  }, [])
+
+  /* switch case input change handler updates the userData
+  state and also resets appropriate error states */
+  const inputChangeHandler = (e) => {
+    switch (e.target.id) {
+      case 'bio':
+        setUserData((prevState) => ({
+          ...prevState,
+          bio: e.target.value,
+        }))
+        setErrors((prevState) => ({
+          ...prevState,
+          bio: false,
+        }))
+        break
+      case 'firstname':
+        setUserData((prevState) => ({
+          ...prevState,
+          firstname: e.target.value,
+        }))
+        setErrors((prevState) => ({
+          ...prevState,
+          firstname: false,
+        }))
+        break
+      case 'birthday':
+        setUserData((prevState) => ({
+          ...prevState,
+          birthday: e.target.value,
+        }))
+        break
+      case 'location':
+        setUserData((prevState) => ({
+          ...prevState,
+          location: e.target.value,
+        }))
+        setErrors((prevState) => ({
+          ...prevState,
+          location: false,
+        }))
+        break
+      case 'bonnaroos':
+        setUserData((prevState) => ({
+          ...prevState,
+          bonnaroos: e.target.value,
+        }))
+        break
+      case 'facebookURL':
+        setUserData((prevState) => ({
+          ...prevState,
+          facebookURL: e.target.value,
+        }))
+        setErrors((prevState) => ({
+          ...prevState,
+          social: false,
+        }))
+        break
+      case 'instaURL':
+        setUserData((prevState) => ({
+          ...prevState,
+          instaURL: e.target.value,
+        }))
+        setErrors((prevState) => ({
+          ...prevState,
+          social: false,
+        }))
+        break
+      case 'twitterURL':
+        setUserData((prevState) => ({
+          ...prevState,
+          twitterURL: e.target.value,
+        }))
+        setErrors((prevState) => ({
+          ...prevState,
+          social: false,
+        }))
+        break
+      case 'videoURL':
+        setUserData((prevState) => ({
+          ...prevState,
+          videoURL: e.target.value,
+        }))
+        setErrors((prevState) => ({
+          ...prevState,
+          videoURL: false,
+        }))
+        break
+      case 'password':
+        setUserData((prevState) => ({
+          ...prevState,
+          password: e.target.value,
+        }))
+        setErrors((prevState) => ({
+          ...prevState,
+          password: false,
+        }))
+        break
+      case 'confirmed':
+        setUserData((prevState) => ({
+          ...prevState,
+          confirmed: e.target.value,
+        }))
+        setErrors((prevState) => ({
+          ...prevState,
+          confirmed: false,
+        }))
+        break
+      case 'commentsEnabled':
+        setUserData((prevState) => ({
+          ...prevState,
+          commentsEnabled: e.target.value,
+        }))
+        break
+      case 'friendsEnabled':
+        setUserData((prevState) => ({
+          ...prevState,
+          friendsEnabled: e.target.value,
+        }))
+        break
+    }
+  }
+
+  async function submitHandler(e) {
     e.preventDefault()
+    let validForm = true
 
-    setInvalidPassword(false)
-    setUnmatchedPassword(false)
-
-    const enteredBio = bioInputRef.current.value
-    const enteredFirstName = firstnameInputRef.current.value
-    const enteredBirthday = birthdayInputRef.current.value
-    const enteredLocation = locationInputRef.current.value
-    const enteredBonnaroos = bonnaroosInputRef.current.value
-    const enteredVideoURL = videoInputRef.current.value
-    const enteredFacebookURL = facebookInputRef.current.value
-    const enteredInstaURL = instaInputRef.current.value
-    const enteredTwitterURL = twitterInputRef.current.value
-    const enteredFriendsEnabled = friendsEnabledInputRef.current.value
-    const enteredCommentsEnabled = commentsEnabledInputRef.current.value
-    const enteredNewPassword = newPasswordInputRef.current.value
-    const enteredConfirmedPassword = confirmedPasswordInputRef.current.value
-
-    if (enteredNewPassword.length > 0 && enteredNewPassword.trim().length < 8) {
-      setInvalidPassword(true)
-      return
+    /* client-side input validation checks performed here */
+    if (
+      (userData.password.trim().length > 0 &&
+        userData.password.trim().length < 8) ||
+      (userData.password.trim().length > 0 &&
+        !userData.password.match(/^[a-zA-Z0-9!@#$%^&*\-]+$/))
+    ) {
+      validForm = false
+      setErrors((prevState) => ({
+        ...prevState,
+        password: true,
+      }))
     }
 
     if (
-      enteredNewPassword.length > 0 &&
-      enteredNewPassword !== enteredConfirmedPassword
+      userData.password.length > 0 &&
+      userData.password !== userData.confirmed
     ) {
-      setUnmatchedPassword(true)
-      return
+      validForm = false
+      setErrors((prevState) => ({
+        ...prevState,
+        confirmed: true,
+      }))
     }
 
-    const userData = {
-      username: session.user.name,
-      bio: enteredBio || props.user.bio,
-      firstname: enteredFirstName || props.user.firstname,
-      birthday: enteredBirthday || props.user.birthday,
-      location: enteredLocation || props.user.location,
-      bonnaroos: enteredBonnaroos || props.user.bonnaroos,
-      videoURL: enteredVideoURL || props.user.videoURL,
-      facebookURL: enteredFacebookURL || props.user.facebookURL,
-      instaURL: enteredInstaURL || props.user.instaURL,
-      twitterURL: enteredTwitterURL || props.user.twitterURL,
-      friendsEnabled: enteredFriendsEnabled.length > 0,
-      commentsEnabled: enteredCommentsEnabled.length > 0,
-      newPassword: enteredNewPassword,
+    if (userData.bio.trim().length > 250) {
+      validForm = false
+      setErrors((prevState) => ({
+        ...prevState,
+        bio: true,
+      }))
     }
 
-    props.onUserProfileEdit(userData)
+    if (userData.firstname.trim().length > 15) {
+      validForm = false
+      setErrors((prevState) => ({
+        ...prevState,
+        firstname: true,
+      }))
+    }
+
+    if (userData.location.trim().length > 15) {
+      validForm = false
+      setErrors((prevState) => ({
+        ...prevState,
+        location: true,
+      }))
+    }
+
+    if (
+      userData.facebookURL.trim().length > 25 ||
+      userData.facebookURL.includes('.com') ||
+      userData.instaURL.trim().length > 25 ||
+      userData.instaURL.includes('.com') ||
+      userData.twitterURL.trim().length > 25 ||
+      userData.twitterURL.includes('.com')
+    ) {
+      validForm = false
+      setErrors((prevState) => ({
+        ...prevState,
+        social: true,
+      }))
+    }
+
+    if (
+      userData.videoURL.trim().length > 44 ||
+      !userData.videoURL.includes('www.youtube.com/watch?')
+    ) {
+      validForm = false
+      setErrors((prevState) => ({
+        ...prevState,
+        videoURL: true,
+      }))
+    }
+
+    /* if any validations failed, break out of submit handler */
+    if (!validForm) return
+
+    /* check bio is less than 500 characters */
+    /* check firstname is no more than 20 characters and has only letters */
+    /* check location is no more than 20 characters */
+    /* check bonnaroos is a number */
+    /* check video URL contains the beginning of a youtube URL */
+    /* check facebook/insta/twitter URL does not contain web domain */
+
+    await fetch('/api/user/edit-profile', {
+      method: 'POST',
+      body: JSON.stringify({
+        ...userData,
+        username: session.user.name,
+        newPassword: userData.password,
+      }),
+      headers: { 'Content-Type': 'application/json' },
+    })
+
+    /* send us back to our profile after we hit submit */
+    router.push(`/users/${props.user.username}`)
   }
 
   return (
-    <form onSubmit={submitHandler}>
-      <div className={classes.container}>
-        {/* LEFT-SIDE PANE */}
-        <div>
-          <Card color='brown'>
-            <h1 className={classes.h1}>
-              Editing {props.user.username}'s Profile
-            </h1>
-            <div className={classes.body}>
-              <h2 className={classes.h2}>
-                <label htmlFor='bio'>About Me</label>
-              </h2>
-              <div className={classes.control}>
-                <textarea
-                  placeholder={props.user.bio}
-                  id='bio'
-                  rows='3'
-                  ref={bioInputRef}
-                ></textarea>
+    <>
+      {!session && (
+        <p>
+          Something went wrong with your session. Please refresh this page to
+          reload your session.
+        </p>
+      )}
+      {session && (
+        <form className={classes.form} onSubmit={submitHandler}>
+          {/* LEFT-SIDE PANE */}
+          <div>
+            <Card>
+              <BigHeadline
+                className={classes.h1}
+                style={{ color: randomColorGenerator() }}
+              >
+                {props.user.username} Profile Editor
+              </BigHeadline>
+              <div className={classes.body}>
+                <Headline
+                  className={classes.h2}
+                  style={{ color: randomColorGenerator() }}
+                >
+                  <label htmlFor='bio'>Tell Us About Yourself</label>
+                </Headline>
+                <div className={classes.control}>
+                  <textarea
+                    onChange={inputChangeHandler}
+                    value={userData.bio}
+                    name='bio'
+                    id='bio'
+                    rows='8'
+                    className={errors.bio ? classes.controlError : null}
+                  ></textarea>
+                </div>
+                {errors.bio && (
+                  <p className={classes.error}>
+                    Bio must be below 250 characters.
+                  </p>
+                )}
+                <table className={classes.table}>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <label htmlFor='firstname'>First Name</label>
+                      </td>
+                      <td align='right'>
+                        <div className={classes.control}>
+                          <input
+                            onChange={inputChangeHandler}
+                            value={userData.firstname}
+                            autocomplete='off'
+                            name='firstname'
+                            id='firstname'
+                            type='text'
+                            className={
+                              errors.firstname ? classes.controlError : null
+                            }
+                          ></input>
+                        </div>
+                      </td>
+                    </tr>
+                    {errors.firstname && (
+                      <tr>
+                        <td colspan='2'>
+                          <p className={classes.error}>
+                            First name must be below 15 characters.
+                          </p>
+                        </td>
+                      </tr>
+                    )}
+                    <tr>
+                      <td>
+                        <label htmlFor='birthday'>Born On</label>
+                      </td>
+                      <td align='right'>
+                        <div className={classes.control}>
+                          <input
+                            onChange={inputChangeHandler}
+                            value={userData.birthday}
+                            name='birthday'
+                            id='birthday'
+                            type='date'
+                          ></input>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label htmlFor='location'>Hometown</label>
+                      </td>
+                      <td align='right'>
+                        <div className={classes.control}>
+                          <input
+                            onChange={inputChangeHandler}
+                            value={userData.location}
+                            autocomplete='off'
+                            name='location'
+                            id='location'
+                            type='text'
+                            className={
+                              errors.location ? classes.controlError : null
+                            }
+                          ></input>
+                        </div>
+                      </td>
+                    </tr>
+                    {errors.location && (
+                      <tr>
+                        <td colspan='2'>
+                          <p className={classes.error}>
+                            Hometown must be below 15 characters.
+                          </p>
+                        </td>
+                      </tr>
+                    )}
+                    <tr>
+                      <td>
+                        <label htmlFor='bonnaroos'>Roos Attended</label>
+                      </td>
+                      <td align='right'>
+                        <div className={classes.control}>
+                          <input
+                            onChange={inputChangeHandler}
+                            value={userData.bonnaroos}
+                            name='bonnaroos'
+                            id='bonnaroos'
+                            type='number'
+                          ></input>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <Headline
+                  className={classes.h2}
+                  style={{ color: randomColorGenerator() }}
+                >
+                  Your Social Accounts
+                </Headline>
+                <table className={classes.table}>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <label htmlFor='facebookURL'>Facebook Username</label>
+                      </td>
+                      <td>
+                        <div className={classes.control}>
+                          <input
+                            onChange={inputChangeHandler}
+                            value={userData.facebookURL}
+                            autocomplete='off'
+                            name='facebookURL'
+                            id='facebookURL'
+                            type='text'
+                            className={
+                              errors.social ? classes.controlError : null
+                            }
+                          ></input>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label htmlFor='instaURL'>Instagram Username</label>
+                      </td>
+                      <td align='right'>
+                        <div className={classes.control}>
+                          <input
+                            onChange={inputChangeHandler}
+                            value={userData.instaURL}
+                            autocomplete='off'
+                            name='instaURL'
+                            id='instaURL'
+                            type='text'
+                            className={
+                              errors.social ? classes.controlError : null
+                            }
+                          ></input>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label htmlFor='twitterURL'>Twitter Handle</label>
+                      </td>
+                      <td align='right'>
+                        <div className={classes.control}>
+                          <input
+                            onChange={inputChangeHandler}
+                            value={userData.twitterURL}
+                            autocomplete='off'
+                            name='twitterURL'
+                            id='twitterURL'
+                            type='text'
+                            className={
+                              errors.social ? classes.controlError : null
+                            }
+                          ></input>
+                        </div>
+                      </td>
+                    </tr>
+                    {errors.social && (
+                      <tr>
+                        <td colspan='2'>
+                          <p className={classes.error}>
+                            Social accounts must be your USERNAME for the given
+                            service, not the URL to your profile page.
+                            <br />
+                            <br />
+                            Example: branjames117
+                            <br />
+                            NOT: <em>facebook.com/branjames117</em>
+                          </p>
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
               </div>
-              <table className={classes.table}>
-                <tbody>
-                  <tr>
-                    <td>
-                      <label htmlFor='firstname'>First Name</label>
-                    </td>
-                    <td align='right'>
-                      <div className={classes.control}>
-                        <input
-                          placeholder={props.user.firstname}
-                          type='text'
-                          id='location'
-                          ref={firstnameInputRef}
-                        ></input>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label htmlFor='birthday'>Birthday</label>
-                    </td>
-                    <td align='right'>
-                      <div className={classes.control}>
-                        <input
-                          type='date'
-                          id='birthday'
-                          ref={birthdayInputRef}
-                        ></input>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label htmlFor='location'>Location</label>
-                    </td>
-                    <td align='right'>
-                      <div className={classes.control}>
-                        <input
-                          placeholder={props.user.location}
-                          type='text'
-                          id='location'
-                          ref={locationInputRef}
-                        ></input>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label htmlFor='bonnaroos'>Roos Attended</label>
-                    </td>
-                    <td align='right'>
-                      <div className={classes.control}>
-                        <input
-                          placeholder={props.user.bonnaroos}
-                          type='number'
-                          id='bonnaroos'
-                          ref={bonnaroosInputRef}
-                        ></input>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <h2 className={classes.h2}>Social</h2>
-              <div className={classes.control}>
-                <label htmlFor='facebook'>URL to Facebook Profile</label>
-                <input
-                  placeholder={props.user.facebookURL}
-                  type='text'
-                  id='facebook'
-                  ref={facebookInputRef}
-                ></input>
-              </div>
-              <div className={classes.control}>
-                <label htmlFor='insta'>URL to Instagram Profile</label>
-                <input
-                  placeholder={props.user.instaURL}
-                  type='text'
-                  id='insta'
-                  ref={instaInputRef}
-                ></input>
-              </div>
-              <div className={classes.control}>
-                <label htmlFor='twitter'>URL to Twitter Profile</label>
-                <input
-                  placeholder={props.user.twitterURL}
-                  type='text'
-                  id='twitter'
-                  ref={twitterInputRef}
-                ></input>
-              </div>
-            </div>
-          </Card>
-        </div>
+            </Card>
+          </div>
 
-        {/* RIGHT-SIDE PANE */}
-        <div>
-          <Card color='rgb(255, 155, 41)'>
-            <h2 className={classes.h2}>Video of the Moment</h2>
-            <div className={classes.control}>
-              <label htmlFor='video'>
-                YouTube URL to Music Video
-                <br />
-                Example: <em>https://www.youtube.com/watch?v=osdoLjUNFnA</em>
-              </label>
-              <input
-                placeholder={props.user.videoURL}
-                type='text'
-                id='video'
-                ref={videoInputRef}
-              ></input>
-            </div>
-          </Card>
-          <Card color='brown'>
-            <h2 className={classes.h2}>Options</h2>
-            <div className={classes.control}>
-              <label htmlFor='newPassword'>
-                New password (if changing, otherwise, leave blank):
-              </label>
-              <input
-                type='password'
-                id='newPassword'
-                ref={newPasswordInputRef}
-              ></input>
-            </div>
-            <div className={classes.control}>
-              <label htmlFor='confirmedPassword'>Confirm new password:</label>
-              <input
-                type='password'
-                id='confirmedPassword'
-                ref={confirmedPasswordInputRef}
-              ></input>
-            </div>
-            {invalidPassword && (
-              <p className={classes.error}>
-                Invalid password entries.
-                <br />
-                Passwords must be at least 8 characters long.
-              </p>
-            )}
-            {unmatchedPassword && (
-              <p className={classes.error}>Passwords must match.</p>
-            )}
-            <div className={classes.control}>
-              <label htmlFor='commentsEnabled'>
-                Allow comments on profile page:
-              </label>
-              <select
-                name='comments'
-                id='commentsEnabled'
-                ref={commentsEnabledInputRef}
+          {/* RIGHT-SIDE PANE */}
+          <div>
+            <Card>
+              <Headline
+                className={classes.h2}
+                style={{ color: randomColorGenerator() }}
               >
-                <option value='true'>Yes</option>
-                <option value=''>No</option>
-              </select>
-            </div>
-            <div className={classes.control}>
-              <label htmlFor='friendsEnabled'>
-                Show friends on profile page:
-              </label>
-              <select
-                name='friends'
-                id='friendsEnabled'
-                ref={friendsEnabledInputRef}
+                What Music Video Are You Feeling Now?
+              </Headline>
+              <div className={classes.control}>
+                <label htmlFor='video'>
+                  YouTube URL
+                  <br />
+                  Example: <em>https://www.youtube.com/watch?v=osdoLjUNFnA</em>
+                </label>
+                <input
+                  onChange={inputChangeHandler}
+                  value={userData.videoURL}
+                  name='videoURL'
+                  id='videoURL'
+                  type='text'
+                  className={errors.videoURL ? classes.controlError : null}
+                ></input>
+                {errors.videoURL && (
+                  <p className={classes.error}>
+                    YouTube URL must be a URL like the one in the example above.
+                  </p>
+                )}
+              </div>
+            </Card>
+            <Card>
+              <Headline
+                className={classes.h2}
+                style={{ color: randomColorGenerator() }}
               >
-                <option value='true'>Yes</option>
-                <option value=''>No</option>
-              </select>
-            </div>
-            <div className={classes.actions}>
-              <Button onClick={submitHandler}>Finish & Update Profile</Button>
-            </div>
-          </Card>
-        </div>
-      </div>
-    </form>
+                Options
+              </Headline>
+              <div className={classes.control}>
+                <label htmlFor='password'>New password (optional):</label>
+                <input
+                  type='password'
+                  id='password'
+                  name='password'
+                  onChange={inputChangeHandler}
+                  value={userData.password}
+                  className={errors.password ? classes.controlError : null}
+                ></input>
+              </div>
+              <div className={classes.control}>
+                <label htmlFor='confirmed'>Confirm new password:</label>
+                <input
+                  type='password'
+                  name='confirmed'
+                  id='confirmed'
+                  onChange={inputChangeHandler}
+                  value={userData.confirmed}
+                  className={errors.confirmed ? classes.controlError : null}
+                ></input>
+              </div>
+              {errors.password && (
+                <p className={classes.error}>
+                  Invalid password entries.
+                  <br />
+                  Passwords must be at least 8 characters long.
+                </p>
+              )}
+              {errors.confirmed && (
+                <p className={classes.error}>Passwords must match.</p>
+              )}
+              <div className={classes.control}>
+                <label htmlFor='commentsEnabled'>
+                  Allow comments on profile page:
+                </label>
+                <select
+                  onChange={inputChangeHandler}
+                  value={userData.commentsEnabled}
+                  name='commentsEnabled'
+                  id='commentsEnabled'
+                >
+                  <option value='true'>Yes</option>
+                  <option value='false'>No</option>
+                </select>
+              </div>
+              <div className={classes.control}>
+                <label htmlFor='friendsEnabled'>
+                  Show friends on profile page:
+                </label>
+                <select
+                  onChange={inputChangeHandler}
+                  value={userData.friendsEnabled}
+                  name='friendsEnabled'
+                  id='friendsEnabled'
+                >
+                  <option value='true'>Yes</option>
+                  <option value='false'>No</option>
+                </select>
+              </div>
+              <div className={classes.actions}>
+                <Button onClick={submitHandler}>save changes</Button>
+              </div>
+            </Card>
+          </div>
+        </form>
+      )}
+    </>
   )
 }

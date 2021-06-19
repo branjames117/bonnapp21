@@ -1,13 +1,14 @@
 import { connectToDatabase } from '../../../lib/db'
 
+/* API call handler for adding new genres to db */
+
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    /* object destructuring */
     const { name, def, wiki } = req.body
 
     const client = await connectToDatabase()
     const db = client.db()
-    const genres = db.collection('genres')
+    const genresCollection = db.collection('genres')
 
     const newGenre = {
       name,
@@ -15,7 +16,7 @@ export default async function handler(req, res) {
       wiki,
     }
 
-    await genres.insertOne(newGenre)
+    await genresCollection.insertOne(newGenre)
 
     client.close()
 

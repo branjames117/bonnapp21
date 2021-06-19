@@ -15,19 +15,7 @@ export default function AddShow() {
 
   const router = useRouter()
 
-  /* send data to API */
-  async function addShowHandler(showData) {
-    await fetch('/api/admin/new-show', {
-      method: 'POST',
-      body: JSON.stringify(showData),
-      headers: { 'Content-Type': 'application/json' },
-    })
-
-    /* send us back to root after we hit submit */
-    router.push('/')
-  }
-
-  function submitHandler(e) {
+  async function submitHandler(e) {
     e.preventDefault()
 
     const enteredTitle = showTitleInputRef.current.value
@@ -46,7 +34,14 @@ export default function AddShow() {
       videos: enteredVideos,
     }
 
-    addShowHandler(showData)
+    await fetch('/api/admin/new-show', {
+      method: 'POST',
+      body: JSON.stringify(showData),
+      headers: { 'Content-Type': 'application/json' },
+    })
+
+    /* send us back to root after we hit submit */
+    router.push(`/shows/${enteredTitle}`)
   }
 
   return (
@@ -67,7 +62,12 @@ export default function AddShow() {
         </div>
         <div className={styles.control}>
           <label htmlFor='bio'>Bio</label>
-          <textarea required id='bio' rows='3' ref={showBioInputRef}></textarea>
+          <textarea
+            required
+            id='bio'
+            rows='10'
+            ref={showBioInputRef}
+          ></textarea>
         </div>
         <div className={styles.control}>
           <label htmlFor='wiki'>Wikipedia URL</label>

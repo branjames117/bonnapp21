@@ -1,12 +1,11 @@
 import { getSession } from 'next-auth/client'
-import Main from '../../components/layout/Main'
-import LoginUser from '../../components/auth/LoginUser'
+import Login from '../../components/auth/Login'
 
 export default function LoginPage() {
   return (
-    <Main>
-      <LoginUser />
-    </Main>
+    <div style={{ flex: 1 }}>
+      <Login />
+    </div>
   )
 }
 

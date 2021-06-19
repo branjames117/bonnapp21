@@ -3,7 +3,6 @@ import Card from '../layout/Card'
 import Button from '../layout/Button'
 import Link from 'next/link'
 import { useRef } from 'react'
-import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
 import randomColorGenerator from '../../lib/random-colors'
 
@@ -59,7 +58,7 @@ export default function ShowProfile(props) {
   }
 
   return (
-    <div className={classes.container}>
+    <div className={classes.grid}>
       <div>
         <Card>
           <h1 className={classes.h1} style={{ color: randomColorGenerator() }}>
@@ -118,7 +117,7 @@ export default function ShowProfile(props) {
           </div>
         </Card>
       </div>
-      <div>
+      <div className={classes.gridMid}>
         <Card>
           <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
             Check Out Their Music
@@ -127,7 +126,7 @@ export default function ShowProfile(props) {
             <p className={classes.videoBox}>
               <iframe
                 width='100%'
-                height='280px'
+                height='450px'
                 src={video.replace('watch?v=', 'embed/')}
                 title='YouTube video player'
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'

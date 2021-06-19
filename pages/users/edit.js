@@ -1,10 +1,6 @@
-/* Secret admin page for uploading show documents to the db */
-
-import { useRouter } from 'next/router'
-import EditProfile from '../../components/users/EditProfile'
-import Main from '../../components/layout/Main'
 import { getSession } from 'next-auth/client'
 import { connectToDatabase } from '../../lib/db'
+import EditProfile from '../../components/users/EditProfile'
 
 /* using getServerSideProps as a server-side page gate */
 export async function getServerSideProps(context) {
@@ -38,25 +34,9 @@ export async function getServerSideProps(context) {
 }
 
 export default function EditProfilePage(props) {
-  const router = useRouter()
-
-  async function editProfileHandler(profileData) {
-    const response = await fetch('/api/user/edit-profile', {
-      method: 'POST',
-      body: JSON.stringify(profileData),
-      headers: { 'Content-Type': 'application/json' },
-    })
-
-    const data = await response.json()
-    console.log(data)
-
-    /* send us back to our profile after we hit submit */
-    router.push(`/users/${props.user.username}`)
-  }
-
   return (
-    <Main>
-      <EditProfile user={props.user} onUserProfileEdit={editProfileHandler} />
-    </Main>
+    <div style={{ flex: 1 }}>
+      <EditProfile user={props.user} />
+    </div>
   )
 }

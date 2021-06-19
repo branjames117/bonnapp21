@@ -1,5 +1,5 @@
 import AddGenre from '../../components/admin/AddGenre'
-import Main from '../../components/layout/Main'
+import Grid1 from '../../components/layout/Grid1'
 import { getSession } from 'next-auth/client'
 
 /* secret page for adding new genres to the database
@@ -7,9 +7,9 @@ only visible to user 'admin' */
 
 export default function AdminGenrePage() {
   return (
-    <Main>
+    <Grid1>
       <AddGenre />
-    </Main>
+    </Grid1>
   )
 }
 

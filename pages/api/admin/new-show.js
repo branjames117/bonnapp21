@@ -1,13 +1,14 @@
 import { connectToDatabase } from '../../../lib/db'
 
+/* API call handler for adding new shows to db */
+
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    /* object destructuring */
     const { title, genres, bio, wiki, site, videos } = req.body
 
     const client = await connectToDatabase()
     const db = client.db()
-    const shows = db.collection('shows')
+    const showsCollection = db.collection('shows')
 
     const newShow = {
       title,
@@ -20,7 +21,7 @@ export default async function handler(req, res) {
       comments: [], // initialize empty array for comments
     }
 
-    await shows.insertOne(newShow)
+    await showsCollection.insertOne(newShow)
 
     client.close()
 

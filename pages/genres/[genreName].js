@@ -1,7 +1,5 @@
-import Main from '../../components/layout/Main'
 import { connectToDatabase } from '../../lib/db'
 import GenreProfile from '../../components/genres/GenreProfile'
-import Link from 'next/link'
 
 // the [] in the filename tells Next.js that this is a dynamic page name
 
@@ -72,11 +70,6 @@ export async function getStaticPaths() {
 
 export default function Show(props) {
   return (
-    <Main>
-      <GenreProfile
-        shows={props.returnedShows}
-        genre={props.returnedGenre}
-      ></GenreProfile>
-    </Main>
+    <GenreProfile shows={props.returnedShows} genre={props.returnedGenre} />
   )
 }

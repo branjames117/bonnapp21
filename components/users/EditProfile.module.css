@@ -1,35 +1,41 @@
-.container {
+.form {
+  background-color: black;
+  padding: 0 50px;
   display: grid;
-  grid-template-columns: 300px 500px;
+  flex: 1;
+  grid-template-columns: 500px 700px;
+}
+
+@media screen and (max-width: 1200px) {
+  .form {
+    grid-template-columns: 600px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .form {
+    grid-template-columns: 500px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .form {
+    grid-template-columns: 480px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .form {
+    grid-template-columns: 380px;
+  }
 }
 
 .h2:not(:first-child) {
   margin-top: 20px;
 }
 
-.box:not(:last-child) {
-  margin-right: 10px;
-}
-
-.box:hover {
-  color: red;
-}
-
 .body {
   margin: 20px 0;
-}
-
-.social {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-content: space-around;
-  margin: 20px 0;
-  width: 100%;
-  text-align: center;
-}
-
-.body .p:not(:first-child) {
-  margin-top: 20px;
 }
 
 .table {
@@ -39,6 +45,7 @@
 
 .form {
   padding-bottom: 20px;
+  margin: 0 50px;
 }
 
 .control {
@@ -48,6 +55,15 @@
 .control label {
   display: block;
   margin-bottom: 0.5rem;
+}
+
+.social {
+  display: block;
+  padding-bottom: 10px;
+}
+
+.social input {
+  width: 120px;
 }
 
 .control input,
@@ -62,58 +78,15 @@
   resize: none;
 }
 
+.control input.controlError,
+.control textarea.controlError {
+  background-color: rgb(250, 158, 158);
+  border: 2px solid red;
+}
+
 .actions {
   margin-top: 1rem;
   text-align: right;
-}
-
-.comment {
-  padding: 10px;
-  background-color: rgb(179, 68, 201);
-  border-radius: 10px;
-}
-
-.commentBody {
-  padding: 5px;
-}
-
-.commentAuthor {
-  text-align: right;
-}
-
-.commentAuthor:before {
-  content: 'posted by ';
-  font-size: 0.8rem;
-}
-
-.commentTimestamp {
-  font-size: 0.8rem;
-}
-
-.ul {
-  list-style-type: none;
-  margin: 0;
-}
-
-.videoBox {
-  text-align: center;
-}
-
-.svg {
-  cursor: pointer;
-  fill: white;
-}
-
-.svg:hover {
-  fill: black;
-}
-
-@media screen and (max-width: 770px) {
-  .container {
-    display: grid;
-    grid-template-columns: 1fr;
-    width: 100%;
-  }
 }
 
 .error {

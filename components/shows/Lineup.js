@@ -3,11 +3,10 @@ import classes from './Lineup.module.css'
 import Link from 'next/link'
 
 export default class Lineup extends React.Component {
-  render(props) {
+  render() {
     return (
       <div className={classes.container}>
         <div className={classes.day}>Thursday, &nbsp; Sept. &nbsp; 2</div>
-
         <div className={classes.headliner}>
           <Link href='/shows/Grand Ole Opry feat. Special Guests'>
             <a className={classes.blue}>Grand Ole Opry feat. Special Guests</a>
@@ -36,7 +35,6 @@ export default class Lineup extends React.Component {
           <Link href='/shows/Too Many Zooz'>Too Many Zooz</Link>
           <Link href='/shows/ZIA'>ZIA</Link>
         </div>
-
         <div className={classes.day}>Friday, &nbsp; Sept. &nbsp; 3</div>
         <div className={classes.headliner}>
           <Link href={'/shows/Foo Fighters'}>
@@ -104,7 +102,6 @@ export default class Lineup extends React.Component {
           <Link href='/shows/Tripp St'>Tripp St.</Link>
           <Link href='/shows/NotLo'>NotLö</Link>
         </div>
-
         <div className={classes.day}>Saturday, &nbsp; Sept. &nbsp; 4</div>
         <div className={classes.headliner}>
           <Link href={'/shows/Lizzo'}>
@@ -124,7 +121,7 @@ export default class Lineup extends React.Component {
           <Link href='/shows/Jason Isbell and the 400 Unit'>
             <a className={classes.orange}>Jason Isbell and the 400 Unit</a>
           </Link>
-          <Link href='/shows/Phoebe Bridges'>
+          <Link href='/shows/Phoebe Bridgers'>
             <a className={classes.orange}>Phoebe Bridges</a>
           </Link>
           <Link href='/shows/Incubus'>
@@ -138,7 +135,7 @@ export default class Lineup extends React.Component {
           <Link href={'/shows/King Gizzard and the Lizard Wizard'}>
             King Gizzard and the Lizard Wizard
           </Link>
-          <Link href={'/shows/Superjam Sylvan Esso presents With'}>
+          <Link href={'/shows/Sylvan Esso presents With'}>
             Superjam: Sylvan Esso presents "With"
           </Link>
           <Link href={'/shows/Kevin Gates'}>Kevin Gates</Link>
@@ -148,7 +145,7 @@ export default class Lineup extends React.Component {
           <Link href={'/shows/Surfaces'}>Surfaces</Link>
           <Link href={'/shows/JID'}>J.I.D</Link>
           <Link href={'/shows/Jon Batiste'}>Jon Batiste</Link>
-          <Link href={'/shows/The Band Camino'}>The Band Camino</Link>
+          <Link href={'/shows/The Band Camino'}>The Band CAMINO</Link>
           <Link href={'/shows/Ashnikko'}>Ashnikko</Link>
           <Link href={'/shows/Yaeji'}>Yaeji</Link>
           <Link href={'/shows/Ekali'}>Ekali</Link>
@@ -159,7 +156,7 @@ export default class Lineup extends React.Component {
           </Link>
           <Link href={'/shows/Remi Wolf'}>Remi Wolf</Link>
           <Link href={'/shows/Wooli'}>Wooli</Link>
-          <Link href={'/shows/Dr. Fresch'}>Dr. Fresch</Link>
+          <Link href={'/shows/Dr Fresch'}>Dr. Fresch</Link>
           <Link href={'/shows/William Black'}>William Black</Link>
           <Link href={'/shows/Christone Kingfish Ingram'}>
             Christone "Kingfish" Ingram
@@ -171,7 +168,6 @@ export default class Lineup extends React.Component {
           <Link href={'/shows/Almost Monday'}>Almost Monday</Link>
           <Link href={'/shows/Lick'}>Lick</Link>
         </div>
-
         <div className={classes.day}>Sunday, &nbsp; Sept. &nbsp; 5</div>
         <div className={classes.headliner}>
           <Link href={'/shows/Tyler the Creator'}>
@@ -213,18 +209,48 @@ export default class Lineup extends React.Component {
           <Link href={'/shows/Breland'}>Breland</Link>
           <Link href={'/shows/Niko Moon'}>Niko Moon</Link>
           <Link href={'/shows/Jamila Woods'}>Jamila Woods</Link>
-          <Link href={'/shows/Bill Frisell'}>Bill Frisell</Link>
-          <Link
-            href={
-              '/shows/Harmony featuring Petra Haden Hank Roberts & Luke Bergman'
-            }
-          >
-            Harmony featuring Petra Haden, Hank Roberts & Luke Bergman
+          <Link href={'/shows/Bill Frisell'}>
+            Bill Frisell: Harmony featuring Petra Haden, Hank Roberts & Luke
+            Bergman
           </Link>
           <Link href={'/shows/Luzcid'}>Luzcid</Link>
           <Link href={'/shows/Elderbrook'}>Elderbrook</Link>
           <Link href={'/shows/Makaya McCraven'}>Makaya McCraven</Link>
         </div>
+        <div className={classes.day}>The Who Stage</div>
+        <div className={classes.unliner}>
+          <Link href={'/shows/Bailey Bryan'}>Bailey Bryan</Link>
+          <Link href={'/shows/Brandon "Taz" Niederauer'}>
+            Brandon "Taz" Niederauer
+          </Link>
+          <Link href={'/shows/Bre Kennedy'}>Bre Kennedy</Link>
+          <Link href={'/shows/Bren Joy<'}>Bren Joy</Link>
+          <Link href={'/shows/Calder Allen'}>Calder Allen</Link>
+          <Link href={'/shows/Charlotte Sands'}>Charlotte Sands</Link>
+          <Link href={'/shows/Concrete Castles'}>Concrete Castles</Link>
+          <Link href={'/shows/Early James'}>Early James</Link>
+          <Link href={'/shows/Frances Cone'}>Frances Cone</Link>
+          <Link href={'/shows/Goldpark'}>Goldpark</Link>
+          <Link href={'/shows/Garcia Peoples'}>Garcia Peoples</Link>
+          <Link href={'/shows/Grlwood'}>Grlwood</Link>
+          <Link href={'/shows/Hailey Whitters'}>Hailey Whitters</Link>
+          <Link href={'/shows/Jake Wesley Rogers'}>Jake Wesley Rogers</Link>
+          <Link href={'/shows/Leon of Athens'}>Leon of Athens</Link>
+          <Link href={'/shows/Michaela Anne'}>Michaela Anne</Link>
+          <Link href={'/shows/Neal Francis'}>Neal Francis</Link>
+          <Link href={'/shows/Ona'}>Ona</Link>
+          <Link href={'/shows/Robyn Ottolini'}>Robyn Ottolini</Link>
+          <Link href={'/shows/Rookie'}>Rookie</Link>
+          <Link href={'/shows/Stephen Sanchez'}>Stephen Sanchez</Link>
+          <Link href={'/shows/The Lil Smokies'}>The Lil Smokies</Link>
+          <Link href={'/shows/The Unlikely Candidates'}>
+            The Unlikely Candidates
+          </Link>
+        </div>
+        <h3>Silent Disco:</h3>
+        <Link href={'/shows/DJ Mel'}>DJ Mel</Link>
+        {' • '}
+        <Link href={'/shows/Flamingosis'}>Flamingosis</Link>
       </div>
     )
   }

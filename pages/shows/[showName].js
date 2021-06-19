@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import Main from '../../components/layout/Main'
 import ShowProfile from '../../components/shows/ShowProfile'
 import { connectToDatabase } from '../../lib/db'
 
@@ -56,15 +55,13 @@ export default function ShowPage(props) {
   }
 
   return (
-    <Main>
-      <ShowProfile
-        show={props.show}
-        onAddExcitedUser={onAddExcitedUserHandler}
-        onDeleteExcitedUser={onDeleteExcitedUserHandler}
-        onAddComment={onAddCommentHandler}
-        onDeleteComment={onDeleteCommentHandler}
-      />
-    </Main>
+    <ShowProfile
+      show={props.show}
+      onAddExcitedUser={onAddExcitedUserHandler}
+      onDeleteExcitedUser={onDeleteExcitedUserHandler}
+      onAddComment={onAddCommentHandler}
+      onDeleteComment={onDeleteCommentHandler}
+    />
   )
 }
 
@@ -98,7 +95,9 @@ export async function getStaticPaths() {
 
   const showsCollection = db.collection('shows')
 
-  const fetchedShows = await showsCollection.find({}, { title: 1 }).toArray()
+  const fetchedShows = await showsCollection
+    .find({}, { projection: { title: 1, _id: 0 } })
+    .toArray()
 
   client.close()
 

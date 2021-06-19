@@ -1,5 +1,6 @@
 /* NextAuth logic for handling user log in attempts */
 
+import { Db } from 'mongodb'
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 import { verifyPassword } from '../../../lib/auth'
@@ -13,7 +14,13 @@ export default NextAuth({
       async authorize(credentials) {
         /* access the users collection */
         const client = await connectToDatabase()
+        if (!client) {
+          throw new Error('No connection to the database')
+        }
         const db = client.db()
+        if (!db) {
+          throw new Error('No connection to the database')
+        }
         const usersCollection = db.collection('users')
 
         /* seek out the user in the database */

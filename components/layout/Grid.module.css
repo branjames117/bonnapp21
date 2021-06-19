@@ -1,0 +1,36 @@
+/* having to use pixels because it's the only way I've
+found so far to force longstringswithoutwhitespacecharacters
+(which users can submit in their Bio/Comments unfortunately)
+to NOT expand the size of my grid columns */
+
+.grid {
+  background-color: black;
+  padding: 0 50px;
+  display: grid;
+  flex: 1;
+  grid-template-columns: 500px 700px;
+}
+
+@media screen and (max-width: 1200px) {
+  .grid {
+    grid-template-columns: 600px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .grid {
+    grid-template-columns: 500px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .grid {
+    grid-template-columns: 480px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .grid {
+    grid-template-columns: 380px;
+  }
+}

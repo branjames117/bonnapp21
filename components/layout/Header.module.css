@@ -1,11 +1,3 @@
-.header {
-  background-color: black;
-  position: fixed;
-  top: 0;
-  padding: 8px 0;
-  width: 800px;
-}
-
 .nav {
   display: flex;
   align-items: center;
@@ -26,45 +18,105 @@
   padding: 0 10px;
 }
 
-/* galaxy fold, so small */
-@media screen and (min-width: 280px) {
-  .header {
-    top: 0;
-    padding: 8px 8px;
-  }
-  .nav {
-    font-size: 1.8rem;
-  }
-  .ul li {
-    display: inline;
-    padding: 0 5px;
-  }
+.navLink {
+  cursor: pointer;
 }
 
-/* iPhone5, very small screen */
-@media screen and (min-width: 320px) {
-  .header {
-    top: 0;
-    padding: 8px 8px;
-  }
-  .nav {
-    font-size: 2rem;
-  }
-  .ul li {
-    display: inline;
-    padding: 0 7px;
-  }
+.miniMenu {
+  display: none;
 }
 
-/* at this size we have to ditch the logo */
-@media screen and (max-width: 480px) {
-  .navLogo {
+.line {
+  height: 4px;
+  width: 40px;
+  transition: 0.25s;
+}
+
+.hamburger .line:not(:first-child) {
+  margin-top: 7px;
+}
+
+.line1.active {
+  -webkit-transform: rotate(-45deg) translate(-8px, 6px);
+  transform: rotate(-45deg) translate(-8px, 6px);
+}
+
+.line2.active {
+  opacity: 0;
+}
+
+.line3.active {
+  -webkit-transform: rotate(42deg) translate(-9px, -8px);
+  transform: rotate(42deg) translate(-9px, -8px);
+}
+
+.slideMenu {
+  background-color: rgba(0, 0, 0, 80%);
+  position: absolute;
+  padding: 0 20px 100vh 0;
+  opacity: 0;
+  right: 0;
+  left: 0;
+  pointer-events: none;
+  transform: translateY(100px);
+  transition: 0.25s linear;
+}
+
+.slideMenu.active {
+  transform: translateY(0);
+  opacity: 100;
+  pointer-events: auto;
+}
+
+.slideMenu .ul li {
+  display: block;
+  text-align: right;
+}
+
+/* header width responsiveness needs to be in its own separate CSS
+file because of the fixed positioning, it won't respond along with
+the site's grid CSS even though its contained within */
+
+.header {
+  background-color: black;
+  position: fixed;
+  top: 0;
+  padding: 8px 20px;
+  width: 1200px;
+}
+
+@media screen and (min-width: 1200px) {
+  .slideMenu {
     display: none;
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1200px) {
+  .fullMenu {
+    display: none;
+  }
+  .miniMenu {
+    display: inline-flex;
+  }
   .header {
-    width: 87%;
+    width: 600px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    width: 500px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header {
+    width: 480px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .header {
+    width: 380px;
   }
 }

@@ -1,0 +1,16 @@
+.social {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-around;
+  margin: 30px 150px 0 150px;
+  text-align: center;
+}
+
+.svg {
+  cursor: pointer;
+  fill: white;
+}
+
+.svg:hover {
+  fill: blueviolet;
+}

@@ -1,6 +1,6 @@
 .form {
   padding: 1rem;
-  min-width: 400px;
+  width: 400px;
 }
 
 .control {
@@ -20,6 +20,11 @@
   border: 1px solid #ccc;
   padding: 0.25rem;
   width: 100%;
+}
+
+.control input.controlError {
+  background-color: rgb(250, 158, 158);
+  border: 2px solid red;
 }
 
 .actions {

@@ -1,5 +1,5 @@
 import AddShow from '../../components/admin/AddShow'
-import Main from '../../components/layout/Main'
+import Grid1 from '../../components/layout/Grid1'
 import { getSession } from 'next-auth/client'
 
 /* secret page for adding new shows to the database
@@ -7,9 +7,9 @@ only visible to user 'admin' */
 
 export default function AdminShowPage() {
   return (
-    <Main>
+    <Grid1>
       <AddShow />
-    </Main>
+    </Grid1>
   )
 }
 

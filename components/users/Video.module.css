@@ -1,3 +1,8 @@
+.container {
+  display: grid;
+  grid-template-columns: 300px 500px;
+}
+
 .h2:not(:first-child) {
   margin-top: 20px;
 }
@@ -21,4 +26,16 @@
 .table {
   margin-top: 20px;
   width: 100%;
+}
+
+.videoBox {
+  text-align: center;
+}
+
+@media screen and (max-width: 820px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
 }
