@@ -43,6 +43,13 @@ export default async function handler(req, res) {
   }
 
   const client = await connectToDatabase()
+  if (!client) {
+    res.status(503).json({
+      message: 'Unable to access database.',
+    })
+    client.close()
+    return
+  }
   const db = client.db()
 
   /* check db to see if username already exists */

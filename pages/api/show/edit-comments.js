@@ -7,6 +7,13 @@ so eventually come back here and combine the two */
 export default async function handler(req, res) {
   /* connect to the db */
   const client = await connectToDatabase()
+  if (!client) {
+    res.status(503).json({
+      message: 'Unable to access database.',
+    })
+    client.close()
+    return
+  }
   const db = client.db()
   const shows = db.collection('shows')
 

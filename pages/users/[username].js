@@ -10,18 +10,34 @@ export default function UserPage(props) {
   )
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const client = await connectToDatabase()
+  if (!client) {
+    res.status(503).json({
+      message: 'Unable to access database.',
+    })
+    client.close()
+    return {
+      notFound: true,
+    }
+  }
   const db = client.db()
   const requestedUser = context.params.userName
 
-  const users = db.collection('users')
+  const usersCollection = db.collection('users')
 
   /* use the dynamic page URL to choose which username to pull from db */
-  const fetchedUser = await users.findOne({
+  const fetchedUser = await usersCollection.findOne({
     username: requestedUser,
   })
+
   client.close()
+
+  if (!fetchedUser) {
+    return {
+      notFound: true,
+    }
+  }
 
   /* use rest operator to separate out the password key */
   const { password, ...user } = fetchedUser
@@ -31,29 +47,5 @@ export async function getStaticProps(context) {
     props: {
       user,
     },
-    revalidate: 1,
-  }
-}
-
-/* go over each item in the database to generate static page paths for each user */
-export async function getStaticPaths() {
-  const client = await connectToDatabase()
-  const db = client.db()
-
-  const usersCollection = db.collection('users')
-
-  const fetchedUsers = await usersCollection
-    .find({}, { projection: { username: 1, _id: 0 } })
-    .toArray()
-
-  const paths = fetchedUsers.map((user) => ({
-    params: { userName: user.username },
-  }))
-
-  client.close()
-
-  return {
-    paths,
-    fallback: false,
   }
 }

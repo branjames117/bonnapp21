@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import classes from './Friends.module.css'
+import Card from '../layout/Card'
 import Button from '../layout/Button'
 import SmallButton from '../layout/SmallButton'
 import randomColorGenerator from '../../lib/random-colors'
@@ -41,7 +42,7 @@ export default function Friends(props) {
   }
 
   return (
-    <>
+    <Card>
       <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
         Friends
       </h2>
@@ -72,6 +73,6 @@ export default function Friends(props) {
           </ul>
         )}
       </div>
-    </>
+    </Card>
   )
 }

@@ -94,7 +94,9 @@ export default function Home() {
                 </p>
               </Card>
             )}
-            <Card>{randomImageGenerator()}</Card>
+            <span className={classes.hider}>
+              <Card>{randomImageGenerator()}</Card>
+            </span>
           </div>
           <div>
             <Card>
@@ -127,7 +129,9 @@ export default function Home() {
               </p>
             </Card>
 
-            <Card>{randomImageGenerator()}</Card>
+            <span className={classes.hider}>
+              <Card>{randomImageGenerator()}</Card>
+            </span>
             <Card>
               <h2
                 className={classes.h2}

@@ -1,0 +1,40 @@
+.videoContainer {
+  display: flex;
+  height: 450px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.prevVideo,
+.nextVideo {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+  height: 100%;
+  width: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s linear;
+}
+
+.prevVideo {
+  left: 0;
+  padding-right: 30px;
+}
+
+.nextVideo {
+  right: 0;
+  padding-left: 30px;
+}
+
+.prevVideo:hover,
+.nextVideo:hover {
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+.video {
+  margin: 0 auto;
+  width: 85%;
+}

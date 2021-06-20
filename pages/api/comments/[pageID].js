@@ -8,6 +8,15 @@ export default async function handler(req, res) {
 
   /* connect to the db */
   const client = await connectToDatabase()
+  /* if db connection fails, respond with empty array */
+  if (!client) {
+    res.status(503).json({
+      message: 'Unable to access database.',
+      comments: [],
+    })
+    client.close()
+    return
+  }
   const db = client.db()
   const commentsCollection = db.collection('comments')
 

@@ -4,19 +4,41 @@ import { connectToDatabase } from '../../../lib/db'
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { title, genres, bio, wiki, site, videos } = req.body
+    const {
+      title,
+      genres,
+      bio,
+      wiki,
+      site,
+      videos,
+      day,
+      startTime,
+      endTime,
+      stage,
+    } = req.body
 
     const client = await connectToDatabase()
+    if (!client) {
+      res.status(503).json({
+        message: 'Unable to access database.',
+      })
+      client.close()
+      return
+    }
     const db = client.db()
     const showsCollection = db.collection('shows')
 
     const newShow = {
       title,
-      genres: genres.split(', '), // split the genres into an array
+      genres: genres.toLowerCase().split(','), // split the genres into an array
       bio,
       wiki,
       site,
-      videos: videos.split(', '), // split the video URLs into an array
+      day,
+      startTime,
+      endTime,
+      stage,
+      videos: videos.split(','), // split the video URLs into an array
       excitedUsers: [], // initialize empty array for interested users
       comments: [], // initialize empty array for comments
     }

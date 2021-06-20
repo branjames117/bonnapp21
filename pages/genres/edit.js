@@ -1,6 +1,6 @@
 import { getSession } from 'next-auth/client'
 import { connectToDatabase } from '../../lib/db'
-import EditProfile from '../../components/users/EditProfile'
+import EditGenre from '../../components/genres/EditGenre'
 
 /* using getServerSideProps as a server-side page gate */
 export async function getServerSideProps(context) {
@@ -8,10 +8,12 @@ export async function getServerSideProps(context) {
 
   /* redirect if user has no active session and therefore
   no profile page to edit */
-  if (!session) {
-    return { redirect: { destination: '/users/login' } }
+  if (!session || session.user.name !== 'admin') {
+    return { redirect: { destination: '/' } }
   }
 
+  const requestedGenre = context.query.genreName
+  console.log(requestedGenre)
   const client = await connectToDatabase()
   if (!client) {
     res.status(503).json({
@@ -21,29 +23,29 @@ export async function getServerSideProps(context) {
     return
   }
   const db = client.db()
-  const users = db.collection('users')
+  const genresCollection = db.collection('genres')
 
-  const fetchedUser = await users.findOne({
-    username: session.user.name,
+  const fetchedGenre = await genresCollection.findOne({
+    name: requestedGenre,
   })
 
-  /* use rest operator to separate out the _id and password keys we don't
-  need to pass as props: user is all we care about now */
-  const { _id, password, ...user } = fetchedUser
+  console.log(fetchedGenre)
+  /* use rest operator to separate out the _id key  */
+  const { _id, ...genre } = fetchedGenre
 
   client.close()
 
   return {
     props: {
-      user,
+      genre,
     },
   }
 }
 
-export default function EditProfilePage(props) {
+export default function EditGenrePage(props) {
   return (
     <div style={{ flex: 1 }}>
-      <EditProfile user={props.user} />
+      <EditGenre genre={props.genre} />
     </div>
   )
 }

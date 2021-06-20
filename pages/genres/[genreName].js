@@ -1,10 +1,26 @@
-import { connectToDatabase } from '../../lib/db'
 import GenreProfile from '../../components/genres/GenreProfile'
+import Grid from '../../components/layout/Grid'
+import { connectToDatabase } from '../../lib/db'
 
-// the [] in the filename tells Next.js that this is a dynamic page name
+export default function Show(props) {
+  return (
+    <Grid>
+      <GenreProfile shows={props.returnedShows} genre={props.returnedGenre} />
+    </Grid>
+  )
+}
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const client = await connectToDatabase()
+  if (!client) {
+    res.status(503).json({
+      message: 'Unable to access database.',
+    })
+    client.close()
+    return {
+      notFound: true,
+    }
+  }
   const db = client.db()
 
   const shows = db.collection('shows')
@@ -40,36 +56,17 @@ export async function getStaticProps(context) {
 
   const fetchedGenre = await genres.findOne({ name: context.params.genreName })
 
+  client.close()
+
+  if (!fetchedGenre) {
+    return {
+      notFound: true,
+    }
+  }
+
   const { _id, ...returnedGenre } = fetchedGenre
 
   return {
     props: { returnedShows, returnedGenre },
-    // setting this tells the server to regenerate the page every 10 seconds
-    // important for when data is changing frequently
-    revalidate: 1,
   }
-}
-
-// go over each item in the database to generate static page paths for each show
-export async function getStaticPaths() {
-  const client = await connectToDatabase()
-  const db = client.db()
-
-  const genres = db.collection('genres')
-
-  const allGenres = await genres.find({}).toArray()
-
-  client.close()
-  let paths = allGenres.map((genre) => ({ params: { genreName: genre.name } }))
-
-  return {
-    fallback: false,
-    paths: paths,
-  }
-}
-
-export default function Show(props) {
-  return (
-    <GenreProfile shows={props.returnedShows} genre={props.returnedGenre} />
-  )
 }

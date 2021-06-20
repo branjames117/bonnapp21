@@ -103,8 +103,36 @@
   fill: black;
 }
 
-@media screen and (max-width: 1200px) {
-  .hider {
-    display: none;
+/* GRID CONTAINER */
+
+.grid {
+  background-color: black;
+  padding: 85px 50px;
+  width: 75%;
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+
+@media screen and (max-width: 1350px) {
+  .grid {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .grid {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1001px) {
+  .grid {
+    padding: 85px 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .grid {
+    grid-template-columns: 100%;
   }
 }

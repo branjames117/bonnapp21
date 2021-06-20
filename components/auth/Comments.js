@@ -82,8 +82,11 @@ export default function Comments(props) {
           >
             Comment Wall
           </Headline>
-          <span className={classes.box}></span>
-          {!session && <p>You must log in to leave comments.</p>}
+          {!session && (
+            <div className={classes.body}>
+              You must log in to leave comments.
+            </div>
+          )}
           {session && (
             <form className={classes.form} onSubmit={addCommentHandler}>
               <div className={classes.control}>

@@ -1,17 +1,34 @@
+import { useSession } from 'next-auth/client'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import classes from './GenreProfile.module.css'
 import Card from '../layout/Card'
+import Button from '../layout/Button'
 import randomColorGenerator from '../../lib/random-colors'
 import randomImageGenerator from '../../lib/random-images'
 
 export default function GenreProfile(props) {
+  const [session, _] = useSession()
+  const router = useRouter()
+
   return (
-    <div className={classes.grid}>
+    <>
       <div>
         <Card>
           <h1 className={classes.h1} style={{ color: randomColorGenerator() }}>
             {props.genre.name}
           </h1>
+          {session && session.user.name === 'admin' && (
+            <>
+              <Button
+                onClick={() =>
+                  router.push(`/genres/edit?genreName=${props.genre.name}`)
+                }
+              >
+                edit show
+              </Button>
+            </>
+          )}
           <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
             What Is It?
           </h2>
@@ -19,7 +36,9 @@ export default function GenreProfile(props) {
             {props.genre.def} <Link href={props.genre.wiki}> (Source)</Link>
           </p>
         </Card>
-        <Card>{randomImageGenerator()}</Card>
+        <span className={classes.hider}>
+          <Card>{randomImageGenerator()}</Card>
+        </span>
       </div>
       <div>
         <Card>
@@ -48,6 +67,6 @@ export default function GenreProfile(props) {
           ))}
         </Card>
       </div>
-    </div>
+    </>
   )
 }

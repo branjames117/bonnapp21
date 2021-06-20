@@ -1,10 +1,24 @@
+import Grid from '../../components/layout/Grid'
+import GenreList from '../../components/genres/GenreList'
 import { connectToDatabase } from '../../lib/db'
-import Link from 'next/link'
 
-// the [] in the filename tells Next.js that this is a dynamic page name
+export default function Show(props) {
+  return (
+    <Grid>
+      <GenreList genres={props.uniqueGenres} />
+    </Grid>
+  )
+}
 
-export async function getStaticProps(context) {
+export async function getServerSideProps() {
   const client = await connectToDatabase()
+  if (!client) {
+    res.status(503).json({
+      message: 'Unable to access database.',
+    })
+    client.close()
+    return
+  }
   const db = client.db()
 
   const shows = db.collection('shows')
@@ -33,18 +47,5 @@ export async function getStaticProps(context) {
     props: {
       uniqueGenres,
     },
-    revalidate: 1,
   }
-}
-
-export default function Show(props) {
-  return (
-    <>
-      {props.uniqueGenres.map((genre) => (
-        <Link href={`/genres/${genre}`} key={genre}>
-          {genre}
-        </Link>
-      ))}
-    </>
-  )
 }

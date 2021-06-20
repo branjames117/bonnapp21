@@ -18,6 +18,17 @@ export default async function handler(req, res) {
     return
   }
 
+  const client = await connectToDatabase()
+  if (!client) {
+    res.status(503).json({
+      message: 'Unable to access database.',
+    })
+    client.close()
+    return
+  }
+  const db = client.db()
+  const users = db.collection('users')
+
   const {
     username,
     bio,
@@ -33,10 +44,6 @@ export default async function handler(req, res) {
     commentsEnabled,
     newPassword,
   } = req.body
-
-  const client = await connectToDatabase()
-  const db = client.db()
-  const users = db.collection('users')
 
   const userData = {
     bio,

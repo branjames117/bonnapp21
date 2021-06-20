@@ -17,21 +17,30 @@
   padding-top: 35px;
 }
 
-.headliner a {
+.headliner span {
   font-size: 1.5rem;
-  transition: font-size 0.2s linear;
+  cursor: pointer;
 }
 
-.headliner a:not(:first-child)::before {
+.headliner span:not(:first-child)::before {
   content: ' ';
 }
 
-.subliner a {
-  font-size: 1.3rem;
+.headliner span:hover {
+  color: yellow;
 }
 
-.subliner a:not(:first-child)::before {
+.subliner span {
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.subliner span:not(:first-child)::before {
   content: ' • ';
+}
+
+.subliner span:hover {
+  color: rgb(59, 131, 224);
 }
 
 .unliner a:not(:first-child)::before {
@@ -43,7 +52,7 @@
 }
 
 .unliner a:nth-child(even):hover {
-  color: red;
+  color: rgb(255, 155, 41);
 }
 
 .blue {

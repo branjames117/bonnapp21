@@ -81,8 +81,9 @@ the site's grid CSS even though its contained within */
   background-color: black;
   position: fixed;
   top: 0;
-  padding: 8px 20px;
-  width: 1200px;
+  padding: 8px 12px;
+  width: 1180px;
+  z-index: 100;
 }
 
 @media screen and (min-width: 1200px) {

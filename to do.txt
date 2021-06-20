@@ -1,8 +1,0 @@
-[x] client and server-side validation checks for Login and Register
-[ ] Genres page
-[x] Random page
-[ ] update Shows database to include day, timeSlot, and rank
-[ ] get Show profiles to match componentization of User profiles
-[ ] show editor as admin, same as user profile editor
-[x] redo Comments like in the next video, with a separate database like { type: 'show/user' (tells where to look in database), [userName/showName] (which profile the comment is associated with), body: '', author: '', timeStamp: new Date() }, and useEffect to reload comments on submission, not reload whole page
-[ ] push to vercel

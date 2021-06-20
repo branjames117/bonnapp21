@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { useRouter } from 'next/router'
+import Button from '../layout/Button'
 import styles from './AddShow.module.css'
 import Card from '../layout/Card'
 
@@ -57,7 +58,7 @@ export default function AddGenre() {
           <input type='text' required id='wiki' ref={wikiInputRef} />
         </div>
         <div className={styles.actions}>
-          <button>Add Genre</button>
+          <Button onClick={submitHandler}>Add Genre</Button>
         </div>
       </form>
     </Card>

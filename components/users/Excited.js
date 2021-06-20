@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import classes from './Excited.module.css'
+import Card from '../../components/layout/Card'
 import SmallButton from '../layout/SmallButton'
 import randomColorGenerator from '../../lib/random-colors'
 
@@ -25,7 +26,7 @@ export default function Excited(props) {
   }
 
   return (
-    <>
+    <Card>
       <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
         Excited to See
       </h2>
@@ -47,6 +48,6 @@ export default function Excited(props) {
           </ul>
         )}
       </div>
-    </>
+    </Card>
   )
 }

@@ -7,11 +7,18 @@ export default async function handler(req, res) {
     const { name, def, wiki } = req.body
 
     const client = await connectToDatabase()
+    if (!client) {
+      res.status(503).json({
+        message: 'Unable to access database.',
+      })
+      client.close()
+      return
+    }
     const db = client.db()
     const genresCollection = db.collection('genres')
 
     const newGenre = {
-      name,
+      name: name.toLowerCase(),
       def,
       wiki,
     }

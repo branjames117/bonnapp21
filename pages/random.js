@@ -9,6 +9,13 @@ export default function RandomPage() {
 
 export async function getServerSideProps() {
   const client = await connectToDatabase()
+  if (!client) {
+    res.status(503).json({
+      message: 'Unable to access database.',
+    })
+    client.close()
+    return { redirect: { destination: '/' } }
+  }
   const db = client.db()
 
   const showsCollection = db.collection('shows')

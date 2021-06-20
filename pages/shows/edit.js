@@ -1,6 +1,6 @@
 import { getSession } from 'next-auth/client'
 import { connectToDatabase } from '../../lib/db'
-import EditProfile from '../../components/users/EditProfile'
+import EditShow from '../../components/shows/EditShow'
 
 /* using getServerSideProps as a server-side page gate */
 export async function getServerSideProps(context) {
@@ -8,10 +8,11 @@ export async function getServerSideProps(context) {
 
   /* redirect if user has no active session and therefore
   no profile page to edit */
-  if (!session) {
-    return { redirect: { destination: '/users/login' } }
+  if (!session || session.user.name !== 'admin') {
+    return { redirect: { destination: '/' } }
   }
 
+  const requestedShow = context.query.showName
   const client = await connectToDatabase()
   if (!client) {
     res.status(503).json({
@@ -21,29 +22,28 @@ export async function getServerSideProps(context) {
     return
   }
   const db = client.db()
-  const users = db.collection('users')
+  const showsCollection = db.collection('shows')
 
-  const fetchedUser = await users.findOne({
-    username: session.user.name,
+  const fetchedShow = await showsCollection.findOne({
+    title: requestedShow,
   })
 
-  /* use rest operator to separate out the _id and password keys we don't
-  need to pass as props: user is all we care about now */
-  const { _id, password, ...user } = fetchedUser
+  /* use rest operator to separate out the _id key  */
+  const { _id, ...show } = fetchedShow
 
   client.close()
 
   return {
     props: {
-      user,
+      show,
     },
   }
 }
 
-export default function EditProfilePage(props) {
+export default function EditShowPage(props) {
   return (
     <div style={{ flex: 1 }}>
-      <EditProfile user={props.user} />
+      <EditShow show={props.show} />
     </div>
   )
 }

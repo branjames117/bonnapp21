@@ -5,7 +5,7 @@ import randomColorGenerator from '../../lib/random-colors'
 export default function Card(props) {
   const [cardColor, setCardColor] = useState({})
   useEffect(() => {
-    setCardColor({ borderColor: randomColorGenerator() })
+    setCardColor({ color: randomColorGenerator() })
   }, [])
 
   return (

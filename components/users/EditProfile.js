@@ -41,6 +41,8 @@ export default function EditProfile(props) {
   /* use pre-existing info to fill out form on first load */
   useEffect(() => {
     setUserData({
+      password: '',
+      confirmed: '',
       bio: props.user.bio,
       firstname: props.user.firstname,
       birthday: props.user.birthday,
@@ -257,13 +259,6 @@ export default function EditProfile(props) {
 
     /* if any validations failed, break out of submit handler */
     if (!validForm) return
-
-    /* check bio is less than 500 characters */
-    /* check firstname is no more than 20 characters and has only letters */
-    /* check location is no more than 20 characters */
-    /* check bonnaroos is a number */
-    /* check video URL contains the beginning of a youtube URL */
-    /* check facebook/insta/twitter URL does not contain web domain */
 
     await fetch('/api/user/edit-profile', {
       method: 'POST',

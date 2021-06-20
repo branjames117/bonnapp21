@@ -1,112 +1,50 @@
-import { useRouter } from 'next/router'
 import ShowProfile from '../../components/shows/ShowProfile'
+import Grid from '../../components/layout/Grid'
 import { connectToDatabase } from '../../lib/db'
 
 export default function ShowPage(props) {
-  const router = useRouter()
-
-  async function onAddCommentHandler(commentData) {
-    const response = await fetch('/api/show/edit-comments', {
-      method: 'POST',
-      body: JSON.stringify(commentData),
-      headers: { 'Content-Type': 'application/json' },
-    })
-
-    const data = await response.json()
-    console.log(data)
-    router.push(props.show.title)
-  }
-
-  /* DELETE COMMENT HANDLER */
-  async function onDeleteCommentHandler(commentData) {
-    const response = await fetch('/api/show/edit-comments', {
-      method: 'DELETE',
-      body: JSON.stringify(commentData),
-      headers: { 'Content-Type': 'application/json' },
-    })
-
-    const data = await response.json()
-    console.log(data)
-    router.push(props.show.title)
-  }
-
-  async function onAddExcitedUserHandler(excitedData) {
-    const response = await fetch('/api/show/edit-excited', {
-      method: 'POST',
-      body: JSON.stringify(excitedData),
-      headers: { 'Content-Type': 'application/json' },
-    })
-
-    const data = await response.json()
-    console.log(data)
-    router.push(props.show.title)
-  }
-
-  async function onDeleteExcitedUserHandler(excitedData) {
-    const response = await fetch('/api/show/edit-excited', {
-      method: 'DELETE',
-      body: JSON.stringify(excitedData),
-      headers: { 'Content-Type': 'application/json' },
-    })
-
-    const data = await response.json()
-    console.log(data)
-    router.push(props.show.title)
-  }
-
   return (
-    <ShowProfile
-      show={props.show}
-      onAddExcitedUser={onAddExcitedUserHandler}
-      onDeleteExcitedUser={onDeleteExcitedUserHandler}
-      onAddComment={onAddCommentHandler}
-      onDeleteComment={onDeleteCommentHandler}
-    />
+    <Grid>
+      <ShowProfile show={props.show} />
+    </Grid>
   )
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const client = await connectToDatabase()
+  if (!client) {
+    res.status(503).json({
+      message: 'Unable to access database.',
+    })
+    client.close()
+    return {
+      notFound: true,
+    }
+  }
   const db = client.db()
   const requestedShow = context.params.showName
 
   const showsCollection = db.collection('shows')
 
-  const fetchedShow = await showsCollection.findOne({
+  /* use the dynamic page URL to choose which show to pull from db */
+  const show = await showsCollection.findOne({
     title: requestedShow,
   })
 
   client.close()
 
-  /* use rest operator to filter out the _id */
-  const { _id, ...show } = fetchedShow
+  if (!show) {
+    return {
+      notFound: true,
+    }
+  }
+
+  /* convert the _id key to a string so we can use it as a prop */
+  show._id += ''
 
   return {
     props: {
       show,
     },
-    revalidate: 1,
-  }
-}
-
-export async function getStaticPaths() {
-  const client = await connectToDatabase()
-  const db = client.db()
-
-  const showsCollection = db.collection('shows')
-
-  const fetchedShows = await showsCollection
-    .find({}, { projection: { title: 1, _id: 0 } })
-    .toArray()
-
-  client.close()
-
-  const paths = fetchedShows.map((show) => ({
-    params: { showName: show.title },
-  }))
-
-  return {
-    paths,
-    fallback: false,
   }
 }

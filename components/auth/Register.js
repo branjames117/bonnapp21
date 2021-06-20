@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { signIn } from 'next-auth/client'
-import classes from './Register.module.css'
+import classes from './Login.module.css'
 import Card from '../layout/Card'
 import Button from '../layout/Button'
 import Link from 'next/link'
@@ -190,7 +190,7 @@ export default function Register() {
             <div className={classes.actions}>
               <Button>Register</Button>
             </div>
-            <p>
+            <p className={classes.body}>
               Already registered?{' '}
               <Link href='/users/login'>Login instead.</Link>
             </p>

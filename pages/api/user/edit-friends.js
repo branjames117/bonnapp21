@@ -3,6 +3,13 @@ import { connectToDatabase } from '../../../lib/db'
 export default async function handler(req, res) {
   /* connect to the db */
   const client = await connectToDatabase()
+  if (!client) {
+    res.status(503).json({
+      message: 'Unable to access database.',
+    })
+    client.close()
+    return
+  }
   const db = client.db()
   const users = db.collection('users')
   const { username, friendName } = req.body

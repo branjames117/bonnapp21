@@ -145,7 +145,7 @@ export default function Login() {
             <div className={classes.actions}>
               <Button>Login</Button>
             </div>
-            <p>
+            <p className={classes.body}>
               Don't have an account?{' '}
               <Link href='/users/register'>Create one!</Link>
             </p>

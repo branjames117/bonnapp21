@@ -9,7 +9,9 @@ export default class Lineup extends React.Component {
         <div className={classes.day}>Thursday, &nbsp; Sept. &nbsp; 2</div>
         <div className={classes.headliner}>
           <Link href='/shows/Grand Ole Opry feat. Special Guests'>
-            <a className={classes.blue}>Grand Ole Opry feat. Special Guests</a>
+            <span className={classes.blue}>
+              Grand Ole Opry feat. Special Guests
+            </span>
           </Link>
         </div>
         <div className={classes.unliner}>
@@ -38,33 +40,33 @@ export default class Lineup extends React.Component {
         <div className={classes.day}>Friday, &nbsp; Sept. &nbsp; 3</div>
         <div className={classes.headliner}>
           <Link href={'/shows/Foo Fighters'}>
-            <a className={classes.green}>Foo Fighters</a>
+            <span className={classes.green}>Foo Fighters</span>
           </Link>
           <Link href='/shows/Megan Thee Stallion'>
-            <a className={classes.blue}>Megan Thee Stallion</a>
+            <span className={classes.blue}>Megan Thee Stallion</span>
           </Link>
         </div>
         <div className={classes.subliner}>
           <Link href='/shows/Run the Jewels'>
-            <a className={classes.pink}>Run the Jewels</a>
+            <span className={classes.pink}>Run the Jewels</span>
           </Link>
           <Link href='/shows/Janelle Monae'>
-            <a className={classes.pink}>Janelle Monae</a>
+            <span className={classes.pink}>Janelle Monae</span>
           </Link>
           <Link href='/shows/Glass Animals'>
-            <a className={classes.pink}>Glass Animals</a>
+            <span className={classes.pink}>Glass Animals</span>
           </Link>
           <Link href='/shows/Deftones'>
-            <a className={classes.pink}>Deftones</a>
+            <span className={classes.pink}>Deftones</span>
           </Link>
           <Link href='/shows/Young Thug'>
-            <a className={classes.pink}>Young Thug</a>
+            <span className={classes.pink}>Young Thug</span>
           </Link>
           <Link href='/shows/Tipper'>
-            <a className={classes.pink}>Tipper</a>
+            <span className={classes.pink}>Tipper</span>
           </Link>
           <Link href='/shows/Jack Harlow'>
-            <a className={classes.pink}>Jack Harlow</a>
+            <span className={classes.pink}>Jack Harlow</span>
           </Link>
         </div>
         <div className={classes.unliner}>
@@ -105,30 +107,32 @@ export default class Lineup extends React.Component {
         <div className={classes.day}>Saturday, &nbsp; Sept. &nbsp; 4</div>
         <div className={classes.headliner}>
           <Link href={'/shows/Lizzo'}>
-            <a className={classes.green}>Lizzo</a>
+            <span className={classes.green}>Lizzo</span>
           </Link>
           <Link href={'/shows/Tame Impala'}>
-            <a className={classes.pink}>Tame Impala</a>
+            <span className={classes.pink}>Tame Impala</span>
           </Link>
         </div>
         <div className={classes.subliner}>
           <Link href='/shows/My Morning Jacket'>
-            <a className={classes.orange}>My Morning Jacket</a>
+            <span className={classes.orange}>My Morning Jacket</span>
           </Link>
           <Link href='/shows/G-Eazy'>
-            <a className={classes.orange}>G-Eazy</a>
+            <span className={classes.orange}>G-Eazy</span>
           </Link>
           <Link href='/shows/Jason Isbell and the 400 Unit'>
-            <a className={classes.orange}>Jason Isbell and the 400 Unit</a>
+            <span className={classes.orange}>
+              Jason Isbell and the 400 Unit
+            </span>
           </Link>
           <Link href='/shows/Phoebe Bridgers'>
-            <a className={classes.orange}>Phoebe Bridges</a>
+            <span className={classes.orange}>Phoebe Bridges</span>
           </Link>
           <Link href='/shows/Incubus'>
-            <a className={classes.orange}>Incubus</a>
+            <span className={classes.orange}>Incubus</span>
           </Link>
           <Link href='/shows/Seven Lions'>
-            <a className={classes.orange}>Seven Lions</a>
+            <span className={classes.orange}>Seven Lions</span>
           </Link>
         </div>
         <div className={classes.unliner}>
@@ -171,27 +175,27 @@ export default class Lineup extends React.Component {
         <div className={classes.day}>Sunday, &nbsp; Sept. &nbsp; 5</div>
         <div className={classes.headliner}>
           <Link href={'/shows/Tyler the Creator'}>
-            <a className={classes.green}>Tyler, the Creator</a>
+            <span className={classes.green}>Tyler, the Creator</span>
           </Link>
           <Link href={'/shows/Lana del Rey'}>
-            <a className={classes.orange}>Lana del Rey</a>
+            <span className={classes.orange}>Lana del Rey</span>
           </Link>
         </div>
         <div className={classes.subliner}>
           <Link href={'/shows/Lil Baby'}>
-            <a className={classes.yellow}>Lil Baby</a>
+            <span className={classes.yellow}>Lil Baby</span>
           </Link>
           <Link href={'/shows/Deadmau5'}>
-            <a className={classes.yellow}>Deadmau5</a>
+            <span className={classes.yellow}>Deadmau5</span>
           </Link>
           <Link href={'/shows/Leon Bridges'}>
-            <a className={classes.yellow}>Leon Bridges</a>
+            <span className={classes.yellow}>Leon Bridges</span>
           </Link>
           <Link href={'/shows/Young the Giant'}>
-            <a className={classes.yellow}>Young the Giant</a>
+            <span className={classes.yellow}>Young the Giant</span>
           </Link>
           <Link href={'/shows/Brittany Howard'}>
-            <a className={classes.yellow}>Brittany Howard</a>
+            <span className={classes.yellow}>Brittany Howard</span>
           </Link>
         </div>
         <div className={classes.unliner}>
