@@ -7,12 +7,6 @@ import Headline from '../layout/Headline'
 import Button from '../layout/Button'
 import randomColorGenerator from '../../lib/random-colors'
 
-/* TO DO 
-  Maybe use useEffect so that the comments card reloads with each comment addition/deletion,
-  rather than having to force a page reroute to show the update?
-
-*/
-
 export default function Comments(props) {
   const [session, _] = useSession()
   const [comments, setComments] = useState([])
@@ -20,6 +14,7 @@ export default function Comments(props) {
   const [loading, setLoading] = useState(false)
   const commentInputRef = useRef()
 
+  /* every time we go loading state, reload comments from API */
   useEffect(async () => {
     const response = await fetch(`/api/comments/${props._id}`)
     const data = await response.json()
@@ -27,7 +22,6 @@ export default function Comments(props) {
     setLoading(false)
   }, [loading])
 
-  /* CREATE COMMENT HANDLER */
   async function addCommentHandler(e) {
     e.preventDefault()
     setCommentError(false)
@@ -37,6 +31,7 @@ export default function Comments(props) {
       username: session.user.name,
     }
 
+    /* client-side validation */
     if (
       commentData.text.trim() === '' ||
       commentData.text.trim().length > 500
@@ -55,7 +50,6 @@ export default function Comments(props) {
     return
   }
 
-  /* DELETE COMMENT HANDLER */
   async function deleteCommentHandler(e) {
     e.preventDefault()
     setLoading((prevState) => !prevState)
@@ -111,7 +105,7 @@ export default function Comments(props) {
           {comments !== 0 && (
             <div className={classes.comments}>
               {comments.map((comment) => (
-                <>
+                <span key={comment._id}>
                   <div className={classes.comment}>
                     <p className={classes.commentBody}>{comment.text}</p>
                     <div className={classes.commentAuthor}>
@@ -120,24 +114,24 @@ export default function Comments(props) {
                       </Link>
                       <div className={classes.commentTimestamp}>
                         {new Date(comment.timestamp).toLocaleString()}
-                        {/* Is user author of comment? If so, enable delete */}
-                        {session && session.user.name === comment.username && (
-                          <>
-                            {' '}
-                            <button
-                              className={classes.btn}
-                              value={comment._id}
-                              onClick={deleteCommentHandler}
-                            >
-                              {' '}
-                              delete
-                            </button>
-                          </>
-                        )}
+                        {/* Is user author of comment or admin? If so, enable delete */}
+                        {session &&
+                          (session.user.name === comment.username ||
+                            session.user.name === 'admin') && (
+                            <>
+                              <button
+                                className={classes.btn}
+                                value={comment._id}
+                                onClick={deleteCommentHandler}
+                              >
+                                delete
+                              </button>
+                            </>
+                          )}
                       </div>
                     </div>
                   </div>
-                </>
+                </span>
               ))}
             </div>
           )}

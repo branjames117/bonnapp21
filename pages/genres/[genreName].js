@@ -1,10 +1,18 @@
+import Head from 'next/head'
 import GenreProfile from '../../components/genres/GenreProfile'
 import Grid from '../../components/layout/Grid'
 import { connectToDatabase } from '../../lib/db'
 
-export default function Show(props) {
+export default function Genre(props) {
   return (
     <Grid>
+      <Head>
+        <title>BonnApp21 - {props.returnedGenre.name}</title>
+        <meta
+          name='description'
+          content={`Check out all the ${props.returnedGenre.name} performers coming to Bonnaroo 2021!`}
+        />
+      </Head>
       <GenreProfile shows={props.returnedShows} genre={props.returnedGenre} />
     </Grid>
   )

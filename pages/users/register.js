@@ -1,10 +1,14 @@
+import Head from 'next/head'
 import { getSession } from 'next-auth/client'
 import Register from '../../components/auth/Register'
 
-export default function RegisterPage({ users }) {
+export default function RegisterPage() {
   return (
     <div style={{ flex: 1 }}>
-      <Register users={users} />
+      <Head>
+        <title>BonnApp21 - Register</title>
+      </Head>
+      <Register />
     </div>
   )
 }

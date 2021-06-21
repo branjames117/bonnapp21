@@ -8,6 +8,7 @@ export default async function handler(req, res) {
   give them the boot! */
   const session = await getSession({ req })
   if (!session) res.status(401).json({ message: 'No active session found.' })
+  const username = session.user.name
 
   /* check that only proper requests work, prevents people from wrecking my server with silliness */
   if (req.method !== 'POST' || !req.body) {
@@ -30,7 +31,6 @@ export default async function handler(req, res) {
   const users = db.collection('users')
 
   const {
-    username,
     bio,
     firstname,
     birthday,
@@ -44,6 +44,45 @@ export default async function handler(req, res) {
     commentsEnabled,
     newPassword,
   } = req.body
+
+  /* server-side validation */
+  let validForm = true
+
+  if (bio.trim().length > 250) {
+    validForm = false
+  }
+
+  if (firstname.trim().length > 15) {
+    validForm = false
+  }
+
+  if (location.trim().length > 15) {
+    validForm = false
+  }
+
+  if (
+    facebookURL.trim().length > 25 ||
+    facebookURL.includes('.com') ||
+    instaURL.trim().length > 25 ||
+    instaURL.includes('.com') ||
+    twitterURL.trim().length > 25 ||
+    twitterURL.includes('.com')
+  ) {
+    validForm = false
+  }
+
+  if (
+    videoURL.trim().length > 44 ||
+    !videoURL.includes('www.youtube.com/watch?')
+  ) {
+    validForm = false
+  }
+
+  if (!validForm) {
+    client.close()
+    res.status(422).json({ message: 'Invalid input.' })
+    return
+  }
 
   const userData = {
     bio,

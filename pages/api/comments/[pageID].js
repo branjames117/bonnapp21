@@ -75,7 +75,6 @@ export default async function handler(req, res) {
     if (!session) res.status(401).json({ message: 'No active session found.' })
     /* object destructuring */
     const { commentID } = req.body
-    console.log(commentID)
 
     /* Use the $pull operator to remove the ID'd comment from the comments array */
     const result = await commentsCollection.deleteOne({

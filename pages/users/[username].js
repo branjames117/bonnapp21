@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Grid from '../../components/layout/Grid'
 import UserProfile from '../../components/users/UserProfile'
 import { connectToDatabase } from '../../lib/db'
@@ -5,6 +6,13 @@ import { connectToDatabase } from '../../lib/db'
 export default function UserPage(props) {
   return (
     <Grid>
+      <Head>
+        <title>BonnApp21 - {props.user.username}'s Profile</title>
+        <meta
+          name='description'
+          content={`${props.user.username} is going to Bonnaroo 2021!`}
+        />
+      </Head>
       <UserProfile user={props.user} />
     </Grid>
   )

@@ -10,6 +10,7 @@
   display: inline-block;
   width: 100%;
   overflow-wrap: break-word;
+  white-space: pre-line;
 }
 
 .body .p:not(:first-child) {

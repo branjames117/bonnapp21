@@ -4,7 +4,17 @@
 
 html,
 body {
-  background-color: black;
+  background-image: linear-gradient(
+    to bottom left,
+    black,
+    black,
+    black,
+    black,
+    black,
+    rgb(215, 88, 231),
+    rgb(255, 155, 41),
+    rgb(211, 252, 31)
+  );
   color: white;
   padding: 0;
   margin: 0;

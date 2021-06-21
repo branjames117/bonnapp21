@@ -1,5 +1,7 @@
 import { connectToDatabase } from '../../../lib/db'
 
+/* API call handler for adding/removing excited users */
+
 export default async function handler(req, res) {
   /* connect to the db */
   const client = await connectToDatabase()

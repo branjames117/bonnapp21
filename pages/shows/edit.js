@@ -1,6 +1,14 @@
 import { getSession } from 'next-auth/client'
 import { connectToDatabase } from '../../lib/db'
-import EditShow from '../../components/shows/EditShow'
+import EditShow from '../../components/admin/EditShow'
+
+export default function EditShowPage(props) {
+  return (
+    <div style={{ flex: 1 }}>
+      <EditShow show={props.show} />
+    </div>
+  )
+}
 
 /* using getServerSideProps as a server-side page gate */
 export async function getServerSideProps(context) {
@@ -38,12 +46,4 @@ export async function getServerSideProps(context) {
       show,
     },
   }
-}
-
-export default function EditShowPage(props) {
-  return (
-    <div style={{ flex: 1 }}>
-      <EditShow show={props.show} />
-    </div>
-  )
 }

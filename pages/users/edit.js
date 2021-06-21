@@ -1,6 +1,18 @@
+import Head from 'next/head'
 import { getSession } from 'next-auth/client'
 import { connectToDatabase } from '../../lib/db'
 import EditProfile from '../../components/users/EditProfile'
+
+export default function EditProfilePage(props) {
+  return (
+    <div style={{ flex: 1 }}>
+      <Head>
+        <title>BonnApp21 - {props.user.username}'s Profile Editor</title>
+      </Head>
+      <EditProfile user={props.user} />
+    </div>
+  )
+}
 
 /* using getServerSideProps as a server-side page gate */
 export async function getServerSideProps(context) {
@@ -38,12 +50,4 @@ export async function getServerSideProps(context) {
       user,
     },
   }
-}
-
-export default function EditProfilePage(props) {
-  return (
-    <div style={{ flex: 1 }}>
-      <EditProfile user={props.user} />
-    </div>
-  )
 }

@@ -31,6 +31,8 @@ export default function EditShow(props) {
     videos: false,
     wiki: false,
     site: false,
+    startTime: false,
+    endTime: false,
   })
 
   /* use pre-existing info to fill out form on first load */
@@ -43,8 +45,8 @@ export default function EditShow(props) {
       wiki: props.show.wiki,
       site: props.show.site,
       day: props.show.day,
-      startTime: props.show.startTime,
-      endTime: props.show.endTime,
+      startTime: props.show.startTime || '',
+      endTime: props.show.endTime || '',
       stage: props.show.stage,
     })
   }, [])
@@ -114,11 +116,19 @@ export default function EditShow(props) {
           ...prevState,
           startTime: e.target.value,
         }))
+        setErrors((prevState) => ({
+          ...prevState,
+          startTime: false,
+        }))
         break
       case 'endTime':
         setShowData((prevState) => ({
           ...prevState,
           endTime: e.target.value,
+        }))
+        setErrors((prevState) => ({
+          ...prevState,
+          endTime: false,
         }))
         break
       case 'stage':
@@ -143,7 +153,7 @@ export default function EditShow(props) {
       }))
     }
 
-    if (showData.bio.trim() === '' || showData.bio.trim().length > 500) {
+    if (showData.bio.trim() === '' || showData.bio.trim().length > 1000) {
       validForm = false
       setErrors((prevState) => ({
         ...prevState,
@@ -170,7 +180,7 @@ export default function EditShow(props) {
         genres: true,
       }))
     }
-    console.log(showData.videos)
+
     if (
       showData.videos === '' ||
       showData.videos.length === 0 ||
@@ -184,8 +194,33 @@ export default function EditShow(props) {
       }))
     }
 
-    /* if any validations failed, break out of submit handler */
-    if (!validForm) return
+    if (
+      (showData.startTime.trim() !== '' &&
+        showData.startTime.trim().length !== 4) ||
+      isNaN(showData.startTime.trim())
+    ) {
+      validForm = false
+      setErrors((prevState) => ({
+        ...prevState,
+        startTime: true,
+      }))
+    }
+
+    if (
+      (showData.endTime.trim() !== '' &&
+        showData.endTime.trim().length !== 4) ||
+      isNaN(showData.endTime.trim())
+    ) {
+      validForm = false
+      setErrors((prevState) => ({
+        ...prevState,
+        endTime: true,
+      }))
+    }
+
+    if (!validForm)
+      /* if any validations failed, break out of submit handler */
+      return
 
     await fetch('/api/show/edit-show', {
       method: 'POST',
@@ -254,7 +289,7 @@ export default function EditShow(props) {
                 </div>
                 {errors.bio && (
                   <p className={classes.error}>
-                    Bio must be below 500 characters.
+                    Bio must be below 1,000 characters.
                   </p>
                 )}
                 <div className={classes.control}>
@@ -364,11 +399,15 @@ export default function EditShow(props) {
                   value={showData.startTime}
                   name='startTime'
                   id='startTime'
-                  type='number'
-                  min='0'
-                  max='2400'
+                  type='text'
+                  className={errors.startTime ? classes.controlError : null}
                 ></input>
               </div>
+              {errors.startTime && (
+                <p className={classes.error}>
+                  Start time must be in 4-digit 24-hr time, like 1230.
+                </p>
+              )}
               <div className={classes.control}>
                 <label htmlFor='endTime'>
                   End Time (24 HR)
@@ -380,11 +419,15 @@ export default function EditShow(props) {
                   value={showData.endTime}
                   name='endTime'
                   id='endTime'
-                  type='number'
-                  min='0'
-                  max='2400'
+                  type='text'
+                  className={errors.endTime ? classes.controlError : null}
                 ></input>
               </div>
+              {errors.endTime && (
+                <p className={classes.error}>
+                  End time must be in 4-digit 24-hr time, like 1315.
+                </p>
+              )}
               <div className={classes.control}>
                 <label htmlFor='stage'>Stage</label>
                 <select

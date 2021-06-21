@@ -19,6 +19,14 @@
   content: ' • ';
 }
 
+.listSplitter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 200px;
+  padding: 25px 0;
+}
+
 @media screen and (max-width: 1200px) {
   .hider {
     display: none;

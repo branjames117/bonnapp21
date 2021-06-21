@@ -1,3 +1,7 @@
+.h1 {
+  text-shadow: 0px 0px 10px;
+}
+
 .h2:not(:first-child) {
   margin-top: 20px;
 }
@@ -18,7 +22,16 @@
   margin-top: 20px;
 }
 
+.bio {
+  white-space: pre-line;
+}
+
 .table {
-  margin: 20px 0;
   width: 100%;
+}
+
+.table tbody tr td {
+  height: 10px;
+  color: white;
+  padding: 5px 25px;
 }

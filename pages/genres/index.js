@@ -1,10 +1,14 @@
+import Head from 'next/head'
 import Grid from '../../components/layout/Grid'
 import GenreList from '../../components/genres/GenreList'
 import { connectToDatabase } from '../../lib/db'
 
-export default function Show(props) {
+export default function AllGenresPage(props) {
   return (
     <Grid>
+      <Head>
+        <title>BonnApp21 - all genres</title>
+      </Head>
       <GenreList genres={props.uniqueGenres} />
     </Grid>
   )

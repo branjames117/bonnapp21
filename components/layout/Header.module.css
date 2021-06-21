@@ -18,8 +18,13 @@
   padding: 0 10px;
 }
 
+.navLogo {
+  text-shadow: 0px 0px 10px;
+}
+
 .navLink {
   cursor: pointer;
+  text-shadow: 0px 0px 10px;
 }
 
 .miniMenu {
@@ -27,6 +32,7 @@
 }
 
 .line {
+  box-shadow: 0px 0px 5px;
   height: 4px;
   width: 40px;
   transition: 0.25s;
@@ -51,7 +57,7 @@
 }
 
 .slideMenu {
-  background-color: rgba(0, 0, 0, 80%);
+  background-color: rgba(0, 0, 0, 50%);
   position: absolute;
   padding: 0 20px 100vh 0;
   opacity: 0;
@@ -81,8 +87,8 @@ the site's grid CSS even though its contained within */
   background-color: black;
   position: fixed;
   top: 0;
-  padding: 8px 12px;
-  width: 1180px;
+  padding: 8px 22px;
+  width: 1200px;
   z-index: 100;
 }
 
@@ -112,11 +118,11 @@ the site's grid CSS even though its contained within */
 
 @media screen and (max-width: 500px) {
   .header {
-    width: 480px;
+    width: 440px;
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 420px) {
   .header {
     width: 380px;
   }

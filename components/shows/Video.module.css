@@ -16,7 +16,7 @@
   height: 100%;
   width: 50px;
   cursor: pointer;
-  transition: background-color 0.3s linear;
+  transition: color 0.3s linear, font-size 0.3s linear;
 }
 
 .prevVideo {
@@ -31,7 +31,8 @@
 
 .prevVideo:hover,
 .nextVideo:hover {
-  background-color: rgba(0, 0, 0, 0.65);
+  color: rgb(88, 226, 111);
+  font-size: 2.6rem;
 }
 
 .video {

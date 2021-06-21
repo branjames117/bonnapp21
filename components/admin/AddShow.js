@@ -47,7 +47,7 @@ export default function AddShow() {
       stage: enteredStage,
     }
 
-    await fetch('/api/admin/new-show', {
+    await fetch('/api/show/new-show', {
       method: 'POST',
       body: JSON.stringify(showData),
       headers: { 'Content-Type': 'application/json' },
@@ -143,7 +143,7 @@ export default function AddShow() {
             </select>
           </div>
           <div className={classes.actions}>
-            <Button onClick={submitHandler}>upload data</Button>
+            <Button onClick={submitHandler}>upload show data</Button>
           </div>
         </form>
       </Card>

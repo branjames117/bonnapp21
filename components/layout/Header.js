@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import classes from './Header.module.css'
-import Link from 'next/link'
 import { signout, useSession } from 'next-auth/client'
+import Link from 'next/link'
+import classes from './Header.module.css'
 import randomColorGenerator from '../../lib/random-colors'
 
-export default function Header(props) {
+export default function Header() {
   const [openMenu, setOpenMenu] = useState(false)
   const [session, _] = useSession()
 
@@ -32,7 +32,7 @@ export default function Header(props) {
           <div className={classes.fullMenu}>
             <ul className={classes.ul}>
               <li>
-                <Link href='/lineup'>
+                <Link href='/shows/'>
                   <span
                     className={classes.navLink}
                     style={{ color: randomColorGenerator() }}
@@ -155,7 +155,7 @@ export default function Header(props) {
           >
             <ul className={classes.ul}>
               <li>
-                <Link href='/lineup'>
+                <Link href='/shows/'>
                   <span
                     className={classes.navLink}
                     style={{ color: randomColorGenerator() }}
@@ -225,14 +225,15 @@ export default function Header(props) {
                     </Link>
                   </li>
                   <li onClick={logoutHandler}>
-                    <a
+                    <span
+                      className={classes.navLink}
                       style={{
                         color: randomColorGenerator(),
                         cursor: 'pointer',
                       }}
                     >
                       Logout
-                    </a>
+                    </span>
                   </li>
                 </>
               )}

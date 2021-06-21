@@ -84,8 +84,8 @@ export default async function handler(req, res) {
     friendOf: [],
     excited: [],
     comments: [],
-    friendsEnabled: true,
-    commentsEnabled: true,
+    friendsEnabled: 'true',
+    commentsEnabled: 'true',
     joined: new Date().toISOString().slice(0, 10),
   })
 

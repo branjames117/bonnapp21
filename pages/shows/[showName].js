@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import ShowProfile from '../../components/shows/ShowProfile'
 import Grid from '../../components/layout/Grid'
 import { connectToDatabase } from '../../lib/db'
@@ -5,6 +6,13 @@ import { connectToDatabase } from '../../lib/db'
 export default function ShowPage(props) {
   return (
     <Grid>
+      <Head>
+        <title>BonnApp21 - {props.show.title}</title>
+        <meta
+          name='description'
+          content={`${props.show.title} is coming to Bonnaroo 2021!`}
+        />
+      </Head>
       <ShowProfile show={props.show} />
     </Grid>
   )

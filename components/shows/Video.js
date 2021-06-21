@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import classes from './Video.module.css'
 import Card from '../../components/layout/Card'
 import randomColorGenerator from '../../lib/random-colors'

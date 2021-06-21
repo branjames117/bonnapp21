@@ -34,8 +34,8 @@ export default function Home() {
               <p className={classes.body}>
                 This is an unofficial Bonnaroo 2021 festival companion app,
                 built from the ground up as a labor of love and provided to all
-                Bonnaroovians for the cost of nothing. Maybe hug me if you see
-                me at Centeroo.
+                Bonnaroovians for the cost of a high-five if you see me at
+                Centeroo.
               </p>
               <h2
                 className={classes.h2}
@@ -44,7 +44,7 @@ export default function Home() {
                 But What's It Do
               </h2>
               <p className={classes.body}>
-                You can check out the <Link href='/lineup'>Lineup</Link> for
+                You can check out the <Link href='/shows/'>Lineup</Link> for
                 quick access to info about every show at the festival, including
                 artist biographies and curated music videos, or filter shows
                 based on your favorite <Link href='/genres'>Genres</Link>.
@@ -140,14 +140,11 @@ export default function Home() {
                 How You Can Help
               </h2>
               <p className={classes.body}>
-                Mainly, spread the word and get your friends registered to the
-                site. But you can also help by assisting me in refining the
-                database. If a performer was incorrectly documented, such as
-                incorrect genre identification (I used wikipedia for the most
-                part, but sometimes had to seek other sources when wikipedia
-                pages weren't available), or if you feel a selected video
-                doesn't accurately portray the performer, or if (OH NO!)
-                something here breaks, then drop me an email at{' '}
+                Spread the word and get your friends registered to the site. But
+                you can also help by assisting me in refining the database. If a
+                performer was incorrectly documented, such as incorrect genre
+                identification, or if (OH NO!) something here breaks, then drop
+                me an email at{' '}
                 <a href='mailto:branjames117@gmail.com'>
                   branjames117@gmail.com
                 </a>{' '}
@@ -166,7 +163,8 @@ export default function Home() {
                 Superfly Presents, or AC Entertainment. The official website for
                 the festival is at{' '}
                 <Link href='https://www.bonnaroo.com/'>bonnaroo.com</Link>,
-                where you'll find all the official information.
+                where you'll find all the official information as well as a
+                bunch of other cool things.
               </p>
             </Card>
           </div>

@@ -1,8 +1,8 @@
 .container {
-  background-color: black;
   text-align: center;
   margin: 0 auto;
-  width: 600px;
+  padding: 10px 5px;
+  width: 550px;
   height: 100%;
 }
 
@@ -73,4 +73,28 @@
 
 .yellow {
   color: yellow;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 550px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: 460px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    width: 380px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .container {
+    width: 340px;
+  }
 }

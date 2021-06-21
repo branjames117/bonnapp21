@@ -1,6 +1,14 @@
 import { getSession } from 'next-auth/client'
 import { connectToDatabase } from '../../lib/db'
-import EditGenre from '../../components/genres/EditGenre'
+import EditGenre from '../../components/admin/EditGenre'
+
+export default function EditGenrePage(props) {
+  return (
+    <div style={{ flex: 1 }}>
+      <EditGenre genre={props.genre} />
+    </div>
+  )
+}
 
 /* using getServerSideProps as a server-side page gate */
 export async function getServerSideProps(context) {
@@ -13,7 +21,7 @@ export async function getServerSideProps(context) {
   }
 
   const requestedGenre = context.query.genreName
-  console.log(requestedGenre)
+
   const client = await connectToDatabase()
   if (!client) {
     res.status(503).json({
@@ -29,7 +37,6 @@ export async function getServerSideProps(context) {
     name: requestedGenre,
   })
 
-  console.log(fetchedGenre)
   /* use rest operator to separate out the _id key  */
   const { _id, ...genre } = fetchedGenre
 
@@ -40,12 +47,4 @@ export async function getServerSideProps(context) {
       genre,
     },
   }
-}
-
-export default function EditGenrePage(props) {
-  return (
-    <div style={{ flex: 1 }}>
-      <EditGenre genre={props.genre} />
-    </div>
-  )
 }

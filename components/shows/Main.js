@@ -15,8 +15,16 @@ export default function Main(props) {
       <h1 className={classes.h1} style={{ color: randomColorGenerator() }}>
         {props.show.title}
       </h1>
+      <h3>
+        {props.show.day && props.show.day !== 'N/A' && (
+          <span>Playing {props.show.day}</span>
+        )}
+        {props.show.stage && <span> at {props.show.stage}</span>}
+        {props.show.startTime && <span> from {props.show.startTime}</span>}
+        {props.show.endTime && <span> to {props.show.endTime}</span>}
+      </h3>
       {session && session.user.name === 'admin' && (
-        <>
+        <p className={classes.body}>
           <Button
             onClick={() =>
               router.push(`/shows/edit?showName=${props.show.title}`)
@@ -24,7 +32,7 @@ export default function Main(props) {
           >
             edit show
           </Button>
-        </>
+        </p>
       )}
       {props.show.site && (
         <div className={classes.body}>
@@ -34,36 +42,10 @@ export default function Main(props) {
       <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
         About the Show
       </h2>
-      <table className={classes.table}>
-        <tbody>
-          {props.show.day && props.show.day !== 'N/A' && (
-            <tr>
-              <td>Day</td>
-              <td align='right'>{props.show.day}</td>
-            </tr>
-          )}
-          {props.show.startTime && (
-            <tr>
-              <td>Start Time</td>
-              <td align='right'>{props.show.startTime}</td>
-            </tr>
-          )}
-          {props.show.endTime && (
-            <tr>
-              <td>End Time</td>
-              <td align='right'>{props.show.endTime}</td>
-            </tr>
-          )}
-          {props.show.stage && props.show.stage !== 'N/A' && (
-            <tr>
-              <td>Location</td>
-              <td align='right'>{props.show.stage}</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-      <p>
-        {props.show.bio} <Link href={props.show.wiki}> (Source)</Link>
+
+      <p className={classes.bio}>
+        {props.show.bio.replace(/\\n/g, '\n')}{' '}
+        <Link href={props.show.wiki}> (Source)</Link>
       </p>
 
       <div className={classes.body}>
@@ -71,12 +53,9 @@ export default function Main(props) {
           Genres
         </h2>
         {props.show.genres.map((genre) => (
-          <>
-            <Link href={`/genres/${genre}`} key={genre}>
-              {genre}
-            </Link>
-            <br />
-          </>
+          <p key={genre}>
+            <Link href={`/genres/${genre}`}>{genre}</Link>
+          </p>
         ))}
       </div>
     </Card>

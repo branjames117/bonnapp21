@@ -1,9 +1,13 @@
+import Head from 'next/head'
 import { getSession } from 'next-auth/client'
 import Login from '../../components/auth/Login'
 
 export default function LoginPage() {
   return (
     <div style={{ flex: 1 }}>
+      <Head>
+        <title>BonnApp21 - Login</title>
+      </Head>
       <Login />
     </div>
   )

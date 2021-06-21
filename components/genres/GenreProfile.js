@@ -25,7 +25,7 @@ export default function GenreProfile(props) {
                   router.push(`/genres/edit?genreName=${props.genre.name}`)
                 }
               >
-                edit show
+                edit genre
               </Button>
             </>
           )}
@@ -46,7 +46,7 @@ export default function GenreProfile(props) {
             Matches
           </h1>
           {props.shows.map((show) => (
-            <>
+            <span key={show.title}>
               <h2
                 className={classes.h2}
                 style={{ color: randomColorGenerator() }}
@@ -58,12 +58,12 @@ export default function GenreProfile(props) {
               <p className={classes.p}>{show.bio}</p>
               <p className={classes.genres}>
                 {show.genres.map((genre) => (
-                  <span className={classes.genre}>
+                  <span className={classes.genre} key={genre}>
                     <Link href={`/genres/${genre}`}>{genre}</Link>
                   </span>
                 ))}
               </p>
-            </>
+            </span>
           ))}
         </Card>
       </div>
