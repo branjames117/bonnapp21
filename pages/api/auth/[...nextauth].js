@@ -9,8 +9,9 @@ export default NextAuth({
   session: { jwt: true },
   providers: [
     Providers.Credentials({
+      id: 'credentials',
+      name: 'Login',
       async authorize(credentials) {
-        console.log(username)
         /* access the users collection */
         console.log('Attempting to access db')
         const client = await connectToDatabase()
