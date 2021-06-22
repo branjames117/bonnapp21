@@ -42,15 +42,6 @@ export async function getServerSideProps(context) {
 
   client.close()
 
-  if (!fetchedUser) {
-    res.status(501).json({
-      message: 'Unable to find user.',
-    })
-    return {
-      notFound: true,
-    }
-  }
-
   /* use rest operator to separate out the password key */
   const { password, ...user } = fetchedUser
   /* then convert the _id key to a string so we can use it as a prop */
