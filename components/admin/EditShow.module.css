@@ -1,9 +1,9 @@
 .form {
-  background-color: black;
   padding: 0 50px;
   display: grid;
   flex: 1;
   grid-template-columns: 500px 700px;
+  background-color: transparent;
 }
 
 @media screen and (max-width: 1200px) {
@@ -20,11 +20,11 @@
 
 @media screen and (max-width: 500px) {
   .form {
-    grid-template-columns: 480px;
+    grid-template-columns: 440px;
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 420px) {
   .form {
     grid-template-columns: 380px;
   }

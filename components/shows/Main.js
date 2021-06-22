@@ -19,7 +19,9 @@ export default function Main(props) {
         {props.show.day && props.show.day !== 'N/A' && (
           <span>Playing {props.show.day}</span>
         )}
-        {props.show.stage && <span> at {props.show.stage}</span>}
+        {props.show.stage && props.show.stage !== 'N/A' && (
+          <span> at {props.show.stage}</span>
+        )}
         {props.show.startTime && <span> from {props.show.startTime}</span>}
         {props.show.endTime && <span> to {props.show.endTime}</span>}
       </h3>

@@ -58,7 +58,7 @@ export default function AddShow() {
   }
 
   return (
-    <>
+    <div className={classes.container}>
       <Card color='rgb(215, 88, 231)'>
         <h2>Add Show</h2>
         <form className={classes.form} onSubmit={submitHandler}>
@@ -147,6 +147,6 @@ export default function AddShow() {
           </div>
         </form>
       </Card>
-    </>
+    </div>
   )
 }

@@ -36,30 +36,32 @@ export default function AddGenre() {
   }
 
   return (
-    <Card color='rgb(215, 88, 231)'>
-      <h2>Add Genre</h2>
-      <form className={classes.form} onSubmit={submitHandler}>
-        <div className={classes.control}>
-          <label htmlFor='name'>Genre Name</label>
-          <input type='text' required id='name' ref={genreNameInputRef} />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor='def'>Def</label>
-          <textarea
-            required
-            id='def'
-            rows='8'
-            ref={genreDefInputRef}
-          ></textarea>
-        </div>
-        <div className={classes.control}>
-          <label htmlFor='wiki'>Wikipedia URL</label>
-          <input type='text' required id='wiki' ref={wikiInputRef} />
-        </div>
-        <div className={classes.actions}>
-          <Button onClick={submitHandler}>upload genre data</Button>
-        </div>
-      </form>
-    </Card>
+    <div className={classes.container}>
+      <Card color='rgb(215, 88, 231)'>
+        <h2>Add Genre</h2>
+        <form className={classes.form} onSubmit={submitHandler}>
+          <div className={classes.control}>
+            <label htmlFor='name'>Genre Name</label>
+            <input type='text' required id='name' ref={genreNameInputRef} />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor='def'>Def</label>
+            <textarea
+              required
+              id='def'
+              rows='8'
+              ref={genreDefInputRef}
+            ></textarea>
+          </div>
+          <div className={classes.control}>
+            <label htmlFor='wiki'>Wikipedia URL</label>
+            <input type='text' required id='wiki' ref={wikiInputRef} />
+          </div>
+          <div className={classes.actions}>
+            <Button onClick={submitHandler}>upload genre data</Button>
+          </div>
+        </form>
+      </Card>
+    </div>
   )
 }
