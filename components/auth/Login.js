@@ -71,8 +71,8 @@ export default function Login() {
     try {
       const result = await signIn('credentials', {
         redirect: false,
-        username,
-        password,
+        username: username,
+        password: password,
       })
       console.log(username)
 

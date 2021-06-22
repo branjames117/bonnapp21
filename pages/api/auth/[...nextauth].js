@@ -10,6 +10,7 @@ export default NextAuth({
   providers: [
     Providers.Credentials({
       async authorize(credentials) {
+        console.log(username)
         /* access the users collection */
         console.log('Attempting to access db')
         const client = await connectToDatabase()
@@ -21,7 +22,6 @@ export default NextAuth({
           console.log('No connection to db')
         }
         const usersCollection = db.collection('users')
-        console.log(username)
         /* seek out the user in the database */
         const user = await usersCollection.findOne({
           username: credentials.username,
