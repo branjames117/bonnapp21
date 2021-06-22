@@ -32,6 +32,7 @@ export async function getServerSideProps(context) {
   }
   console.log(`context: ${context}`)
   console.log(`context.params: ${context.params}`)
+  console.log(`context.params.showName: ${context.params.showName}`)
   const db = client.db()
   const requestedShow = context.params.showName
 

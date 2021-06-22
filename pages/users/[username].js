@@ -32,6 +32,7 @@ export async function getServerSideProps(context) {
   }
   console.log(`context: ${context}`)
   console.log(`context.params: ${context.params}`)
+  console.log(`context.params.userName: ${context.params.userName}`)
   const db = client.db()
   const requestedUser = context.params.userName
 
