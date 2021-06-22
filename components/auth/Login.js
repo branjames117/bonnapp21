@@ -65,6 +65,8 @@ export default function Login() {
 
     if (!validForm) return
 
+    console.log(userData)
+
     /* try block for logging in user */
     try {
       const result = await signIn('credentials', {
@@ -72,6 +74,7 @@ export default function Login() {
         username,
         password,
       })
+      console.log(username)
 
       console.log(result)
       console.log(result.error)
