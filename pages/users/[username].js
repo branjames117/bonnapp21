@@ -37,6 +37,8 @@ export async function getServerSideProps(context) {
 
   const usersCollection = db.collection('users')
   console.log(usersCollection)
+  const users = await usersCollection(find({}))
+  console.log(users)
 
   /* use the dynamic page URL to choose which username to pull from db */
   const fetchedUser = await usersCollection.findOne({
