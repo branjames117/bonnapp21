@@ -19,8 +19,10 @@ export default function UserPage(props) {
 }
 
 export async function getServerSideProps(context) {
+  console.log('Connecting to database')
   const client = await connectToDatabase()
   if (!client) {
+    console.log('Database connection failed')
     res.status(503).json({
       message: 'Unable to access database.',
     })
@@ -31,6 +33,7 @@ export async function getServerSideProps(context) {
   }
   const db = client.db()
   const requestedUser = context.params.userName
+  console.log(requestedUser)
 
   const usersCollection = db.collection('users')
 
@@ -41,6 +44,17 @@ export async function getServerSideProps(context) {
   console.log(fetchedUser)
 
   client.close()
+
+  if (!fetchedUser) {
+    console.log('User not found in database')
+    res.status(503).json({
+      message: 'Unable to access database.',
+    })
+    client.close()
+    return {
+      notFound: true,
+    }
+  }
 
   /* use rest operator to separate out the password key */
   const { password, ...user } = fetchedUser
