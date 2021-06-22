@@ -122,7 +122,7 @@ export default function Register() {
         if (!result.error) {
           /* as long as signIn gave us no errors, reroute user to profile */
           setLoading(true)
-          router.replace(`/users/${username}`)
+          router.replace(`/user/${username}`)
         } else {
           setAPIError(true)
         }
@@ -191,8 +191,7 @@ export default function Register() {
               <Button>Register</Button>
             </div>
             <p className={classes.body}>
-              Already registered?{' '}
-              <Link href='/users/login'>Login instead.</Link>
+              Already registered? <Link href='/user/login'>Login instead.</Link>
             </p>
             {formSubmitted && APIError && (
               <p className={classes.error}>

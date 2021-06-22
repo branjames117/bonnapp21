@@ -67,7 +67,7 @@ export default function Friends(props) {
                     x
                   </SmallButton>
                 )}
-                <Link href={`/users/${friend}`}>{friend}</Link>
+                <Link href={`/user/${friend}`}>{friend}</Link>
               </li>
             ))}
           </ul>

@@ -109,7 +109,7 @@ export default function Comments(props) {
                   <div className={classes.comment}>
                     <p className={classes.commentBody}>{comment.text}</p>
                     <div className={classes.commentAuthor}>
-                      <Link href={`/users/${comment.username}`}>
+                      <Link href={`/user/${comment.username}`}>
                         {comment.username}
                       </Link>
                       <div className={classes.commentTimestamp}>

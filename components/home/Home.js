@@ -62,7 +62,7 @@ export default function Home() {
                   Why You Should Register
                 </h2>
                 <p className={classes.body}>
-                  <Link href='/users/register'>Register</Link> an account with
+                  <Link href='/user/register'>Register</Link> an account with
                   only a username and a password to gain access to the app's
                   social features, including friends, commenting on pages, and
                   cataloging the shows you most want to see.

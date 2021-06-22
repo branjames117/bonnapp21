@@ -65,7 +65,7 @@ export default function Header() {
               {!session && (
                 <>
                   <li>
-                    <Link href='/users/register'>
+                    <Link href='/user/register'>
                       <span
                         className={classes.navLink}
                         style={{ color: randomColorGenerator() }}
@@ -75,7 +75,7 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link href='/users/login'>
+                    <Link href='/user/login'>
                       <span
                         className={classes.navLink}
                         style={{ color: randomColorGenerator() }}
@@ -90,7 +90,7 @@ export default function Header() {
               {session && (
                 <>
                   <li>
-                    <Link href={`/users/${session.user.name}`}>
+                    <Link href={`/user/${session.user.name}`}>
                       <span
                         className={classes.navLink}
                         style={{
@@ -188,7 +188,7 @@ export default function Header() {
               {!session && (
                 <>
                   <li>
-                    <Link href='/users/register'>
+                    <Link href='/user/register'>
                       <span
                         className={classes.navLink}
                         style={{ color: randomColorGenerator() }}
@@ -198,7 +198,7 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link href='/users/login'>
+                    <Link href='/user/login'>
                       <span
                         className={classes.navLink}
                         style={{ color: randomColorGenerator() }}
@@ -213,7 +213,7 @@ export default function Header() {
               {session && (
                 <>
                   <li>
-                    <Link href={`/users/${session.user.name}`}>
+                    <Link href={`/user/${session.user.name}`}>
                       <span
                         className={classes.navLink}
                         style={{

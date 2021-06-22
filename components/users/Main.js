@@ -17,7 +17,7 @@ export default function Main(props) {
         {props.user.username}
       </h1>
       {props.myPage && (
-        <Button onClick={() => router.push('/users/edit')}>edit profile</Button>
+        <Button onClick={() => router.push('/user/edit')}>edit profile</Button>
       )}
       {props.myPage && session.user.name === 'admin' && (
         <>

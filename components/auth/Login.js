@@ -97,7 +97,7 @@ export default function Login() {
       if (!result.error) {
         /* as long as signIn gave us no errors, reroute user to profile */
         setLoading(true)
-        router.replace(`/users/${username}`)
+        router.replace(`/user/${username}`)
       } else {
         setAPIError(true)
       }
@@ -147,7 +147,7 @@ export default function Login() {
             </div>
             <p className={classes.body}>
               Don't have an account?{' '}
-              <Link href='/users/register'>Create one!</Link>
+              <Link href='/user/register'>Create one!</Link>
             </p>
             {!usernameExists && (
               <p className={classes.error}>Username not found.</p>

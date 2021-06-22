@@ -271,7 +271,7 @@ export default function EditProfile(props) {
     })
 
     /* send us back to our profile after we hit submit */
-    router.push(`/users/${props.user.username}`)
+    router.push(`/user/${props.user.username}`)
   }
 
   return (

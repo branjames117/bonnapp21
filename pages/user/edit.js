@@ -21,7 +21,7 @@ export async function getServerSideProps(context) {
   /* redirect if user has no active session and therefore
   no profile page to edit */
   if (!session) {
-    return { redirect: { destination: '/users/login' } }
+    return { redirect: { destination: '/user/login' } }
   }
 
   const client = await connectToDatabase()

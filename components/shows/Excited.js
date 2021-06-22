@@ -61,7 +61,7 @@ export default function Excited(props) {
             {props.show.excitedUsers.map((user, idx) =>
               idx % 2 === 0 ? (
                 <p key={user}>
-                  <Link href={`/users/${user}`}>{user}</Link>
+                  <Link href={`/user/${user}`}>{user}</Link>
                 </p>
               ) : null
             )}
@@ -70,7 +70,7 @@ export default function Excited(props) {
             {props.show.excitedUsers.map((user, idx) =>
               idx % 2 !== 0 ? (
                 <p key={user}>
-                  <Link href={`/users/${user}`}>{user}</Link>
+                  <Link href={`/user/${user}`}>{user}</Link>
                 </p>
               ) : null
             )}

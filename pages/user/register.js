@@ -18,7 +18,7 @@ export async function getServerSideProps(context) {
 
   /* redirect to profile if user is already authorized */
   if (session) {
-    return { redirect: { destination: `/users/${session.user.name}` } }
+    return { redirect: { destination: `/user/${session.user.name}` } }
   }
 
   return {

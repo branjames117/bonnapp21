@@ -3,7 +3,7 @@ import Lineup from '../../components/shows/Lineup'
 
 // this is the home page of the website, the / route
 
-export default function Home(pageProps) {
+export default function Home() {
   return (
     <div style={{ flex: 1 }}>
       <Head>
