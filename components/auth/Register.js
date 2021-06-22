@@ -136,7 +136,7 @@ export default function Register() {
   }
 
   return (
-    <>
+    <div className={classes.container}>
       {!loading && (
         <Card>
           <h2>Register User</h2>
@@ -236,6 +236,6 @@ export default function Register() {
           <p>Pulling profile from database...</p>
         </>
       )}
-    </>
+    </div>
   )
 }

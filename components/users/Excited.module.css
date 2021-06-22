@@ -6,9 +6,3 @@
   list-style-type: none;
   margin: 0;
 }
-
-.listSplitter {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}

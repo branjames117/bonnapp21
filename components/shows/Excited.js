@@ -56,25 +56,12 @@ export default function Excited(props) {
         {props.show.excitedUsers.length === 0 && (
           <span className={classes.box}>No one yet.</span>
         )}
-        <div className={classes.listSplitter}>
-          <div>
-            {props.show.excitedUsers.map((user, idx) =>
-              idx % 2 === 0 ? (
-                <p key={user}>
-                  <Link href={`/user/${user}`}>{user}</Link>
-                </p>
-              ) : null
-            )}
-          </div>
-          <div>
-            {props.show.excitedUsers.map((user, idx) =>
-              idx % 2 !== 0 ? (
-                <p key={user}>
-                  <Link href={`/user/${user}`}>{user}</Link>
-                </p>
-              ) : null
-            )}
-          </div>
+        <div>
+          {props.show.excitedUsers.map((user) => (
+            <p key={user}>
+              <Link href={`/user/${user}`}>{user}</Link>
+            </p>
+          ))}
         </div>
       </div>
     </Card>

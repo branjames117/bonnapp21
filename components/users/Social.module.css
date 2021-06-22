@@ -2,13 +2,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-around;
-  margin: 30px 150px 0 150px;
+  margin: 30px 75px 0 75px;
   text-align: center;
 }
 
 .svg {
   cursor: pointer;
-  fill: white;
+  fill: rgb(215, 88, 231);
 }
 
 .svg:hover {

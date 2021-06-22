@@ -13,7 +13,6 @@ export default NextAuth({
       name: 'Login',
       async authorize(credentials) {
         /* access the users collection */
-        console.log('Attempting to access db')
         const client = await connectToDatabase()
         if (!client) {
           console.log('No connection to client')

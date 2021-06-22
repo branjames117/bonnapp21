@@ -32,32 +32,16 @@ export default function Excited(props) {
       </h2>
       <div className={classes.body}>
         {(props.excited.length === 0 && <span>No one yet.</span>) || (
-          <div className={classes.listSplitter}>
-            <div>
-              {props.excited.map((show, idx) =>
-                idx % 2 === 0 ? (
-                  <p key={show}>
-                    <SmallButton onClick={() => onDeleteExcitedUser(show)}>
-                      x
-                    </SmallButton>
-                    <Link href={`/shows/${show}`}>{show}</Link>
-                  </p>
-                ) : null
-              )}
-            </div>
-            <div>
-              {props.excited.map((show, idx) =>
-                idx % 2 !== 0 ? (
-                  <p key={show}>
-                    <SmallButton onClick={() => onDeleteExcitedUser(show)}>
-                      x
-                    </SmallButton>
-                    <Link href={`/show/${show}`}>{show}</Link>
-                  </p>
-                ) : null
-              )}
-            </div>
-          </div>
+          <>
+            {props.excited.map((show) => (
+              <p key={show}>
+                <SmallButton onClick={() => onDeleteExcitedUser(show)}>
+                  x
+                </SmallButton>
+                <Link href={`/shows/${show}`}>{show}</Link>
+              </p>
+            ))}
+          </>
         )}
       </div>
     </Card>

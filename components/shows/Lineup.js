@@ -6,8 +6,8 @@ import Card from '../layout/Card'
 export default class Lineup extends React.Component {
   render() {
     return (
-      <Card>
-        <div className={classes.container}>
+      <div className={classes.container}>
+        <Card>
           <div className={classes.day}>Thursday, &nbsp; Sept. &nbsp; 2</div>
           <div className={classes.headliner}>
             <Link href='/shows/Grand Ole Opry feat. Special Guests'>
@@ -257,8 +257,8 @@ export default class Lineup extends React.Component {
           <Link href={'/shows/DJ Mel'}>DJ Mel</Link>
           {' • '}
           <Link href={'/shows/Flamingosis'}>Flamingosis</Link>
-        </div>
-      </Card>
+        </Card>
+      </div>
     )
   }
 }

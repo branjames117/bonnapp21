@@ -113,9 +113,9 @@ export default function Login() {
   }
 
   return (
-    <>
+    <div className={classes.container}>
       {!loading && (
-        <Card color='rgb(215, 88, 231)'>
+        <Card>
           <h2>Login User</h2>
           <form className={classes.form} onSubmit={submitHandler}>
             <div className={classes.control}>
@@ -173,11 +173,11 @@ export default function Login() {
       )}
 
       {loading && (
-        <>
+        <Card>
           <h2>Login Successful</h2>
           <p>Pulling profile from database...</p>
-        </>
+        </Card>
       )}
-    </>
+    </div>
   )
 }

@@ -32,3 +32,21 @@
     display: none;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .listSplitter {
+    gap: 150px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .listSplitter {
+    gap: 100px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .listSplitter {
+    gap: 40px;
+  }
+}

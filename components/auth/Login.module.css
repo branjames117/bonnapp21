@@ -4,7 +4,6 @@
 
 .form {
   padding: 1rem;
-  width: 400px;
 }
 
 .control {
@@ -41,4 +40,23 @@
   border: 1px solid white;
   border-radius: 5px;
   margin: 15px 0;
+}
+
+.container {
+  padding: 0 50px;
+  display: grid;
+  flex: 1;
+  grid-template-columns: 500px;
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    grid-template-columns: 440px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .container {
+    grid-template-columns: 380px;
+  }
 }

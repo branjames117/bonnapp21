@@ -1,9 +1,9 @@
 .container {
   text-align: center;
-  margin: 0 auto;
-  padding: 10px 5px;
-  width: 550px;
-  height: 100%;
+  padding: 0 50px;
+  display: grid;
+  flex: 1;
+  grid-template-columns: 1200px;
 }
 
 .day {
@@ -77,24 +77,24 @@
 
 @media screen and (max-width: 1200px) {
   .container {
-    width: 550px;
+    grid-template-columns: 600px;
   }
 }
 
 @media screen and (max-width: 600px) {
   .container {
-    width: 460px;
+    grid-template-columns: 500px;
   }
 }
 
 @media screen and (max-width: 500px) {
   .container {
-    width: 380px;
+    grid-template-columns: 440px;
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 420px) {
   .container {
-    width: 340px;
+    grid-template-columns: 380px;
   }
 }
