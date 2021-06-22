@@ -38,10 +38,14 @@ export async function getServerSideProps(context) {
   const fetchedUser = await usersCollection.findOne({
     username: requestedUser,
   })
+  console.log(fetchedUser)
 
   client.close()
 
   if (!fetchedUser) {
+    res.status(501).json({
+      message: 'Unable to find user.',
+    })
     return {
       notFound: true,
     }
