@@ -11,13 +11,14 @@ export default NextAuth({
     Providers.Credentials({
       async authorize(credentials) {
         /* access the users collection */
+        console.log('Attempting to access db')
         const client = await connectToDatabase()
         if (!client) {
-          throw new Error('No connection to the database')
+          console.log('No connection to client')
         }
         const db = client.db()
         if (!db) {
-          throw new Error('No connection to the database')
+          console.log('No connection to db')
         }
         const usersCollection = db.collection('users')
         console.log(username)
