@@ -73,6 +73,9 @@ export default function Login() {
         password,
       })
 
+      console.log(result)
+      console.log(result.error)
+
       /* if database connection issue, give that feedback */
       if (result.error === 'No connection to the database') {
         setLoading(false)
