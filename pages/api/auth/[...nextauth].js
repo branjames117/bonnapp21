@@ -1,6 +1,4 @@
 /* NextAuth logic for handling user log in attempts */
-
-import { Db } from 'mongodb'
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 import { verifyPassword } from '../../../lib/auth'
@@ -22,12 +20,12 @@ export default NextAuth({
           throw new Error('No connection to the database')
         }
         const usersCollection = db.collection('users')
-
+        console.log(username)
         /* seek out the user in the database */
         const user = await usersCollection.findOne({
           username: credentials.username,
         })
-
+        console.log(user)
         /* if user doesn't exist, error
         client shouldn't see these errors due to client-side validation */
         if (!user) {

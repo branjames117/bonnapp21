@@ -19,8 +19,10 @@ export default function ShowPage(props) {
 }
 
 export async function getServerSideProps(context) {
+  console.log('Connecting to database')
   const client = await connectToDatabase()
   if (!client) {
+    console.log('Database connection failed')
     res.status(503).json({
       message: 'Unable to access database.',
     })
@@ -31,6 +33,7 @@ export async function getServerSideProps(context) {
   }
   const db = client.db()
   const requestedShow = context.params.showName
+  console.log(requestedShow)
 
   const showsCollection = db.collection('shows')
 
@@ -38,6 +41,7 @@ export async function getServerSideProps(context) {
   const show = await showsCollection.findOne({
     title: requestedShow,
   })
+  console.log(show)
 
   client.close()
 
