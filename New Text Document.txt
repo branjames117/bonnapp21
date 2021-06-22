@@ -1,3 +1,0 @@
-<SmallButton onClick={() => onDeleteExcitedUser(show)}>
-                    x
-                  </SmallButton>
