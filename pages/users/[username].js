@@ -22,7 +22,6 @@ export async function getServerSideProps(context) {
   console.log('Connecting to database')
   const client = await connectToDatabase()
   if (!client) {
-    console.log('Database connection failed')
     res.status(503).json({
       message: 'Unable to access database.',
     })
@@ -31,20 +30,17 @@ export async function getServerSideProps(context) {
       notFound: true,
     }
   }
+  console.log(`context: ${context}`)
+  console.log(`context.params: ${context.params}`)
   const db = client.db()
   const requestedUser = context.params.userName
-  console.log(requestedUser)
 
   const usersCollection = db.collection('users')
-  console.log(usersCollection)
-  const users = await usersCollection.find({})
-  console.log(users)
 
   /* use the dynamic page URL to choose which username to pull from db */
   const fetchedUser = await usersCollection.findOne({
     username: requestedUser,
   })
-  console.log(fetchedUser)
 
   client.close()
 
