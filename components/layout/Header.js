@@ -6,7 +6,7 @@ import randomColorGenerator from '../../lib/random-colors'
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false)
-  const [session, _] = useSession()
+  const [session, loading] = useSession()
 
   function logoutHandler() {
     signout({ callbackUrl: '/' })
@@ -87,7 +87,7 @@ export default function Header() {
                 </>
               )}
               {/* render if active session */}
-              {session && (
+              {session && !loading && (
                 <>
                   <li>
                     <Link href={`/user/${session.user.name}`}>
@@ -210,7 +210,7 @@ export default function Header() {
                 </>
               )}
               {/* render if active session */}
-              {session && (
+              {session && !loading && (
                 <>
                   <li>
                     <Link href={`/user/${session.user.name}`}>

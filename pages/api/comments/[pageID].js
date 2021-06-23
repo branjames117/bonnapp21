@@ -6,6 +6,22 @@ export default async function handler(req, res) {
   const session = await getSession({ req })
   const pageID = req.query.pageID
 
+  if (!session) {
+    res.status(401).json({
+      message: 'No active session found.',
+      comments: [],
+    })
+    return
+  }
+
+  if (!pageID) {
+    res.status(400).json({
+      message: 'Bad input.',
+      comments: [],
+    })
+    return
+  }
+
   /* connect to the db */
   const client = await connectToDatabase()
   /* if db connection fails, respond with empty array */

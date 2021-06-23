@@ -47,6 +47,7 @@ export default function Comments(props) {
       headers: { 'Content-Type': 'application/json' },
     })
 
+    commentInputRef.current.value = ''
     return
   }
 
@@ -67,75 +68,70 @@ export default function Comments(props) {
 
   return (
     <Card>
-      {loading && <p>Loading comments...</p>}
-      {!loading && (
-        <>
-          <Headline
-            className={classes.h2}
-            style={{ color: randomColorGenerator() }}
-          >
-            Comment Wall
-          </Headline>
-          {!session && (
-            <div className={classes.body}>
-              You must log in to leave comments.
-            </div>
-          )}
-          {session && (
-            <form className={classes.form} onSubmit={addCommentHandler}>
-              <div className={classes.control}>
-                <textarea
-                  id='text'
-                  rows='4'
-                  ref={commentInputRef}
-                  className={commentError ? classes.controlError : null}
-                  onChange={() => setCommentError(false)}
-                ></textarea>
-              </div>
-              <div className={classes.actions}>
-                <Button>leave comment</Button>
-              </div>
-            </form>
-          )}
-          {commentError && (
-            <p className={classes.error}>
-              Comment cannot be empty and must be less than 500 characters long.
-            </p>
-          )}
-          {comments !== 0 && (
-            <div className={classes.comments}>
-              {comments.map((comment) => (
-                <span key={comment._id}>
-                  <div className={classes.comment}>
-                    <p className={classes.commentBody}>{comment.text}</p>
-                    <div className={classes.commentAuthor}>
-                      <Link href={`/user/${comment.username}`}>
-                        {comment.username}
-                      </Link>
-                      <div className={classes.commentTimestamp}>
-                        {new Date(comment.timestamp).toLocaleString()}
-                        {/* Is user author of comment or admin? If so, enable delete */}
-                        {session &&
-                          (session.user.name === comment.username ||
-                            session.user.name === 'admin') && (
-                            <>
-                              <button
-                                className={classes.btn}
-                                value={comment._id}
-                                onClick={deleteCommentHandler}
-                              >
-                                delete
-                              </button>
-                            </>
-                          )}
-                      </div>
-                    </div>
+      <Headline
+        className={classes.h2}
+        style={{ color: randomColorGenerator() }}
+      >
+        Comment Wall
+      </Headline>
+      {!session && (
+        <div className={classes.body}>
+          You must <Link href='/user/login'>log in</Link> to leave comments.
+        </div>
+      )}
+      {session && (
+        <form className={classes.form} onSubmit={addCommentHandler}>
+          <div className={classes.control}>
+            <textarea
+              id='text'
+              rows='4'
+              ref={commentInputRef}
+              className={commentError ? classes.controlError : null}
+              onChange={() => setCommentError(false)}
+            ></textarea>
+          </div>
+          <div className={classes.actions}>
+            {!loading && <Button>leave comment</Button>}
+          </div>
+        </form>
+      )}
+      {commentError && (
+        <p className={classes.error}>
+          Comment cannot be empty and must be less than 500 characters long.
+        </p>
+      )}
+      {comments !== 0 && (
+        <div className={classes.comments}>
+          {comments.map((comment) => (
+            <span key={comment._id}>
+              <div className={classes.comment}>
+                <p className={classes.commentBody}>{comment.text}</p>
+                <div className={classes.commentAuthor}>
+                  <Link href={`/user/${comment.username}`}>
+                    {comment.username}
+                  </Link>
+                  <div className={classes.commentTimestamp}>
+                    {new Date(comment.timestamp).toLocaleString()}
+                    {/* Is user author of comment or admin? If so, enable delete */}
+                    {session &&
+                      (session.user.name === comment.username ||
+                        session.user.name === 'admin') && (
+                        <>
+                          <button
+                            className={classes.btn}
+                            value={comment._id}
+                            onClick={deleteCommentHandler}
+                          >
+                            delete
+                          </button>
+                        </>
+                      )}
                   </div>
-                </span>
-              ))}
-            </div>
-          )}
-        </>
+                </div>
+              </div>
+            </span>
+          ))}
+        </div>
       )}
     </Card>
   )

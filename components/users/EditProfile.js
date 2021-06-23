@@ -207,7 +207,7 @@ export default function EditProfile(props) {
       }))
     }
 
-    if (userData.bio.trim().length > 250) {
+    if (userData.bio.trim().length > 500) {
       validForm = false
       setErrors((prevState) => ({
         ...prevState,
@@ -215,7 +215,7 @@ export default function EditProfile(props) {
       }))
     }
 
-    if (userData.firstname.trim().length > 15) {
+    if (userData.firstname.trim().length > 30) {
       validForm = false
       setErrors((prevState) => ({
         ...prevState,
@@ -223,7 +223,7 @@ export default function EditProfile(props) {
       }))
     }
 
-    if (userData.location.trim().length > 15) {
+    if (userData.location.trim().length > 30) {
       validForm = false
       setErrors((prevState) => ({
         ...prevState,
@@ -232,11 +232,11 @@ export default function EditProfile(props) {
     }
 
     if (
-      userData.facebookURL.trim().length > 25 ||
+      userData.facebookURL.trim().length > 30 ||
       userData.facebookURL.includes('.com') ||
-      userData.instaURL.trim().length > 25 ||
+      userData.instaURL.trim().length > 30 ||
       userData.instaURL.includes('.com') ||
-      userData.twitterURL.trim().length > 25 ||
+      userData.twitterURL.trim().length > 30 ||
       userData.twitterURL.includes('.com')
     ) {
       validForm = false
@@ -247,7 +247,7 @@ export default function EditProfile(props) {
     }
 
     if (
-      userData.videoURL.trim().length > 44 ||
+      userData.videoURL.trim().length > 45 ||
       !userData.videoURL.includes('www.youtube.com/watch?')
     ) {
       validForm = false
@@ -312,7 +312,7 @@ export default function EditProfile(props) {
                 </div>
                 {errors.bio && (
                   <p className={classes.error}>
-                    Bio must be below 250 characters.
+                    Bio must be below 500 characters.
                   </p>
                 )}
                 <table className={classes.table}>
@@ -326,7 +326,7 @@ export default function EditProfile(props) {
                           <input
                             onChange={inputChangeHandler}
                             value={userData.firstname}
-                            autocomplete='off'
+                            autoComplete='off'
                             name='firstname'
                             id='firstname'
                             type='text'
@@ -341,7 +341,7 @@ export default function EditProfile(props) {
                       <tr>
                         <td colspan='2'>
                           <p className={classes.error}>
-                            First name must be below 15 characters.
+                            First name must be below 30 characters.
                           </p>
                         </td>
                       </tr>
@@ -371,7 +371,7 @@ export default function EditProfile(props) {
                           <input
                             onChange={inputChangeHandler}
                             value={userData.location}
-                            autocomplete='off'
+                            autoComplete='off'
                             name='location'
                             id='location'
                             type='text'
@@ -386,7 +386,7 @@ export default function EditProfile(props) {
                       <tr>
                         <td colspan='2'>
                           <p className={classes.error}>
-                            Hometown must be below 15 characters.
+                            Hometown must be below 30 characters.
                           </p>
                         </td>
                       </tr>
@@ -426,7 +426,7 @@ export default function EditProfile(props) {
                           <input
                             onChange={inputChangeHandler}
                             value={userData.facebookURL}
-                            autocomplete='off'
+                            autoComplete='off'
                             name='facebookURL'
                             id='facebookURL'
                             type='text'
@@ -446,7 +446,7 @@ export default function EditProfile(props) {
                           <input
                             onChange={inputChangeHandler}
                             value={userData.instaURL}
-                            autocomplete='off'
+                            autoComplete='off'
                             name='instaURL'
                             id='instaURL'
                             type='text'
@@ -466,7 +466,7 @@ export default function EditProfile(props) {
                           <input
                             onChange={inputChangeHandler}
                             value={userData.twitterURL}
-                            autocomplete='off'
+                            autoComplete='off'
                             name='twitterURL'
                             id='twitterURL'
                             type='text'
@@ -516,6 +516,7 @@ export default function EditProfile(props) {
                 <input
                   onChange={inputChangeHandler}
                   value={userData.videoURL}
+                  autoComplete='off'
                   name='videoURL'
                   id='videoURL'
                   type='text'

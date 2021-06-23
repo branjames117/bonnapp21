@@ -15,18 +15,15 @@ export default NextAuth({
         /* access the users collection */
         const client = await connectToDatabase()
         if (!client) {
-          console.log('No connection to client')
         }
         const db = client.db()
         if (!db) {
-          console.log('No connection to db')
         }
         const usersCollection = db.collection('users')
         /* seek out the user in the database */
         const user = await usersCollection.findOne({
           username: credentials.username,
         })
-        console.log(user)
         /* if user doesn't exist, error
         client shouldn't see these errors due to client-side validation */
         if (!user) {

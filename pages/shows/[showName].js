@@ -19,7 +19,6 @@ export default function ShowPage(props) {
 }
 
 export async function getServerSideProps(context) {
-  console.log('Connecting to database')
   const client = await connectToDatabase()
   if (!client) {
     res.status(503).json({
@@ -30,9 +29,7 @@ export async function getServerSideProps(context) {
       notFound: true,
     }
   }
-  console.log(`context: ${context}`)
-  console.log(`context.params: ${context.params}`)
-  console.log(`context.params.showName: ${context.params.showName}`)
+
   const db = client.db()
   const requestedShow = context.params.showName
 
@@ -45,6 +42,7 @@ export async function getServerSideProps(context) {
 
   client.close()
 
+  /* if show not found in db, 404 */
   if (!show) {
     return {
       notFound: true,

@@ -8,11 +8,11 @@ export default function Video(props) {
       <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
         Video of the Moment
       </h2>
-      <p className={classes.videoBox}>
+      <p className={classes.videoContainer}>
         <iframe
+          className={classes.iframe}
           allowFullScreen='allowfullscreen'
           width='100%'
-          height='450px'
           src={props.videoURL.replace('watch?v=', 'embed/')}
           title='YouTube video player'
           frameBorder='1'

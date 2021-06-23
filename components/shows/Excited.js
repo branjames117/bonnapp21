@@ -51,7 +51,11 @@ export default function Excited(props) {
       {session && props.show.excitedUsers.includes(session.user.name) && (
         <Button onClick={onDeleteExcitedUser}>Actually, I'll Pass!</Button>
       )}
-      {!session && <p>Log in to add your name to the list!</p>}
+      {!session && (
+        <p>
+          <Link href='/user/login'>Log in</Link> to add your name to the list!
+        </p>
+      )}
       <div className={classes.body}>
         {props.show.excitedUsers.length === 0 && (
           <span className={classes.box}>No one yet.</span>

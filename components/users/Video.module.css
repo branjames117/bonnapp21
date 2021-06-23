@@ -31,3 +31,28 @@
 .videoBox {
   text-align: center;
 }
+
+.videoContainer {
+  display: flex;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.iframe {
+  height: 400px;
+}
+
+@media screen and (max-width: 1200px) {
+  .videoContainer {
+    display: flex;
+    height: 250px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .iframe {
+    height: 250px;
+  }
+}

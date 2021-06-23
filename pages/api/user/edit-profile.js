@@ -48,31 +48,31 @@ export default async function handler(req, res) {
   /* server-side validation */
   let validForm = true
 
-  if (bio.trim().length > 250) {
+  if (bio.trim().length > 500) {
     validForm = false
   }
 
-  if (firstname.trim().length > 15) {
+  if (firstname.trim().length > 30) {
     validForm = false
   }
 
-  if (location.trim().length > 15) {
+  if (location.trim().length > 30) {
     validForm = false
   }
 
   if (
-    facebookURL.trim().length > 25 ||
+    facebookURL.trim().length > 30 ||
     facebookURL.includes('.com') ||
-    instaURL.trim().length > 25 ||
+    instaURL.trim().length > 30 ||
     instaURL.includes('.com') ||
-    twitterURL.trim().length > 25 ||
+    twitterURL.trim().length > 30 ||
     twitterURL.includes('.com')
   ) {
     validForm = false
   }
 
   if (
-    videoURL.trim().length > 44 ||
+    videoURL.trim().length > 45 ||
     !videoURL.includes('www.youtube.com/watch?')
   ) {
     validForm = false

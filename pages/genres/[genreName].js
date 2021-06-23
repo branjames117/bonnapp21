@@ -66,6 +66,7 @@ export async function getServerSideProps(context) {
 
   client.close()
 
+  /* if genre not found in db, 404 */
   if (!fetchedGenre) {
     return {
       notFound: true,

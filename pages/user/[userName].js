@@ -19,7 +19,6 @@ export default function UserPage(props) {
 }
 
 export async function getServerSideProps(context) {
-  console.log('Connecting to database')
   const client = await connectToDatabase()
   if (!client) {
     res.status(503).json({
@@ -30,9 +29,7 @@ export async function getServerSideProps(context) {
       notFound: true,
     }
   }
-  console.log(`context: ${context}`)
-  console.log(`context.params: ${context.params}`)
-  console.log(`context.params.userName: ${context.params.userName}`)
+
   const db = client.db()
   const requestedUser = context.params.userName
 
@@ -45,12 +42,8 @@ export async function getServerSideProps(context) {
 
   client.close()
 
+  /* if user not found in db, 404 */
   if (!fetchedUser) {
-    console.log('User not found in database')
-    res.status(503).json({
-      message: 'Unable to access database.',
-    })
-    client.close()
     return {
       notFound: true,
     }

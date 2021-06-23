@@ -46,21 +46,26 @@ export default function GenreProfile(props) {
           <h1 className={classes.h1} style={{ color: randomColorGenerator() }}>
             Pick Your Poison
           </h1>
+          {/* divide the list of genres into two columns */}
           <div className={classes.listSplitter}>
             <div>
-              {props.genres.map((genre, idx) =>
+              {props.genres.map((genreArray, idx) =>
                 idx % 2 === 0 ? (
-                  <p key={genre}>
-                    <Link href={`/genres/${genre}`}>{genre}</Link>
+                  <p key={genreArray[0]}>
+                    <Link href={`/genres/${genreArray[0]}`}>
+                      {`${genreArray[0]} (${genreArray[1]})`}
+                    </Link>
                   </p>
                 ) : null
               )}
             </div>
             <div>
-              {props.genres.map((genre, idx) =>
+              {props.genres.map((genreArray, idx) =>
                 idx % 2 !== 0 ? (
-                  <p key={genre}>
-                    <Link href={`/genres/${genre}`}>{genre}</Link>
+                  <p key={genreArray[0]}>
+                    <Link href={`/genres/${genreArray[0]}`}>
+                      {`${genreArray[0]} (${genreArray[1]})`}
+                    </Link>
                   </p>
                 ) : null
               )}

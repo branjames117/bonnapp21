@@ -52,10 +52,13 @@ export default async function handler(req, res) {
   }
   const db = client.db()
 
-  /* check db to see if username already exists */
+  /* check db to see if username already exists, ignoring case,
+  so that the users ADMIN and admin cannot coexist; I'm sure there's
+  a better way to ignore case in MongoDB but this will do until I
+  come up with it */
   const existingUser = await db
     .collection('users')
-    .findOne({ username: username })
+    .findOne({ usernameLC: username.toLowerCase() })
 
   if (existingUser) {
     /* 514 custom status - I'm a teapot */
@@ -70,6 +73,7 @@ export default async function handler(req, res) {
 
   await db.collection('users').insertOne({
     username: username,
+    usernameLC: username.toLowerCase(),
     password: hashedPassword,
     bio: 'My profile is so blank right now.',
     firstname: '',

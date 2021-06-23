@@ -16,9 +16,9 @@ export default function Video(props) {
           <div />
           <div className={classes.video}>
             <iframe
+              className={classes.iframe}
               allowFullScreen='allowfullscreen'
               width='100%'
-              height='450px'
               src={props.videos[0].replace('watch?v=', 'embed/')}
               title='YouTube video player'
               allow='accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'

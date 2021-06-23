@@ -9,7 +9,7 @@ export default function AllGenresPage(props) {
       <Head>
         <title>BonnApp21 - all genres</title>
       </Head>
-      <GenreList genres={props.uniqueGenres} />
+      <GenreList genres={props.genres} />
     </Grid>
   )
 }
@@ -32,24 +32,25 @@ export async function getServerSideProps() {
 
   client.close()
 
-  /* pull the genre data from each show, then flatten to array, then
-  add to new array if not already present */
-  const genres = []
-  const uniqueGenres = []
+  /* use frequency counter pattern to create an object containing
+  1) a property for each unique genre in the database,
+  2) a value for how many occurrences of the genre in the database */
+  const genresFrequencyCounter = {}
 
-  fetchedShows.forEach((show) => genres.push(show.genres))
+  fetchedShows.forEach((show) => {
+    for (let genre of show.genres) {
+      genresFrequencyCounter[genre] = (genresFrequencyCounter[genre] || 0) + 1
+    }
+  })
 
-  genres
-    .flat()
-    .forEach((genre) =>
-      uniqueGenres.includes(genre) ? null : uniqueGenres.push(genre)
-    )
-
-  uniqueGenres.sort()
+  /* convert the object back into an 2-dimensional array */
+  const genres = Object.entries(genresFrequencyCounter)
+  /* sort alphabetically */
+  genres.sort()
 
   return {
     props: {
-      uniqueGenres,
+      genres,
     },
   }
 }

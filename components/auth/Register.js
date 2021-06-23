@@ -231,10 +231,10 @@ export default function Register() {
       )}
 
       {loading && (
-        <>
+        <Card>
           <h2>Registration Successful</h2>
           <p>Pulling profile from database...</p>
-        </>
+        </Card>
       )}
     </div>
   )

@@ -2,7 +2,6 @@
 
 /* global styles */
 
-html,
 body {
   background-image: linear-gradient(
     to bottom left,
@@ -15,6 +14,7 @@ body {
     rgb(255, 155, 41),
     rgb(211, 252, 31)
   );
+  background-attachment: fixed;
   color: white;
   padding: 0;
   margin: 0;
