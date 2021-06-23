@@ -36,6 +36,7 @@ export default function Video(props) {
           </div>
           <div className={classes.video}>
             <iframe
+              className={classes.iframe}
               allowFullScreen='allowfullscreen'
               width='100%'
               height='450px'
@@ -56,6 +57,7 @@ export default function Video(props) {
           </div>
           <div className={classes.video}>
             <iframe
+              className={classes.iframe}
               allowFullScreen='allowfullscreen'
               width='100%'
               height='450px'
