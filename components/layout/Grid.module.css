@@ -4,7 +4,6 @@ found so far to force longstringswithoutwhitespacecharacters
 to NOT expand the size of my grid columns */
 
 .grid {
-  padding: 0 50px;
   display: grid;
   flex: 1;
   grid-template-columns: 500px 700px;

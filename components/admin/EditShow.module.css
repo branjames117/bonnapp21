@@ -1,5 +1,4 @@
 .form {
-  padding: 0 50px;
   display: grid;
   flex: 1;
   grid-template-columns: 500px 700px;

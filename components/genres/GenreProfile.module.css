@@ -35,18 +35,18 @@
 
 @media screen and (max-width: 600px) {
   .listSplitter {
-    gap: 150px;
+    gap: 100px;
   }
 }
 
 @media screen and (max-width: 500px) {
   .listSplitter {
-    gap: 100px;
+    gap: 40px;
   }
 }
 
 @media screen and (max-width: 420px) {
   .listSplitter {
-    gap: 40px;
+    gap: 0px;
   }
 }
