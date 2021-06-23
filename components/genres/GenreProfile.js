@@ -33,7 +33,7 @@ export default function GenreProfile(props) {
             What Is It?
           </h2>
           <p className={classes.p}>
-            {props.genre.def} <Link href={props.genre.wiki}> (Source)</Link>
+            {props.genre.def} <Link href={props.genre.wiki}> ...read more</Link>
           </p>
         </Card>
         <span className={classes.hider}>

@@ -43,13 +43,13 @@ export default function Excited(props) {
   return (
     <Card>
       <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
-        Who's Excited?
+        Who's Going?
       </h2>
       {session && !props.show.excitedUsers.includes(session.user.name) && (
-        <Button onClick={onAddExcitedUser}>I'm Excited!</Button>
+        <Button onClick={onAddExcitedUser}>I'll Be There!</Button>
       )}
       {session && props.show.excitedUsers.includes(session.user.name) && (
-        <Button onClick={onDeleteExcitedUser}>Actually, I'll Pass!</Button>
+        <Button onClick={onDeleteExcitedUser}>On Second Thought...</Button>
       )}
       {!session && (
         <p>
@@ -57,9 +57,6 @@ export default function Excited(props) {
         </p>
       )}
       <div className={classes.body}>
-        {props.show.excitedUsers.length === 0 && (
-          <span className={classes.box}>No one yet.</span>
-        )}
         <div>
           {props.show.excitedUsers.map((user) => (
             <p key={user}>

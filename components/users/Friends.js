@@ -44,20 +44,20 @@ export default function Friends(props) {
   return (
     <Card>
       <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
-        Friends
+        Following
       </h2>
-      {props.loggedIn &&
+      {props.session &&
         !props.myPage &&
         !props.user.friendOf.includes(session.user.name) && (
-          <Button onClick={onAddFriend}>add friend</Button>
+          <Button onClick={onAddFriend}>follow them!</Button>
         )}
-      {props.loggedIn &&
+      {props.session &&
         !props.myPage &&
         props.user.friendOf.includes(session.user.name) && (
-          <Button onClick={onDeleteFriend}>remove friend</Button>
+          <Button onClick={onDeleteFriend}>unfollow them!</Button>
         )}
       <div className={classes.body}>
-        {props.user.friends.length === 0 && <p>No friends yet.</p>}
+        {props.user.friends.length === 0 && <p>No one yet.</p>}
         {props.user.friends.length !== 0 && (
           <ul className={classes.ul}>
             {props.user.friends.map((friend, idx) => (

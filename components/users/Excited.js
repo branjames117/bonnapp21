@@ -28,20 +28,37 @@ export default function Excited(props) {
   return (
     <Card>
       <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
-        Excited to See
+        Going to See
       </h2>
       <div className={classes.body}>
-        {(props.excited.length === 0 && <span>No one yet.</span>) || (
+        {(props.excited.length === 0 && (
           <>
-            {props.excited.map((show) => (
-              <p key={show}>
-                <SmallButton onClick={() => onDeleteExcitedUser(show)}>
-                  x
-                </SmallButton>
-                <Link href={`/shows/${show}`}>{show}</Link>
+            {props.myPage && (
+              <p>
+                Your list is empty!{' '}
+                <Link href={'/random'}>Want a random suggestion?</Link>
               </p>
-            ))}
+            )}
+            {!props.myPage && (
+              <p>
+                Their list is empty! Leave them a comment and make a
+                recommendation.
+              </p>
+            )}
           </>
+        )) || (
+          <ul className={classes.ul}>
+            {props.excited.map((show) => (
+              <li key={show}>
+                {props.myPage && (
+                  <SmallButton onClick={() => onDeleteExcitedUser(show)}>
+                    x
+                  </SmallButton>
+                )}
+                <Link href={`/shows/${show}`}>{show}</Link>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     </Card>

@@ -76,7 +76,7 @@ export default function Comments(props) {
       </Headline>
       {!session && (
         <div className={classes.body}>
-          You must <Link href='/user/login'>log in</Link> to leave comments.
+          <Link href='/user/login'>Log in</Link> to leave comments!
         </div>
       )}
       {session && (

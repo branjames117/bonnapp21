@@ -27,7 +27,7 @@ export default function GenreProfile(props) {
             artistic nature of music means that these classifications are often
             subjective and controversial, and some genres may overlap.{' '}
             <Link href={'https://en.wikipedia.org/wiki/Music_genre'}>
-              (Source)
+              ...read more
             </Link>
           </p>
           <p className={classes.p}>

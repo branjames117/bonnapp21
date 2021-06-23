@@ -36,19 +36,19 @@ export default function Main(props) {
           </Button>
         </p>
       )}
-      {props.show.site && (
-        <div className={classes.body}>
-          <Link href={props.show.site}>Visit Their Official Site</Link>
-        </div>
-      )}
       <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
         About the Show
       </h2>
-
       <p className={classes.bio}>
         {props.show.bio.replace(/\\n/g, '\n')}{' '}
-        <Link href={props.show.wiki}> (Source)</Link>
+        <Link href={props.show.wiki}> ...read more</Link>
       </p>
+
+      {props.show.site && (
+        <div className={classes.body}>
+          <Link href={props.show.site}>Check out their website!</Link>
+        </div>
+      )}
 
       <div className={classes.body}>
         <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>

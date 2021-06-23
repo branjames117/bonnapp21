@@ -25,10 +25,24 @@ body {
 a {
   color: rgb(211, 252, 31);
   text-decoration: none;
+  position: relative;
 }
 
-a:hover {
-  color: rgb(255, 155, 41);
+a:after {
+  content: '';
+  background-color: yellow;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  opacity: 0.5;
+  transition: width 0.15s linear;
+}
+
+a:hover:after {
+  content: '';
+  width: 100%;
 }
 
 img {

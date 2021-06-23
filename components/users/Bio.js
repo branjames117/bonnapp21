@@ -11,6 +11,7 @@ export default function Bio(props) {
       {/* Conditionally display available information */}
       <table className={classes.table}>
         <tbody>
+          <th colspan='2'>More Stuff to Know</th>
           {props.user.firstname && (
             <tr>
               <td>First Name</td>
@@ -19,12 +20,12 @@ export default function Bio(props) {
           )}
           {props.user.birthday && (
             <tr>
-              <td>Birthday</td>
+              <td>Birthdate</td>
               <td align='right'>{props.user.birthday}</td>
             </tr>
           )}
           <tr>
-            <td>Joined</td>
+            <td>Signed up</td>
             <td align='right'>{props.user.joined}</td>
           </tr>
           {props.user.location && (
@@ -37,6 +38,24 @@ export default function Bio(props) {
             <tr>
               <td>Roos Attended</td>
               <td align='right'>{props.user.bonnaroos}</td>
+            </tr>
+          )}
+          {props.user.friends.length !== 0 && (
+            <tr>
+              <td>Following</td>
+              <td align='right'>{props.user.friends.length}</td>
+            </tr>
+          )}
+          {props.user.friendOf.length !== 0 && (
+            <tr>
+              <td>Followed by</td>
+              <td align='right'>{props.user.friendOf.length}</td>
+            </tr>
+          )}
+          {props.user.excited.length !== 0 && (
+            <tr>
+              <td>Shows Going to See</td>
+              <td align='right'>{props.user.excited.length}</td>
             </tr>
           )}
         </tbody>

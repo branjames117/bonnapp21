@@ -57,7 +57,7 @@
 }
 
 .slideMenu {
-  background-color: rgba(0, 0, 0, 50%);
+  background-color: rgba(0, 0, 0, 75%);
   position: absolute;
   padding: 0 20px 100vh 0;
   opacity: 0;
@@ -84,7 +84,7 @@ file because of the fixed positioning, it won't respond along with
 the site's grid CSS even though its contained within */
 
 .header {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 75%);
   position: fixed;
   top: 0;
   padding: 8px 22px;

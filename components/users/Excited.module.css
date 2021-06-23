@@ -2,6 +2,10 @@
   margin-top: 20px;
 }
 
+.body {
+  margin: 20px 0;
+}
+
 .ul {
   list-style-type: none;
   margin: 0;

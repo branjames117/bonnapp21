@@ -42,16 +42,80 @@
   color: rgb(59, 131, 224);
 }
 
-.unliner a:not(:first-child)::before {
+.thursday span,
+.friday span,
+.saturday span,
+.sunday span,
+.who span {
+  cursor: pointer;
+}
+
+.thursday span:not(:first-child)::before,
+.friday span:not(:first-child)::before,
+.saturday span:not(:first-child)::before,
+.sunday span:not(:first-child)::before,
+.who span:not(:first-child)::before {
   content: ' • ';
 }
 
-.unliner a:nth-child(even) {
-  color: white;
+.thursday span:nth-child(even) {
+  color: yellow;
 }
 
-.unliner a:nth-child(even):hover {
+.thursday span:nth-child(odd) {
+  color: rgb(215, 88, 231);
+}
+
+.thursday span:hover {
   color: rgb(255, 155, 41);
+}
+
+.friday span:nth-child(even) {
+  color: rgb(88, 226, 111);
+}
+
+.friday span:nth-child(odd) {
+  color: rgb(59, 131, 224);
+}
+
+.friday span:hover {
+  color: rgb(215, 88, 231);
+}
+
+.saturday span:nth-child(even) {
+  color: rgb(215, 88, 231);
+}
+
+.saturday span:nth-child(odd) {
+  color: rgb(88, 226, 111);
+}
+
+.saturday span:hover {
+  color: rgb(255, 155, 41);
+}
+
+.sunday span:nth-child(even) {
+  color: rgb(255, 155, 41);
+}
+
+.sunday span:nth-child(odd) {
+  color: rgb(88, 226, 111);
+}
+
+.sunday span:hover {
+  color: yellow;
+}
+
+.who span:nth-child(even) {
+  color: rgb(255, 155, 41);
+}
+
+.who span:nth-child(odd) {
+  color: yellow;
+}
+
+.who span:hover {
+  color: rgb(59, 131, 224);
 }
 
 .blue {
