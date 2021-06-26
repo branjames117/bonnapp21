@@ -300,6 +300,10 @@ export default function EditProfile(props) {
                 >
                   <label htmlFor='bio'>Tell Us About Yourself</label>
                 </Headline>
+                <p className={classes.body}>
+                  What do you love about Bonnaroo? Who's going with you? Which
+                  is your favorite Telletubby? Tell us anything!
+                </p>
                 <div className={classes.control}>
                   <textarea
                     onChange={inputChangeHandler}
@@ -414,7 +418,11 @@ export default function EditProfile(props) {
                   style={{ color: randomColorGenerator() }}
                 >
                   Your Social Accounts
-                </Headline>
+                </Headline>{' '}
+                <p className={classes.body}>
+                  Social links must be your username only, not the full URL to
+                  your page.
+                </p>
                 <table className={classes.table}>
                   <tbody>
                     <tr>
@@ -505,13 +513,14 @@ export default function EditProfile(props) {
                 className={classes.h2}
                 style={{ color: randomColorGenerator() }}
               >
-                What Music Video Are You Feeling Now?
+                A Favorite Music Video
               </Headline>
               <div className={classes.control}>
                 <label htmlFor='video'>
-                  YouTube URL
-                  <br />
-                  Example: <em>https://www.youtube.com/watch?v=osdoLjUNFnA</em>
+                  <p className={classes.body}>
+                    Must be a link to a YouTube video, like{' '}
+                    <em>https://www.youtube.com/watch?v=osdoLjUNFnA</em>
+                  </p>
                 </label>
                 <input
                   onChange={inputChangeHandler}

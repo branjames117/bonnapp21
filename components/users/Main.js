@@ -33,11 +33,6 @@ export default function Main(props) {
       )}
       <div className={classes.body}>
         <Bio user={props.user} />
-        <Social
-          facebookURL={props.user.facebookURL}
-          instaURL={props.user.instaURL}
-          twitterURL={props.user.twitterURL}
-        />
       </div>
     </Card>
   )

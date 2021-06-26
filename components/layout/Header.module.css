@@ -25,10 +25,20 @@
 .navLink {
   cursor: pointer;
   text-shadow: 0px 0px 10px;
+  transition: text-shadow 0.1s linear;
+}
+
+.navLink:hover {
+  text-shadow: 3px 3px 10px;
 }
 
 .miniMenu {
+  cursor: pointer;
   display: none;
+}
+
+.miniMenu:hover .line {
+  box-shadow: 1px 1px 5px;
 }
 
 .line {

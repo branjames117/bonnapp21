@@ -26,10 +26,6 @@
   width: 80%;
 }
 
-.table th {
-  padding-bottom: 5px;
-}
-
 @media screen and (max-width: 600px) {
   .table {
     width: 95%;

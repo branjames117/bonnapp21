@@ -1,9 +1,3 @@
-create "Notifications" component that pops up when Notifications # is clicked.
-Notifications component takes the notifs object returned from fetch request and maps
-a p to each key to display the link to the page where the comment is and the number of new comments.
+have it show the # of notifications in the header as well, next to MY PROFILE (1)
 
-The Notifications # itself displays the TOTAL number from each key in the object.
-
-When the Notifications component is opened, a DELETE request is sent to the get-notifs API route,
-which deletes the notifs field in the user document, then forEach's through each show and deletes
-the notifs field for that user in each show's document
+make the buttons more responsive in the header, with a hover effect

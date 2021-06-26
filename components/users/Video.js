@@ -6,7 +6,7 @@ export default function Video(props) {
   return (
     <Card>
       <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
-        Video of the Moment
+        Listen to This
       </h2>
       <p className={classes.videoContainer}>
         <iframe

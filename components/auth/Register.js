@@ -80,7 +80,7 @@ export default function Register() {
     if (
       password.trim() === '' ||
       password.trim().length < 8 ||
-      !password.match(/^[a-zA-Z0-9!@#$%^&*\-]+$/)
+      !password.match(/^[a-zA-Z0-9!@#$%^&*-]+$/)
     ) {
       validForm = false
       setEnteredPasswordIsValid(false)
@@ -223,8 +223,8 @@ export default function Register() {
                 <strong>Error: Invalid password.</strong>
                 <br />
                 <br />
-                Password must be at least 8 characters long and can contain the
-                following special characters: ! @ # $ % ^ & *
+                Password must be at least 8 characters long and may contain the
+                following special characters: ! @ # $ % ^ & * -
               </p>
             )}
             {formSubmitted && !enteredConfirmedIsValid && (

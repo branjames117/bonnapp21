@@ -1,17 +1,22 @@
 import classes from './Bio.module.css'
+import Social from './Social'
 import randomColorGenerator from '../../lib/random-colors'
 
 export default function Bio(props) {
   return (
     <>
       <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
-        About Me
+        About Me{' '}
+        <Social
+          facebookURL={props.user.facebookURL}
+          instaURL={props.user.instaURL}
+          twitterURL={props.user.twitterURL}
+        />
       </h2>
       <p className={classes.bioBody}>{props.user.bio}</p>
       {/* Conditionally display available information */}
       <table className={classes.table}>
         <tbody>
-          <th colspan='2'>More Stuff to Know</th>
           {props.user.firstname && (
             <tr>
               <td>First Name</td>

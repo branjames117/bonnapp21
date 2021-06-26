@@ -1,12 +1,5 @@
-.social {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-content: space-around;
-  margin: 30px 75px 0 75px;
-  text-align: center;
-}
-
 .svg {
+  margin-left: 10px;
   cursor: pointer;
   fill: rgb(215, 88, 231);
 }
