@@ -87,7 +87,7 @@ export default function Register() {
     }
 
     /* confirmed password match validation */
-    if (confirmed.trim() === '' || password !== confirmed) {
+    if (confirmed.trim() !== '' && password !== confirmed) {
       validForm = false
       setEnteredConfirmedIsValid(false)
     }
@@ -195,36 +195,45 @@ export default function Register() {
             </p>
             {formSubmitted && APIError && (
               <p className={classes.error}>
-                API call failed.
+                <strong>Error: API call failed.</strong>
                 <br />
-                Contact the administrator.
+                <br />
+                Contact the administrator. This is a real problem, dude.
               </p>
             )}
             {formSubmitted && usernameExists && (
               <p className={classes.error}>
-                Username exists.
+                <strong>Error: Username exists.</strong>
+                <br />
                 <br />
                 That name was so good, someone stole it.
               </p>
             )}
             {formSubmitted && !enteredUsernameIsValid && (
               <p className={classes.error}>
-                Invalid username.
+                <strong>Error: Invalid username.</strong>
                 <br />
-                Is username between 4 and 14 characters long?
                 <br />
-                Does it contain only alphanumeric characters?
+                Username must be between 4-14 characters long and contain only
+                alphanumeric characters.
               </p>
             )}
             {formSubmitted && !enteredPasswordIsValid && (
               <p className={classes.error}>
-                Invalid password.
+                <strong>Error: Invalid password.</strong>
                 <br />
-                Is password at least 8 characters long?
+                <br />
+                Password must be at least 8 characters long and can contain the
+                following special characters: ! @ # $ % ^ & *
               </p>
             )}
             {formSubmitted && !enteredConfirmedIsValid && (
-              <p className={classes.error}>Passwords must match.</p>
+              <p className={classes.error}>
+                <strong>Error: Invalid password.</strong>
+                <br />
+                <br />
+                Password and Confirm Password must match.
+              </p>
             )}
           </form>
         </Card>
