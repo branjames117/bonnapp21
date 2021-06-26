@@ -2,6 +2,7 @@ import { useSession } from 'next-auth/client'
 import classes from './UserProfile.module.css'
 import Card from '../layout/Card'
 import Main from './Main'
+import Notifications from './Notifications'
 import Excited from './Excited'
 import Friends from './Friends'
 import Comments from '../auth/Comments'
@@ -33,6 +34,8 @@ export default function UserProfile(props) {
             {props.user.friendsEnabled === 'true' && (
               <Friends user={props.user} session={session} myPage={myPage} />
             )}
+            {/* Only show this card if user is on own profile */}
+            {myPage && <Notifications />}
             <span className={classes.hider}>
               <Card>{randomImageGenerator()}</Card>
             </span>

@@ -20,8 +20,8 @@ export default class Lineup extends React.Component {
             <Link href='/shows/99 Neighbors'>
               <span>99 Neighbors</span>
             </Link>
-            <Link href='/shows/Andy Frasco & the UN'>
-              <span>Andy Frasco & the UN</span>
+            <Link href='/shows/Andy Frasco and the UN'>
+              <span>Andy Frasco & The U.N.</span>
             </Link>
             <Link href='/shows/Big Something'>
               <span>Big Something</span>
@@ -47,8 +47,8 @@ export default class Lineup extends React.Component {
             <Link href='/shows/Larkin Poe'>
               <span>Larkin Poe</span>
             </Link>
-            <Link href='/shows/Liz Cooper & the Stampede'>
-              <span>Liz Cooper & the Stampede</span>
+            <Link href='/shows/Liz Cooper and the Stampede'>
+              <span>Liz Cooper & The Stampede</span>
             </Link>
             <Link href='/shows/Mize'>
               <span>Mize</span>
@@ -214,7 +214,7 @@ export default class Lineup extends React.Component {
               </span>
             </Link>
             <Link href='/shows/Phoebe Bridgers'>
-              <span className={classes.orange}>Phoebe Bridges</span>
+              <span className={classes.orange}>Phoebe Bridgers</span>
             </Link>
             <Link href='/shows/Incubus'>
               <span className={classes.orange}>Incubus</span>
@@ -269,7 +269,7 @@ export default class Lineup extends React.Component {
             <Link href={'/shows/Pinegrove'}>
               <span>Pinegrove</span>
             </Link>
-            <Link href={'/shows/Uncle Acid & the Deadbeats'}>
+            <Link href={'/shows/Uncle Acid and the Deadbeats'}>
               <span>Uncle Acid & the Deadbeats</span>
             </Link>
             <Link href={'/shows/Remi Wolf'}>

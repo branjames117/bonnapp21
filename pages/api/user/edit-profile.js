@@ -8,9 +8,12 @@ export default async function handler(req, res) {
   give them the boot! */
   const session = await getSession({ req })
   if (!session) res.status(401).json({ message: 'No active session found.' })
+
+  /* get the username from the session so that their profile is the
+  only one they could possibly edit */
   const username = session.user.name
 
-  /* check that only proper requests work, prevents people from wrecking my server with silliness */
+  /* check that only proper requests work */
   if (req.method !== 'POST' || !req.body) {
     res.status(400).json({
       message:

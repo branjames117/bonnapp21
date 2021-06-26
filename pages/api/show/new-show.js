@@ -14,6 +14,7 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     const {
       title,
+      displayTitle,
       genres,
       bio,
       wiki,
@@ -38,6 +39,7 @@ export default async function handler(req, res) {
 
     const newShow = {
       title,
+      displayTitle,
       genres: genres.toLowerCase().split(','), // split the genres into an array
       bio,
       wiki,

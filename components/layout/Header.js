@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { signout, useSession } from 'next-auth/client'
 import Link from 'next/link'
 import classes from './Header.module.css'

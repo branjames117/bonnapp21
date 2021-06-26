@@ -13,7 +13,11 @@ export default function Main(props) {
   return (
     <Card>
       <h1 className={classes.h1} style={{ color: randomColorGenerator() }}>
-        {props.show.title}
+        {props.show.displayTitle && props.show.displayTitle.length !== '' ? (
+          <span>{props.show.displayTitle}</span>
+        ) : (
+          <span>{props.show.title}</span>
+        )}
       </h1>
       <h3>
         {props.show.day && props.show.day !== 'N/A' && (
@@ -40,8 +44,7 @@ export default function Main(props) {
         About the Show
       </h2>
       <p className={classes.bio}>
-        {props.show.bio.replace(/\\n/g, '\n')}{' '}
-        <Link href={props.show.wiki}> ...read more</Link>
+        {props.show.bio} <Link href={props.show.wiki}>...read more.</Link>
       </p>
 
       {props.show.site && (

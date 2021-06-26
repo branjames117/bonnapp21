@@ -20,17 +20,17 @@ export default function Bio(props) {
           )}
           {props.user.birthday && (
             <tr>
-              <td>Birthdate</td>
+              <td>Born On</td>
               <td align='right'>{props.user.birthday}</td>
             </tr>
           )}
           <tr>
-            <td>Signed up</td>
+            <td>Signed Up</td>
             <td align='right'>{props.user.joined}</td>
           </tr>
           {props.user.location && (
             <tr>
-              <td>Location</td>
+              <td>Hometown</td>
               <td align='right'>{props.user.location}</td>
             </tr>
           )}
@@ -38,24 +38,6 @@ export default function Bio(props) {
             <tr>
               <td>Roos Attended</td>
               <td align='right'>{props.user.bonnaroos}</td>
-            </tr>
-          )}
-          {props.user.friends.length !== 0 && (
-            <tr>
-              <td>Following</td>
-              <td align='right'>{props.user.friends.length}</td>
-            </tr>
-          )}
-          {props.user.friendOf.length !== 0 && (
-            <tr>
-              <td>Followed by</td>
-              <td align='right'>{props.user.friendOf.length}</td>
-            </tr>
-          )}
-          {props.user.excited.length !== 0 && (
-            <tr>
-              <td>Shows Going to See</td>
-              <td align='right'>{props.user.excited.length}</td>
             </tr>
           )}
         </tbody>

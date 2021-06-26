@@ -57,6 +57,7 @@ export default function Comments(props) {
 
     const commentData = {
       commentID: e.target.value,
+      username: session.user.name,
     }
 
     await fetch(`/api/comments/${props._id}`, {

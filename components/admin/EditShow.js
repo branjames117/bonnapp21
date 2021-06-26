@@ -14,6 +14,7 @@ export default function EditShow(props) {
 
   const [showData, setShowData] = useState({
     title: '',
+    displayTitle: '',
     genres: '',
     bio: '',
     videos: '',
@@ -26,6 +27,7 @@ export default function EditShow(props) {
   })
 
   const [errors, setErrors] = useState({
+    displayTitle: false,
     genres: false,
     bio: false,
     videos: false,
@@ -39,6 +41,7 @@ export default function EditShow(props) {
   useEffect(() => {
     setShowData({
       title: props.show.title,
+      displayTitle: props.show.displayTitle || '',
       genres: props.show.genres.toString(),
       bio: props.show.bio,
       videos: props.show.videos.toString(),
@@ -55,6 +58,16 @@ export default function EditShow(props) {
   state and also resets appropriate error states */
   const inputChangeHandler = (e) => {
     switch (e.target.id) {
+      case 'displayTitle':
+        setShowData((prevState) => ({
+          ...prevState,
+          displayTitle: e.target.value,
+        }))
+        setErrors((prevState) => ({
+          ...prevState,
+          displayTitle: false,
+        }))
+        break
       case 'site':
         setShowData((prevState) => ({
           ...prevState,
@@ -153,7 +166,7 @@ export default function EditShow(props) {
       }))
     }
 
-    if (showData.bio.trim() === '' || showData.bio.trim().length > 1000) {
+    if (showData.bio.trim() === '' || showData.bio.trim().length > 1500) {
       validForm = false
       setErrors((prevState) => ({
         ...prevState,
@@ -161,7 +174,18 @@ export default function EditShow(props) {
       }))
     }
 
-    if (showData.wiki.trim() === '' || showData.wiki.trim().length > 100) {
+    if (
+      showData.displayTitle.trim() !== '' &&
+      showData.displayTitle.trim().length > 100
+    ) {
+      validForm = false
+      setErrors((prevState) => ({
+        ...prevState,
+        displayTitle: true,
+      }))
+    }
+
+    if (showData.wiki.trim() === '' || showData.wiki.trim().length > 150) {
       validForm = false
       setErrors((prevState) => ({
         ...prevState,
@@ -255,6 +279,25 @@ export default function EditShow(props) {
               </BigHeadline>
               <div className={classes.body}>
                 <div className={classes.control}>
+                  <label htmlFor='displayTitle'>Display Title</label>
+                  <input
+                    onChange={inputChangeHandler}
+                    value={showData.displayTitle}
+                    autoComplete='off'
+                    name='displayTitle'
+                    id='displayTitle'
+                    type='text'
+                    className={
+                      errors.displayTitle ? classes.controlError : null
+                    }
+                  />
+                </div>
+                {errors.site && (
+                  <p className={classes.error}>
+                    Display title must be below 100 characters.
+                  </p>
+                )}
+                <div className={classes.control}>
                   <label htmlFor='site'>Official Site URL</label>
                   <input
                     onChange={inputChangeHandler}
@@ -289,7 +332,7 @@ export default function EditShow(props) {
                 </div>
                 {errors.bio && (
                   <p className={classes.error}>
-                    Bio must be below 1,000 characters.
+                    Bio must be below 1,500 characters.
                   </p>
                 )}
                 <div className={classes.control}>
@@ -301,12 +344,12 @@ export default function EditShow(props) {
                     name='wiki'
                     id='wiki'
                     type='text'
-                    className={errors.site ? classes.controlError : null}
+                    className={errors.wiki ? classes.controlError : null}
                   />
                 </div>
                 {errors.wiki && (
                   <p className={classes.error}>
-                    Bio source URL must be below 100 characters.
+                    Bio source URL must be below 150 characters.
                   </p>
                 )}
                 <Headline

@@ -46,10 +46,10 @@ export default function Excited(props) {
         Who's Going?
       </h2>
       {session && !props.show.excitedUsers.includes(session.user.name) && (
-        <Button onClick={onAddExcitedUser}>I'll Be There!</Button>
+        <Button onClick={onAddExcitedUser}>i'll be there</Button>
       )}
       {session && props.show.excitedUsers.includes(session.user.name) && (
-        <Button onClick={onDeleteExcitedUser}>On Second Thought...</Button>
+        <Button onClick={onDeleteExcitedUser}>on second thought...</Button>
       )}
       {!session && (
         <p>

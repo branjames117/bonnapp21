@@ -1,6 +1,9 @@
+import { getSession } from 'next-auth/client'
 import { connectToDatabase } from '../../../lib/db'
 
 export default async function handler(req, res) {
+  const session = await getSession({ req })
+
   /* connect to the db */
   const client = await connectToDatabase()
   if (!client) {
@@ -10,9 +13,17 @@ export default async function handler(req, res) {
     client.close()
     return
   }
+
   const db = client.db()
   const users = db.collection('users')
+
   const { username, friendName } = req.body
+
+  /* reject if invalid credentials */
+  if (!session || session.user.name !== username) {
+    res.status(401).json({ message: 'Invalid credentials.' })
+    return
+  }
 
   /* if POST method, add friend to friends list */
   if (req.method === 'POST') {

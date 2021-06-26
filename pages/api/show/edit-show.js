@@ -22,6 +22,7 @@ export default async function handler(req, res) {
 
   const {
     title,
+    displayTitle,
     site,
     bio,
     wiki,
@@ -45,6 +46,7 @@ export default async function handler(req, res) {
   const showsCollection = db.collection('shows')
 
   const showData = {
+    displayTitle,
     site,
     bio,
     wiki,

@@ -1,5 +1,4 @@
 .form {
-  padding: 0 50px;
   display: grid;
   flex: 1;
   grid-template-columns: 500px 700px;
@@ -40,11 +39,6 @@
 .table {
   margin-top: 20px;
   width: 100%;
-}
-
-.form {
-  padding-bottom: 20px;
-  margin: 0 50px;
 }
 
 .control {
