@@ -45,17 +45,19 @@ export default function Main(props) {
       </p>
 
       {props.show.site && (
-        <div>
+        <p>
           <Link href={props.show.site}>Check out their website!</Link>
-        </div>
+        </p>
       )}
 
       <h2 style={{ color: randomColorGenerator() }}>Genres</h2>
-      {props.show.genres.map((genre) => (
-        <p key={genre}>
-          <Link href={`/genres/${genre}`}>{genre}</Link>
-        </p>
-      ))}
+      <ul>
+        {props.show.genres.map((genre) => (
+          <li key={genre}>
+            <Link href={`/genres/${genre}`}>{genre}</Link>
+          </li>
+        ))}
+      </ul>
     </Card>
   )
 }
