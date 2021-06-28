@@ -1,4 +1,3 @@
-import classes from './ShowProfile.module.css'
 import Main from './Main'
 import Excited from './Excited'
 import Card from '../layout/Card'
@@ -23,7 +22,7 @@ export default function ShowProfile(props) {
       <div>
         <Main show={props.show} />
         <Excited show={props.show} />
-        <span className={classes.hider}>
+        <span className='hider'>
           <Card>{randomImageGenerator()}</Card>
         </span>
       </div>

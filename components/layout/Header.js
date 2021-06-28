@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { signout, useSession } from 'next-auth/client'
 import Link from 'next/link'
 import classes from './Header.module.css'
@@ -30,7 +30,7 @@ export default function Header() {
         </div>
         <div>
           <div className={classes.fullMenu}>
-            <ul className={classes.ul}>
+            <ul className={classes.navLinkList}>
               <li>
                 <Link href='/shows/'>
                   <span
@@ -52,7 +52,7 @@ export default function Header() {
                 </Link>
               </li>
               <li>
-                <Link href='/random'>
+                <Link href='/random-show'>
                   <span
                     className={classes.navLink}
                     style={{ color: randomColorGenerator() }}
@@ -65,7 +65,7 @@ export default function Header() {
               {!session && (
                 <>
                   <li>
-                    <Link href='/user/register'>
+                    <Link href='/register'>
                       <span
                         className={classes.navLink}
                         style={{ color: randomColorGenerator() }}
@@ -75,7 +75,7 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link href='/user/login'>
+                    <Link href='/login'>
                       <span
                         className={classes.navLink}
                         style={{ color: randomColorGenerator() }}
@@ -153,7 +153,7 @@ export default function Header() {
             }`}
             onClick={() => setOpenMenu(false)}
           >
-            <ul className={classes.ul}>
+            <ul className={classes.navLinkList}>
               <li>
                 <Link href='/shows/'>
                   <span
@@ -175,7 +175,7 @@ export default function Header() {
                 </Link>
               </li>
               <li>
-                <Link href='/random'>
+                <Link href='/random-show'>
                   <span
                     className={classes.navLink}
                     style={{ color: randomColorGenerator() }}
@@ -188,7 +188,7 @@ export default function Header() {
               {!session && (
                 <>
                   <li>
-                    <Link href='/user/register'>
+                    <Link href='/register'>
                       <span
                         className={classes.navLink}
                         style={{ color: randomColorGenerator() }}
@@ -198,7 +198,7 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link href='/user/login'>
+                    <Link href='/login'>
                       <span
                         className={classes.navLink}
                         style={{ color: randomColorGenerator() }}

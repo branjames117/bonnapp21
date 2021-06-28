@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { signIn } from 'next-auth/client'
-import classes from './Login.module.css'
 import Card from '../layout/Card'
 import Button from '../layout/Button'
 import Link from 'next/link'
@@ -113,12 +112,12 @@ export default function Login() {
   }
 
   return (
-    <div className={classes.container}>
+    <div className='singularContainer'>
       {!loading && (
         <Card>
           <h2>Login User</h2>
-          <form className={classes.form} onSubmit={submitHandler}>
-            <div className={classes.control}>
+          <form onSubmit={submitHandler}>
+            <div className='control'>
               <label htmlFor='username'>Username</label>
               <input
                 autoComplete='off'
@@ -128,11 +127,11 @@ export default function Login() {
                 onChange={inputChangeHandler}
                 value={userData.username}
                 className={
-                  formSubmitted && !usernameExists ? classes.controlError : null
+                  formSubmitted && !usernameExists ? 'controlError' : null
                 }
               />
             </div>
-            <div className={classes.control}>
+            <div className='control'>
               <label htmlFor='password'>Password</label>
               <input
                 type='password'
@@ -142,27 +141,20 @@ export default function Login() {
                 onChange={inputChangeHandler}
                 value={userData.password}
                 className={
-                  formSubmitted && passwordIncorrect
-                    ? classes.controlError
-                    : null
+                  formSubmitted && passwordIncorrect ? 'controlError' : null
                 }
               />
             </div>
-            <div className={classes.actions}>
-              <Button>Login</Button>
-            </div>
-            <p className={classes.body}>
-              Don't have an account?{' '}
-              <Link href='/user/register'>Create one!</Link>
+            <Button>login</Button>
+            <p>
+              Don't have an account? <Link href='/register'>Create one!</Link>
             </p>
-            {!usernameExists && (
-              <p className={classes.error}>Username not found.</p>
-            )}
+            {!usernameExists && <p className='error'>Username not found.</p>}
             {passwordIncorrect && (
-              <p className={classes.error}>Password does not match record.</p>
+              <p className='error'>Password does not match record.</p>
             )}
             {APIError && (
-              <p className={classes.error}>
+              <p className='error'>
                 Something went wrong with the database.
                 <br />
                 Contact the administrator.

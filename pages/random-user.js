@@ -3,7 +3,7 @@ import { connectToDatabase } from '../lib/db'
 /* the /random page route; no need to render an actual page, just
 sending the user to a random /show route */
 
-export default function RandomPage() {
+export default function RandomUser() {
   return <p>Loading randomness...</p>
 }
 
@@ -18,15 +18,15 @@ export async function getServerSideProps() {
   }
   const db = client.db()
 
-  const showsCollection = db.collection('shows')
+  const usersCollection = db.collection('users')
 
-  const fetchedShows = await showsCollection
-    .find({}, { projection: { title: 1, _id: 0 } })
+  const fetchedUsers = await usersCollection
+    .find({}, { projection: { username: 1, _id: 0 } })
     .toArray()
-  const randomShowIndex = Math.floor(Math.random() * (fetchedShows.length + 1))
-  const randomShow = fetchedShows[randomShowIndex].title
+  const randomUserIndex = Math.floor(Math.random() * fetchedUsers.length)
+  const randomUser = fetchedUsers[randomUserIndex].username
 
   client.close()
 
-  return { redirect: { destination: `/shows/${randomShow}` } }
+  return { redirect: { destination: `/user/${randomUser}` } }
 }

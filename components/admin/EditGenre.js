@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
-import classes from './EditGenre.module.css'
 import Card from '../layout/Card'
 import BigHeadline from '../layout/BigHeadline'
 import Headline from '../layout/Headline'
@@ -103,62 +102,56 @@ export default function EditShow(props) {
         </p>
       )}
       {session && (
-        <Card>
-          <form className={classes.form} onSubmit={submitHandler}>
-            {/* LEFT-SIDE PANE */}
-            <div>
-              <BigHeadline
-                className={classes.h1}
-                style={{ color: randomColorGenerator() }}
-              >
-                {props.genre.name} Profile Editor
-              </BigHeadline>
-              <div className={classes.body}>
-                <Headline
-                  className={classes.h2}
-                  style={{ color: randomColorGenerator() }}
-                >
-                  <label htmlFor='def'>Definition</label>
-                </Headline>
-                <div className={classes.control}>
-                  <textarea
-                    onChange={inputChangeHandler}
-                    value={genreData.def}
-                    name='def'
-                    id='def'
-                    rows='8'
-                    className={errors.def ? classes.controlError : null}
-                  ></textarea>
-                </div>
-                {errors.def && (
-                  <p className={classes.error}>
-                    Definition must be below 1,000 characters.
-                  </p>
-                )}
-                <div className={classes.control}>
-                  <label htmlFor='wiki'>URL Source for Definition</label>
-                  <input
-                    onChange={inputChangeHandler}
-                    value={genreData.wiki}
-                    autoComplete='off'
-                    name='wiki'
-                    id='wiki'
-                    type='text'
-                    className={errors.site ? classes.controlError : null}
-                  />
-                </div>
-                {errors.wiki && (
-                  <p className={classes.error}>
-                    Definition source URL must be below 100 characters.
-                  </p>
-                )}
-                <div className={classes.actions}>
+        <div className='singularContainer'>
+          <Card>
+            <form onSubmit={submitHandler}>
+              {/* LEFT-SIDE PANE */}
+              <div>
+                <BigHeadline style={{ color: randomColorGenerator() }}>
+                  {props.genre.name} Profile Editor
+                </BigHeadline>
+                <div>
+                  <Headline style={{ color: randomColorGenerator() }}>
+                    <label htmlFor='def'>Definition</label>
+                  </Headline>
+                  <div className='control'>
+                    <textarea
+                      onChange={inputChangeHandler}
+                      value={genreData.def}
+                      name='def'
+                      id='def'
+                      rows='8'
+                      className={errors.def ? 'controlError' : null}
+                    ></textarea>
+                  </div>
+                  {errors.def && (
+                    <p className='error'>
+                      Definition must be below 1,000 characters.
+                    </p>
+                  )}
+                  <div className='control'>
+                    <label htmlFor='wiki'>URL Source for Definition</label>
+                    <input
+                      onChange={inputChangeHandler}
+                      value={genreData.wiki}
+                      autoComplete='off'
+                      name='wiki'
+                      id='wiki'
+                      type='text'
+                      className={errors.site ? 'controlError' : null}
+                    />
+                  </div>
+                  {errors.wiki && (
+                    <p className='error'>
+                      Definition source URL must be below 100 characters.
+                    </p>
+                  )}
                   <Button onClick={submitHandler}>save changes</Button>
                 </div>
               </div>
-            </div>
-          </form>
-        </Card>
+            </form>
+          </Card>
+        </div>
       )}
     </>
   )

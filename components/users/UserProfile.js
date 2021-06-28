@@ -1,5 +1,4 @@
 import { useSession } from 'next-auth/client'
-import classes from './UserProfile.module.css'
 import Card from '../layout/Card'
 import Main from './Main'
 import Notifications from './Notifications'
@@ -36,7 +35,7 @@ export default function UserProfile(props) {
             )}
             {/* Only show this card if user is on own profile */}
             {myPage && <Notifications />}
-            <span className={classes.hider}>
+            <span className='hider'>
               <Card>{randomImageGenerator()}</Card>
             </span>
           </div>

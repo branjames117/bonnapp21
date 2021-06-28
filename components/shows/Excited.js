@@ -1,7 +1,6 @@
 import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import classes from './Excited.module.css'
 import Card from '../layout/Card'
 import Button from '../layout/Button'
 import randomColorGenerator from '../../lib/random-colors'
@@ -42,9 +41,7 @@ export default function Excited(props) {
 
   return (
     <Card>
-      <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
-        Who's Going?
-      </h2>
+      <h2 style={{ color: randomColorGenerator() }}>Who's Going?</h2>
       {session && !props.show.excitedUsers.includes(session.user.name) && (
         <Button onClick={onAddExcitedUser}>i'll be there</Button>
       )}
@@ -53,10 +50,10 @@ export default function Excited(props) {
       )}
       {!session && (
         <p>
-          <Link href='/user/login'>Log in</Link> to add your name to the list!
+          <Link href='/login'>Log in</Link> to add your name to the list!
         </p>
       )}
-      <div className={classes.body}>
+      <div>
         <div>
           {props.show.excitedUsers.map((user) => (
             <p key={user}>

@@ -2,6 +2,12 @@
 
 /* global styles */
 
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 body {
   background-image: linear-gradient(
     to bottom left,
@@ -16,10 +22,29 @@ body {
   );
   background-attachment: fixed;
   color: white;
-  padding: 0;
-  margin: 0;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   overflow-x: hidden; /* disable horizontal scroll */
+}
+
+h1 {
+  letter-spacing: -3px;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 10px;
+}
+
+h2 {
+  letter-spacing: -2px;
+  border-bottom: 1px solid;
+  text-shadow: 0px 0px 10px;
+  margin-bottom: 15px;
+  padding: 8px 0;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+p {
+  margin: 1rem 0;
 }
 
 a {
@@ -49,8 +74,118 @@ img {
   width: 100%;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+ul {
+  list-style-type: none;
+}
+
+/* SVGs only used in users/Social component */
+
+svg {
+  margin-left: 10px;
+  cursor: pointer;
+  fill: rgb(215, 88, 231);
+}
+
+svg:hover {
+  fill: blueviolet;
+}
+
+/* Class used anywhere I want user-inputted text to show carriage returns */
+
+.preline {
+  white-space: pre-line;
+}
+
+/* Global form styles */
+
+.control {
+  margin-bottom: 0.5rem;
+}
+
+.control label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.control input,
+.control textarea {
+  display: block;
+  font: inherit;
+  border-radius: 5px;
+  border: 2px solid orange;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+/* Global form error styles */
+
+.control input.controlError,
+.control textarea.controlError {
+  background-color: rgb(250, 158, 158);
+  border: 2px solid red;
+}
+
+.error {
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 5px;
+  margin: 15px 0;
+}
+
+/* Container for fixed-width single-column components */
+
+.singularContainer {
+  display: grid;
+  grid-template-columns: 500px;
+}
+
+@media screen and (max-width: 500px) {
+  .singularContainer {
+    grid-template-columns: 440px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .singularContainer {
+    grid-template-columns: 380px;
+  }
+}
+
+/* Class used for hiding images below 1,200 px */
+
+@media screen and (max-width: 1200px) {
+  .hider {
+    display: none;
+  }
+}
+
+/* Container for fixed-width double-column forms */
+
+.doubleForm {
+  display: grid;
+  grid-template-columns: 500px 700px;
+}
+
+@media screen and (max-width: 1200px) {
+  .doubleForm {
+    grid-template-columns: 600px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .doubleForm {
+    grid-template-columns: 500px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .doubleForm {
+    grid-template-columns: 440px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .doubleForm {
+    grid-template-columns: 380px;
+  }
 }

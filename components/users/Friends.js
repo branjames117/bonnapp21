@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
-import classes from './Friends.module.css'
 import Card from '../layout/Card'
 import Button from '../layout/Button'
 import SmallButton from '../layout/SmallButton'
@@ -43,9 +42,7 @@ export default function Friends(props) {
 
   return (
     <Card>
-      <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
-        Following
-      </h2>
+      <h2 style={{ color: randomColorGenerator() }}>Following</h2>
       {props.session &&
         !props.myPage &&
         !props.user.friendOf.includes(session.user.name) && (
@@ -56,10 +53,18 @@ export default function Friends(props) {
         props.user.friendOf.includes(session.user.name) && (
           <Button onClick={onDeleteFriend}>unfollow them!</Button>
         )}
-      <div className={classes.body}>
-        {props.user.friends.length === 0 && <p>No one yet.</p>}
+      <div>
+        {props.myPage && props.user.friends.length === 0 && (
+          <p>You're not following anyone yet!</p>
+        )}
+        {!props.myPage && props.user.friends.length === 0 && (
+          <p>
+            They're not following anyone yet! Drop them a comment and tell them
+            to follow you!
+          </p>
+        )}
         {props.user.friends.length !== 0 && (
-          <ul className={classes.ul}>
+          <ul>
             {props.user.friends.map((friend, idx) => (
               <li key={idx}>
                 {props.myPage && (
@@ -71,6 +76,11 @@ export default function Friends(props) {
               </li>
             ))}
           </ul>
+        )}
+        {props.myPage && (
+          <p>
+            <Link href={'/random-user'}>Here's someone at random!</Link>
+          </p>
         )}
       </div>
     </Card>

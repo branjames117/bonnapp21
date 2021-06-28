@@ -9,19 +9,15 @@ export default function GenreProfile(props) {
     <>
       <div>
         <Card>
-          <h1 className={classes.h1} style={{ color: randomColorGenerator() }}>
-            Genre
-          </h1>
-          <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
-            What Is It?
-          </h2>
-          <p className={classes.p}>
+          <h1 style={{ color: randomColorGenerator() }}>Genre</h1>
+          <h2 style={{ color: randomColorGenerator() }}>What Is It?</h2>
+          <p>
             A music genre is a conventional category that identifies some pieces
             of music as belonging to a shared tradition or set of conventions.
             It is to be distinguished from musical form and musical style,
             although in practice these terms are sometimes used interchangeably.
           </p>
-          <p className={classes.p}>
+          <p>
             Music can be divided into genres in varying ways, such as popular
             music and art music, or religious music and secular music. The
             artistic nature of music means that these classifications are often
@@ -30,43 +26,41 @@ export default function GenreProfile(props) {
               ...read more.
             </Link>
           </p>
-          <p className={classes.p}>
+          <p>
             Author's note: For each show, I determined the genre based not on my
             own subjective listening experience but on whatever information was
             available to me on the web, be it Wikipedia or Spotify or a news
             article or a blog post.
           </p>
         </Card>
-        <span className={classes.hider}>
+        <span className='hider'>
           <Card>{randomImageGenerator()}</Card>
         </span>
       </div>
       <div>
         <Card>
-          <h1 className={classes.h1} style={{ color: randomColorGenerator() }}>
-            Pick Your Poison
-          </h1>
+          <h1 style={{ color: randomColorGenerator() }}>Pick Your Poison</h1>
           {/* divide the list of genres into two columns */}
           <div className={classes.listSplitter}>
             <div>
               {props.genres.map((genreArray, idx) =>
                 idx % 2 === 0 ? (
-                  <p key={genreArray[0]}>
+                  <div key={genreArray[0]}>
                     <Link href={`/genres/${genreArray[0]}`}>
                       {`${genreArray[0]} (${genreArray[1]})`}
                     </Link>
-                  </p>
+                  </div>
                 ) : null
               )}
             </div>
             <div>
               {props.genres.map((genreArray, idx) =>
                 idx % 2 !== 0 ? (
-                  <p key={genreArray[0]}>
+                  <div key={genreArray[0]}>
                     <Link href={`/genres/${genreArray[0]}`}>
                       {`${genreArray[0]} (${genreArray[1]})`}
                     </Link>
-                  </p>
+                  </div>
                 ) : null
               )}
             </div>

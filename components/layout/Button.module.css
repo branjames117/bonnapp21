@@ -12,7 +12,3 @@
 .btn:hover {
   transform: scale(0.98);
 }
-
-.btn:not(:last-of-type) {
-  margin-right: 10px;
-}

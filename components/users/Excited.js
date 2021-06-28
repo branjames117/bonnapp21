@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
-import classes from './Excited.module.css'
 import Card from '../../components/layout/Card'
 import SmallButton from '../layout/SmallButton'
 import randomColorGenerator from '../../lib/random-colors'
@@ -27,16 +26,14 @@ export default function Excited(props) {
 
   return (
     <Card>
-      <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
-        Going to See
-      </h2>
-      <div className={classes.body}>
+      <h2 style={{ color: randomColorGenerator() }}>Going to See</h2>
+      <div>
         {(props.excited.length === 0 && (
           <>
             {props.myPage && (
               <p>
                 Your list is empty!{' '}
-                <Link href={'/random'}>Want a random suggestion?</Link>
+                <Link href={'/random-show'}>Want a random suggestion?</Link>
               </p>
             )}
             {!props.myPage && (
@@ -47,7 +44,7 @@ export default function Excited(props) {
             )}
           </>
         )) || (
-          <ul className={classes.ul}>
+          <ul>
             {props.excited.map((show) => (
               <li key={show}>
                 {props.myPage && (

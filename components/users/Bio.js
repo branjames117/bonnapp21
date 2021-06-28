@@ -5,7 +5,7 @@ import randomColorGenerator from '../../lib/random-colors'
 export default function Bio(props) {
   return (
     <>
-      <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
+      <h2 style={{ color: randomColorGenerator() }}>
         About Me{' '}
         <Social
           facebookURL={props.user.facebookURL}
@@ -13,9 +13,9 @@ export default function Bio(props) {
           twitterURL={props.user.twitterURL}
         />
       </h2>
-      <p className={classes.bioBody}>{props.user.bio}</p>
+      <p className='preline'>{props.user.bio}</p>
       {/* Conditionally display available information */}
-      <table className={classes.table}>
+      <table className={classes.bioTable}>
         <tbody>
           {props.user.firstname && (
             <tr>

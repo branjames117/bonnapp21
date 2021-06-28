@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { signIn } from 'next-auth/client'
-import classes from './Login.module.css'
 import Card from '../layout/Card'
 import Button from '../layout/Button'
 import Link from 'next/link'
@@ -136,12 +135,12 @@ export default function Register() {
   }
 
   return (
-    <div className={classes.container}>
+    <div className='singularContainer'>
       {!loading && (
         <Card>
           <h2>Register User</h2>
-          <form className={classes.form} onSubmit={submitHandler}>
-            <div className={classes.control}>
+          <form onSubmit={submitHandler}>
+            <div className='control'>
               <label htmlFor='username'>Username</label>
               <input
                 autoComplete='off'
@@ -152,12 +151,12 @@ export default function Register() {
                 value={userData.username}
                 className={
                   (formSubmitted && !enteredUsernameIsValid) || usernameExists
-                    ? classes.controlError
+                    ? 'controlError'
                     : null
                 }
               />
             </div>
-            <div className={classes.control}>
+            <div className='control'>
               <label htmlFor='password'>Password</label>
               <input
                 type='password'
@@ -167,12 +166,12 @@ export default function Register() {
                 value={userData.password}
                 className={
                   formSubmitted && !enteredPasswordIsValid
-                    ? classes.controlError
+                    ? 'controlError'
                     : null
                 }
               />
             </div>
-            <div className={classes.control}>
+            <div className='control'>
               <label htmlFor='confirmed'>Confirm Password</label>
               <input
                 type='password'
@@ -182,19 +181,17 @@ export default function Register() {
                 value={userData.confirmed}
                 className={
                   formSubmitted && !enteredConfirmedIsValid
-                    ? classes.controlError
+                    ? 'controlError'
                     : null
                 }
               />
             </div>
-            <div className={classes.actions}>
-              <Button>Register</Button>
-            </div>
-            <p className={classes.body}>
-              Already registered? <Link href='/user/login'>Login instead.</Link>
+            <Button>Register</Button>
+            <p>
+              Already registered? <Link href='/login'>Login instead.</Link>
             </p>
             {formSubmitted && APIError && (
-              <p className={classes.error}>
+              <p className='error'>
                 <strong>Error: API call failed.</strong>
                 <br />
                 <br />
@@ -202,7 +199,7 @@ export default function Register() {
               </p>
             )}
             {formSubmitted && usernameExists && (
-              <p className={classes.error}>
+              <p className='error'>
                 <strong>Error: Username exists.</strong>
                 <br />
                 <br />
@@ -210,7 +207,7 @@ export default function Register() {
               </p>
             )}
             {formSubmitted && !enteredUsernameIsValid && (
-              <p className={classes.error}>
+              <p className='error'>
                 <strong>Error: Invalid username.</strong>
                 <br />
                 <br />
@@ -219,7 +216,7 @@ export default function Register() {
               </p>
             )}
             {formSubmitted && !enteredPasswordIsValid && (
-              <p className={classes.error}>
+              <p className='error'>
                 <strong>Error: Invalid password.</strong>
                 <br />
                 <br />
@@ -228,7 +225,7 @@ export default function Register() {
               </p>
             )}
             {formSubmitted && !enteredConfirmedIsValid && (
-              <p className={classes.error}>
+              <p className='error'>
                 <strong>Error: Invalid password.</strong>
                 <br />
                 <br />

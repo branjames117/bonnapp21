@@ -283,41 +283,33 @@ export default function EditProfile(props) {
         </p>
       )}
       {session && (
-        <form className={classes.form} onSubmit={submitHandler}>
+        <form className='doubleForm' onSubmit={submitHandler}>
           {/* LEFT-SIDE PANE */}
           <div>
             <Card>
-              <BigHeadline
-                className={classes.h1}
-                style={{ color: randomColorGenerator() }}
-              >
+              <BigHeadline style={{ color: randomColorGenerator() }}>
                 {props.user.username} Profile Editor
               </BigHeadline>
-              <div className={classes.body}>
-                <Headline
-                  className={classes.h2}
-                  style={{ color: randomColorGenerator() }}
-                >
+              <div>
+                <Headline style={{ color: randomColorGenerator() }}>
                   <label htmlFor='bio'>Tell Us About Yourself</label>
                 </Headline>
-                <p className={classes.body}>
+                <p>
                   What do you love about Bonnaroo? Who's going with you? Which
                   is your favorite Telletubby? Tell us anything!
                 </p>
-                <div className={classes.control}>
+                <div className='control'>
                   <textarea
                     onChange={inputChangeHandler}
                     value={userData.bio}
                     name='bio'
                     id='bio'
                     rows='8'
-                    className={errors.bio ? classes.controlError : null}
+                    className={errors.bio ? 'controlError' : null}
                   ></textarea>
                 </div>
                 {errors.bio && (
-                  <p className={classes.error}>
-                    Bio must be below 500 characters.
-                  </p>
+                  <p className='error'>Bio must be below 500 characters.</p>
                 )}
                 <table className={classes.table}>
                   <tbody>
@@ -326,7 +318,7 @@ export default function EditProfile(props) {
                         <label htmlFor='firstname'>First Name</label>
                       </td>
                       <td align='right'>
-                        <div className={classes.control}>
+                        <div className='control'>
                           <input
                             onChange={inputChangeHandler}
                             value={userData.firstname}
@@ -334,9 +326,7 @@ export default function EditProfile(props) {
                             name='firstname'
                             id='firstname'
                             type='text'
-                            className={
-                              errors.firstname ? classes.controlError : null
-                            }
+                            className={errors.firstname ? 'controlError' : null}
                           ></input>
                         </div>
                       </td>
@@ -344,7 +334,7 @@ export default function EditProfile(props) {
                     {errors.firstname && (
                       <tr>
                         <td colspan='2'>
-                          <p className={classes.error}>
+                          <p className='error'>
                             First name must be below 30 characters.
                           </p>
                         </td>
@@ -355,7 +345,7 @@ export default function EditProfile(props) {
                         <label htmlFor='birthday'>Born On</label>
                       </td>
                       <td align='right'>
-                        <div className={classes.control}>
+                        <div className='control'>
                           <input
                             onChange={inputChangeHandler}
                             value={userData.birthday}
@@ -371,7 +361,7 @@ export default function EditProfile(props) {
                         <label htmlFor='location'>Hometown</label>
                       </td>
                       <td align='right'>
-                        <div className={classes.control}>
+                        <div className='control'>
                           <input
                             onChange={inputChangeHandler}
                             value={userData.location}
@@ -379,9 +369,7 @@ export default function EditProfile(props) {
                             name='location'
                             id='location'
                             type='text'
-                            className={
-                              errors.location ? classes.controlError : null
-                            }
+                            className={errors.location ? 'controlError' : null}
                           ></input>
                         </div>
                       </td>
@@ -389,7 +377,7 @@ export default function EditProfile(props) {
                     {errors.location && (
                       <tr>
                         <td colspan='2'>
-                          <p className={classes.error}>
+                          <p className='error'>
                             Hometown must be below 30 characters.
                           </p>
                         </td>
@@ -400,7 +388,7 @@ export default function EditProfile(props) {
                         <label htmlFor='bonnaroos'>Roos Attended</label>
                       </td>
                       <td align='right'>
-                        <div className={classes.control}>
+                        <div className='control'>
                           <input
                             onChange={inputChangeHandler}
                             value={userData.bonnaroos}
@@ -413,13 +401,10 @@ export default function EditProfile(props) {
                     </tr>
                   </tbody>
                 </table>
-                <Headline
-                  className={classes.h2}
-                  style={{ color: randomColorGenerator() }}
-                >
+                <Headline style={{ color: randomColorGenerator() }}>
                   Your Social Accounts
                 </Headline>{' '}
-                <p className={classes.body}>
+                <p>
                   Social links must be your username only, not the full URL to
                   your page.
                 </p>
@@ -430,7 +415,7 @@ export default function EditProfile(props) {
                         <label htmlFor='facebookURL'>Facebook Username</label>
                       </td>
                       <td>
-                        <div className={classes.control}>
+                        <div className='control'>
                           <input
                             onChange={inputChangeHandler}
                             value={userData.facebookURL}
@@ -438,9 +423,7 @@ export default function EditProfile(props) {
                             name='facebookURL'
                             id='facebookURL'
                             type='text'
-                            className={
-                              errors.social ? classes.controlError : null
-                            }
+                            className={errors.social ? 'controlError' : null}
                           ></input>
                         </div>
                       </td>
@@ -450,7 +433,7 @@ export default function EditProfile(props) {
                         <label htmlFor='instaURL'>Instagram Username</label>
                       </td>
                       <td align='right'>
-                        <div className={classes.control}>
+                        <div className='control'>
                           <input
                             onChange={inputChangeHandler}
                             value={userData.instaURL}
@@ -458,9 +441,7 @@ export default function EditProfile(props) {
                             name='instaURL'
                             id='instaURL'
                             type='text'
-                            className={
-                              errors.social ? classes.controlError : null
-                            }
+                            className={errors.social ? 'controlError' : null}
                           ></input>
                         </div>
                       </td>
@@ -470,7 +451,7 @@ export default function EditProfile(props) {
                         <label htmlFor='twitterURL'>Twitter Handle</label>
                       </td>
                       <td align='right'>
-                        <div className={classes.control}>
+                        <div className='control'>
                           <input
                             onChange={inputChangeHandler}
                             value={userData.twitterURL}
@@ -478,9 +459,7 @@ export default function EditProfile(props) {
                             name='twitterURL'
                             id='twitterURL'
                             type='text'
-                            className={
-                              errors.social ? classes.controlError : null
-                            }
+                            className={errors.social ? 'controlError' : null}
                           ></input>
                         </div>
                       </td>
@@ -488,7 +467,7 @@ export default function EditProfile(props) {
                     {errors.social && (
                       <tr>
                         <td colspan='2'>
-                          <p className={classes.error}>
+                          <p className='error'>
                             Social accounts must be your USERNAME for the given
                             service, not the URL to your profile page.
                             <br />
@@ -509,15 +488,12 @@ export default function EditProfile(props) {
           {/* RIGHT-SIDE PANE */}
           <div>
             <Card>
-              <Headline
-                className={classes.h2}
-                style={{ color: randomColorGenerator() }}
-              >
+              <Headline style={{ color: randomColorGenerator() }}>
                 A Favorite Music Video
               </Headline>
-              <div className={classes.control}>
+              <div className='control'>
                 <label htmlFor='video'>
-                  <p className={classes.body}>
+                  <p>
                     Must be a link to a YouTube video, like{' '}
                     <em>https://www.youtube.com/watch?v=osdoLjUNFnA</em>
                   </p>
@@ -529,23 +505,20 @@ export default function EditProfile(props) {
                   name='videoURL'
                   id='videoURL'
                   type='text'
-                  className={errors.videoURL ? classes.controlError : null}
+                  className={errors.videoURL ? 'controlError' : null}
                 ></input>
                 {errors.videoURL && (
-                  <p className={classes.error}>
+                  <p className='error'>
                     YouTube URL must be a URL like the one in the example above.
                   </p>
                 )}
               </div>
             </Card>
             <Card>
-              <Headline
-                className={classes.h2}
-                style={{ color: randomColorGenerator() }}
-              >
+              <Headline style={{ color: randomColorGenerator() }}>
                 Options
               </Headline>
-              <div className={classes.control}>
+              <div className='control'>
                 <label htmlFor='password'>New password (optional):</label>
                 <input
                   type='password'
@@ -553,10 +526,10 @@ export default function EditProfile(props) {
                   name='password'
                   onChange={inputChangeHandler}
                   value={userData.password}
-                  className={errors.password ? classes.controlError : null}
+                  className={errors.password ? 'controlError' : null}
                 ></input>
               </div>
-              <div className={classes.control}>
+              <div className='control'>
                 <label htmlFor='confirmed'>Confirm new password:</label>
                 <input
                   type='password'
@@ -564,20 +537,20 @@ export default function EditProfile(props) {
                   id='confirmed'
                   onChange={inputChangeHandler}
                   value={userData.confirmed}
-                  className={errors.confirmed ? classes.controlError : null}
+                  className={errors.confirmed ? 'controlError' : null}
                 ></input>
               </div>
               {errors.password && (
-                <p className={classes.error}>
+                <p className='error'>
                   Invalid password entries.
                   <br />
                   Passwords must be at least 8 characters long.
                 </p>
               )}
               {errors.confirmed && (
-                <p className={classes.error}>Passwords must match.</p>
+                <p className='error'>Passwords must match.</p>
               )}
-              <div className={classes.control}>
+              <div className='control'>
                 <label htmlFor='commentsEnabled'>
                   Allow comments on profile page:
                 </label>
@@ -591,7 +564,7 @@ export default function EditProfile(props) {
                   <option value='false'>No</option>
                 </select>
               </div>
-              <div className={classes.control}>
+              <div className='control'>
                 <label htmlFor='friendsEnabled'>
                   Show friends on profile page:
                 </label>
@@ -605,9 +578,7 @@ export default function EditProfile(props) {
                   <option value='false'>No</option>
                 </select>
               </div>
-              <div className={classes.actions}>
-                <Button onClick={submitHandler}>save changes</Button>
-              </div>
+              <Button onClick={submitHandler}>save changes</Button>
             </Card>
           </div>
         </form>

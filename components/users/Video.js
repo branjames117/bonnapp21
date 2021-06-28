@@ -5,9 +5,7 @@ import randomColorGenerator from '../../lib/random-colors'
 export default function Video(props) {
   return (
     <Card>
-      <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
-        Listen to This
-      </h2>
+      <h2 style={{ color: randomColorGenerator() }}>Listen to This</h2>
       <p className={classes.videoContainer}>
         <iframe
           className={classes.iframe}

@@ -1,23 +1,4 @@
-.h2:not(:first-child) {
-  margin-top: 20px;
-}
-
-.body {
-  margin: 20px 0;
-}
-
-.bioBody {
-  display: inline-block;
-  width: 100%;
-  overflow-wrap: break-word;
-  white-space: pre-line;
-}
-
-.body .p:not(:first-child) {
-  margin-top: 20px;
-}
-
-.table {
+.bioTable {
   background-color: rgba(255, 0, 242, 0.2);
   border: 1px solid;
   border-radius: 5px;
@@ -27,7 +8,7 @@
 }
 
 @media screen and (max-width: 600px) {
-  .table {
+  .bioTable {
     width: 95%;
   }
 }

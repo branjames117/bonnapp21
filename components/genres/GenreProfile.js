@@ -15,9 +15,7 @@ export default function GenreProfile(props) {
     <>
       <div>
         <Card>
-          <h1 className={classes.h1} style={{ color: randomColorGenerator() }}>
-            {props.genre.name}
-          </h1>
+          <h1 style={{ color: randomColorGenerator() }}>{props.genre.name}</h1>
           {session && session.user.name === 'admin' && (
             <>
               <Button
@@ -29,35 +27,28 @@ export default function GenreProfile(props) {
               </Button>
             </>
           )}
-          <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
-            What Is It?
-          </h2>
-          <p className={classes.p}>
+          <h2 style={{ color: randomColorGenerator() }}>What Is It?</h2>
+          <p className='preline'>
             {props.genre.def}{' '}
             <Link href={props.genre.wiki}> ...read more.</Link>
           </p>
         </Card>
-        <span className={classes.hider}>
+        <span className='hider'>
           <Card>{randomImageGenerator()}</Card>
         </span>
       </div>
       <div>
         <Card>
-          <h1 className={classes.h1} style={{ color: randomColorGenerator() }}>
-            Matches
-          </h1>
+          <h1 style={{ color: randomColorGenerator() }}>Matches</h1>
           {props.shows.map((show) => (
             <span key={show.title}>
-              <h2
-                className={classes.h2}
-                style={{ color: randomColorGenerator() }}
-              >
+              <h2 style={{ color: randomColorGenerator() }}>
                 <Link href={`/shows/${show.title}`}>
                   <a style={{ color: randomColorGenerator() }}>{show.title}</a>
                 </Link>
               </h2>
-              <p className={classes.p}>{show.bio}</p>
-              <p className={classes.genres}>
+              <p className='preline'>{show.bio}</p>
+              <p>
                 {show.genres.map((genre) => (
                   <span className={classes.genre} key={genre}>
                     <Link href={`/genres/${genre}`}>{genre}</Link>

@@ -2,7 +2,6 @@ import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Button from '../layout/Button'
-import classes from './Main.module.css'
 import Card from '../layout/Card'
 import randomColorGenerator from '../../lib/random-colors'
 
@@ -12,7 +11,7 @@ export default function Main(props) {
 
   return (
     <Card>
-      <h1 className={classes.h1} style={{ color: randomColorGenerator() }}>
+      <h1 style={{ color: randomColorGenerator() }}>
         {props.show.displayTitle && props.show.displayTitle.length !== '' ? (
           <span>{props.show.displayTitle}</span>
         ) : (
@@ -30,7 +29,7 @@ export default function Main(props) {
         {props.show.endTime && <span> to {props.show.endTime}</span>}
       </h3>
       {session && session.user.name === 'admin' && (
-        <p className={classes.body}>
+        <p>
           <Button
             onClick={() =>
               router.push(`/shows/edit?showName=${props.show.title}`)
@@ -40,29 +39,23 @@ export default function Main(props) {
           </Button>
         </p>
       )}
-      <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
-        About the Show
-      </h2>
-      <p className={classes.bio}>
+      <h2 style={{ color: randomColorGenerator() }}>About the Show</h2>
+      <p className='preline'>
         {props.show.bio} <Link href={props.show.wiki}>...read more.</Link>
       </p>
 
       {props.show.site && (
-        <div className={classes.body}>
+        <div>
           <Link href={props.show.site}>Check out their website!</Link>
         </div>
       )}
 
-      <div className={classes.body}>
-        <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
-          Genres
-        </h2>
-        {props.show.genres.map((genre) => (
-          <p key={genre}>
-            <Link href={`/genres/${genre}`}>{genre}</Link>
-          </p>
-        ))}
-      </div>
+      <h2 style={{ color: randomColorGenerator() }}>Genres</h2>
+      {props.show.genres.map((genre) => (
+        <p key={genre}>
+          <Link href={`/genres/${genre}`}>{genre}</Link>
+        </p>
+      ))}
     </Card>
   )
 }

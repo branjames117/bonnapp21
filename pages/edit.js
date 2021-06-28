@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { getSession } from 'next-auth/client'
-import { connectToDatabase } from '../../lib/db'
-import EditProfile from '../../components/users/EditProfile'
+import { connectToDatabase } from '../lib/db'
+import EditProfile from '../components/users/EditProfile'
 
 export default function EditProfilePage(props) {
   return (

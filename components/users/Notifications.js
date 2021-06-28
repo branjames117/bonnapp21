@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/client'
-import classes from './Notifications.module.css'
 import Button from '../layout/Button'
 import Card from '../layout/Card'
 import randomColorGenerator from '../../lib/random-colors'
@@ -35,27 +34,23 @@ export default function Notifications() {
 
   return (
     <Card>
-      <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
-        New Comments {!loading && <span>({notifsTotal})</span>}
+      <h2 style={{ color: randomColorGenerator() }}>
+        Comment Notifications {!loading && <span>({notifsTotal})</span>}
       </h2>
       {notifsTotal > 0 && (
         <Button onClick={onClearNotifications}>clear notifications</Button>
       )}
-      <div className={classes.body}>
-        {Object.keys(notifs).map((key, idx) => (
-          <ul className={classes.ul}>
+      <div>
+        {Object.keys(notifs).map((key) => (
+          <ul>
             <li key={key}>
               {notifs[key]} new{' '}
-              {notifs[key] === 1 ? (
-                <span>comment </span>
-              ) : (
-                <span>comments </span>
-              )}
+              {notifs[key] === 1 ? <>comment </> : <>comments </>}
               on{' '}
               {key !== session.user.name ? (
                 <Link href={`/shows/${key}`}>{key}</Link>
               ) : (
-                <span>your profile.</span>
+                <>your profile.</>
               )}
             </li>
           </ul>

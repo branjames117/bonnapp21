@@ -1,10 +1,9 @@
 import { useRef } from 'react'
 import { useRouter } from 'next/router'
 import Button from '../layout/Button'
-import classes from './AddShow.module.css'
 import Card from '../layout/Card'
 
-/* this component will only ever be visible to the admin account */
+/* this component will only ever be visible to the admin account, so won't do much by way of validation for the inputs */
 
 export default function AddGenre() {
   const genreNameInputRef = useRef()
@@ -36,30 +35,44 @@ export default function AddGenre() {
   }
 
   return (
-    <div className={classes.container}>
+    <div className='singularContainer'>
       <Card color='rgb(215, 88, 231)'>
-        <h2>Add Genre</h2>
-        <form className={classes.form} onSubmit={submitHandler}>
-          <div className={classes.control}>
+        <h2>Add New Genre</h2>
+        <form onSubmit={submitHandler}>
+          <div className='control'>
             <label htmlFor='name'>Genre Name</label>
-            <input type='text' required id='name' ref={genreNameInputRef} />
+            <input
+              autoComplete='off'
+              type='text'
+              required
+              name='name'
+              id='name'
+              ref={genreNameInputRef}
+            />
           </div>
-          <div className={classes.control}>
+          <div className='control'>
             <label htmlFor='def'>Def</label>
             <textarea
+              autoComplete='off'
               required
               id='def'
+              name='def'
               rows='8'
               ref={genreDefInputRef}
             ></textarea>
           </div>
-          <div className={classes.control}>
+          <div className='control'>
             <label htmlFor='wiki'>Wikipedia URL</label>
-            <input type='text' required id='wiki' ref={wikiInputRef} />
+            <input
+              autoComplete='off'
+              type='text'
+              required
+              id='wiki'
+              name='wiki'
+              ref={wikiInputRef}
+            />
           </div>
-          <div className={classes.actions}>
-            <Button onClick={submitHandler}>upload genre data</Button>
-          </div>
+          <Button onClick={submitHandler}>upload genre data</Button>
         </form>
       </Card>
     </div>

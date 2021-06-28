@@ -1,3 +1,5 @@
 have it show the # of notifications in the header as well, next to MY PROFILE (1)
 
-make the buttons more responsive in the header, with a hover effect
+have it so that you can go to a random user as well
+
+have it so that when someone "follows" you, you get a notification that that person is following you and you should follow them back

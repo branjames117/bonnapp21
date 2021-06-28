@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
-import classes from './EditShow.module.css'
 import Card from '../layout/Card'
 import BigHeadline from '../layout/BigHeadline'
 import Headline from '../layout/Headline'
@@ -267,18 +266,15 @@ export default function EditShow(props) {
         </p>
       )}
       {session && (
-        <form className={classes.form} onSubmit={submitHandler}>
+        <form className='doubleForm' onSubmit={submitHandler}>
           {/* LEFT-SIDE PANE */}
           <div>
             <Card>
-              <BigHeadline
-                className={classes.h1}
-                style={{ color: randomColorGenerator() }}
-              >
+              <BigHeadline style={{ color: randomColorGenerator() }}>
                 {props.show.title} Profile Editor
               </BigHeadline>
-              <div className={classes.body}>
-                <div className={classes.control}>
+              <div>
+                <div className='control'>
                   <label htmlFor='displayTitle'>Display Title</label>
                   <input
                     onChange={inputChangeHandler}
@@ -287,93 +283,85 @@ export default function EditShow(props) {
                     name='displayTitle'
                     id='displayTitle'
                     type='text'
-                    className={
-                      errors.displayTitle ? classes.controlError : null
-                    }
+                    className={errors.displayTitle ? 'controlError' : null}
                   />
                 </div>
                 {errors.site && (
-                  <p className={classes.error}>
+                  <p className='error'>
                     Display title must be below 100 characters.
                   </p>
                 )}
-                <div className={classes.control}>
+                <div className='control'>
                   <label htmlFor='site'>Official Site URL</label>
                   <input
+                    required
                     onChange={inputChangeHandler}
                     value={showData.site}
                     autoComplete='off'
                     name='site'
                     id='site'
                     type='text'
-                    className={errors.site ? classes.controlError : null}
+                    className={errors.site ? 'controlError' : null}
                   />
                 </div>
                 {errors.site && (
-                  <p className={classes.error}>
+                  <p className='error'>
                     Site URL must be below 100 characters.
                   </p>
                 )}
-                <Headline
-                  className={classes.h2}
-                  style={{ color: randomColorGenerator() }}
-                >
+                <Headline style={{ color: randomColorGenerator() }}>
                   <label htmlFor='bio'>A Paragraph or Two</label>
                 </Headline>
-                <div className={classes.control}>
+                <div className='control'>
                   <textarea
+                    required
                     onChange={inputChangeHandler}
                     value={showData.bio}
                     name='bio'
                     id='bio'
                     rows='8'
-                    className={errors.bio ? classes.controlError : null}
+                    className={errors.bio ? 'controlError' : null}
                   ></textarea>
                 </div>
                 {errors.bio && (
-                  <p className={classes.error}>
-                    Bio must be below 1,500 characters.
-                  </p>
+                  <p className='error'>Bio must be below 1,500 characters.</p>
                 )}
-                <div className={classes.control}>
+                <div className='control'>
                   <label htmlFor='wiki'>URL Source for Bio</label>
                   <input
+                    required
                     onChange={inputChangeHandler}
                     value={showData.wiki}
                     autoComplete='off'
                     name='wiki'
                     id='wiki'
                     type='text'
-                    className={errors.wiki ? classes.controlError : null}
+                    className={errors.wiki ? 'controlError' : null}
                   />
                 </div>
                 {errors.wiki && (
-                  <p className={classes.error}>
+                  <p className='error'>
                     Bio source URL must be below 150 characters.
                   </p>
                 )}
-                <Headline
-                  className={classes.h2}
-                  style={{ color: randomColorGenerator() }}
-                >
+                <Headline style={{ color: randomColorGenerator() }}>
                   <label htmlFor='genres'>Genres</label>
                 </Headline>
-                <p className={classes.body}>Genres must be comma-separated.</p>
-                <div className={classes.control}>
+                <p>Genres must be comma-separated.</p>
+                <div className='control'>
                   <input
+                    required
                     onChange={inputChangeHandler}
                     value={showData.genres}
                     autoComplete='off'
                     name='genres'
                     id='genres'
                     type='text'
-                    className={errors.genres ? classes.controlError : null}
+                    className={errors.genres ? 'controlError' : null}
                   />
                 </div>
                 {errors.genres && (
-                  <p className={classes.error}>
-                    Genres must be below 100 characters.
-                  </p>
+                  <p className='error'>Genres must be below 100 characters.</p>
                 )}
               </div>
             </Card>
@@ -382,41 +370,37 @@ export default function EditShow(props) {
           {/* RIGHT-SIDE PANE */}
           <div>
             <Card>
-              <Headline
-                className={classes.h2}
-                style={{ color: randomColorGenerator() }}
-              >
+              <Headline style={{ color: randomColorGenerator() }}>
                 Music Videos
               </Headline>
-              <div className={classes.control}>
+              <div className='control'>
                 <label htmlFor='videos'>
                   Must have 3 YouTube URLs, like below, comma-separated.
                   <br />
                   Example: <em>https://www.youtube.com/watch?v=osdoLjUNFnA</em>
                 </label>
                 <input
+                  required
+                  autoComplete='off'
                   onChange={inputChangeHandler}
                   value={showData.videos}
                   name='videos'
                   id='videos'
                   type='text'
-                  className={errors.videos ? classes.controlError : null}
+                  className={errors.videos ? 'controlError' : null}
                 ></input>
                 {errors.videos && (
-                  <p className={classes.error}>
+                  <p className='error'>
                     Video URLs must be URLs like the one in the example above.
                   </p>
                 )}
               </div>
             </Card>
             <Card>
-              <Headline
-                className={classes.h2}
-                style={{ color: randomColorGenerator() }}
-              >
+              <Headline style={{ color: randomColorGenerator() }}>
                 Time & Place
               </Headline>
-              <div className={classes.control}>
+              <div className='control'>
                 <label htmlFor='day'>Day</label>
                 <select
                   onChange={inputChangeHandler}
@@ -431,47 +415,49 @@ export default function EditShow(props) {
                   <option value='Sunday'>Sunday</option>
                 </select>
               </div>
-              <div className={classes.control}>
+              <div className='control'>
                 <label htmlFor='startTime'>
                   Start Time (24 HR)
                   <br />
                   Example: 1500
                 </label>
                 <input
+                  autoComplete='off'
                   onChange={inputChangeHandler}
                   value={showData.startTime}
                   name='startTime'
                   id='startTime'
                   type='text'
-                  className={errors.startTime ? classes.controlError : null}
+                  className={errors.startTime ? 'controlError' : null}
                 ></input>
               </div>
               {errors.startTime && (
-                <p className={classes.error}>
+                <p className='error'>
                   Start time must be in 4-digit 24-hr time, like 1230.
                 </p>
               )}
-              <div className={classes.control}>
+              <div className='control'>
                 <label htmlFor='endTime'>
                   End Time (24 HR)
                   <br />
                   Example: 1545
                 </label>
                 <input
+                  autoComplete='off'
                   onChange={inputChangeHandler}
                   value={showData.endTime}
                   name='endTime'
                   id='endTime'
                   type='text'
-                  className={errors.endTime ? classes.controlError : null}
+                  className={errors.endTime ? 'controlError' : null}
                 ></input>
               </div>
               {errors.endTime && (
-                <p className={classes.error}>
+                <p className='error'>
                   End time must be in 4-digit 24-hr time, like 1315.
                 </p>
               )}
-              <div className={classes.control}>
+              <div className='control'>
                 <label htmlFor='stage'>Stage</label>
                 <select
                   onChange={inputChangeHandler}
@@ -487,9 +473,7 @@ export default function EditShow(props) {
                   <option value='The Other Stage'>The Other Stage</option>
                 </select>
               </div>
-              <div className={classes.actions}>
-                <Button onClick={submitHandler}>save changes</Button>
-              </div>
+              <Button onClick={submitHandler}>save changes</Button>
             </Card>
           </div>
         </form>

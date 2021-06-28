@@ -1,13 +1,13 @@
 import { useRef } from 'react'
 import { useRouter } from 'next/router'
 import Button from '../layout/Button'
-import classes from './AddShow.module.css'
 import Card from '../layout/Card'
 
 /* this component will only ever be visible to the admin account */
 
 export default function AddShow() {
   const showTitleInputRef = useRef()
+  const displayTitleInputRef = useRef()
   const showGenresInputRef = useRef()
   const showBioInputRef = useRef()
   const siteInputRef = useRef()
@@ -24,6 +24,7 @@ export default function AddShow() {
     e.preventDefault()
 
     const enteredTitle = showTitleInputRef.current.value
+    const enteredDisplayTitle = displayTitleInputRef.current.value
     const enteredGenres = showGenresInputRef.current.value
     const enteredBio = showBioInputRef.current.value
     const enteredWiki = wikiInputRef.current.value
@@ -36,6 +37,7 @@ export default function AddShow() {
 
     const showData = {
       title: enteredTitle,
+      displayTitle: enteredDisplayTitle,
       genres: enteredGenres,
       bio: enteredBio,
       site: enteredSite,
@@ -58,40 +60,88 @@ export default function AddShow() {
   }
 
   return (
-    <div className={classes.container}>
+    <div className='singularContainer'>
       <Card color='rgb(215, 88, 231)'>
         <h2>Add Show</h2>
-        <form className={classes.form} onSubmit={submitHandler}>
-          <div className={classes.control}>
+        <form onSubmit={submitHandler}>
+          <div className='control'>
             <label htmlFor='title'>Show Name</label>
-            <input type='text' required id='title' ref={showTitleInputRef} />
+            <input
+              autoComplete='off'
+              type='text'
+              required
+              id='title'
+              name='title'
+              ref={showTitleInputRef}
+            />
           </div>
-          <div className={classes.control}>
+          <div className='control'>
+            <label htmlFor='displayTitle'>Display Name</label>
+            <input
+              autoComplete='off'
+              type='text'
+              required
+              id='displayTitle'
+              name='displayTitle'
+              ref={displayTitleInputRef}
+            />
+          </div>
+          <div className='control'>
             <label htmlFor='site'>Official Site URL</label>
-            <input type='text' required id='site' ref={siteInputRef} />
+            <input
+              autoComplete='off'
+              type='text'
+              required
+              id='site'
+              name='site'
+              ref={siteInputRef}
+            />
           </div>
-          <div className={classes.control}>
+          <div className='control'>
             <label htmlFor='genres'>Genres (separate by comma)</label>
-            <input type='text' required id='genres' ref={showGenresInputRef} />
+            <input
+              autoComplete='off'
+              type='text'
+              required
+              id='genres'
+              name='genres'
+              ref={showGenresInputRef}
+            />
           </div>
-          <div className={classes.control}>
+          <div className='control'>
             <label htmlFor='bio'>Bio</label>
             <textarea
+              autoComplete='off'
               required
               id='bio'
+              name='bio'
               rows='10'
               ref={showBioInputRef}
             ></textarea>
           </div>
-          <div className={classes.control}>
+          <div className='control'>
             <label htmlFor='wiki'>Wikipedia URL</label>
-            <input type='text' required id='wiki' ref={wikiInputRef} />
+            <input
+              autoComplete='off'
+              type='text'
+              required
+              id='wiki'
+              name='wiki'
+              ref={wikiInputRef}
+            />
           </div>
-          <div className={classes.control}>
+          <div className='control'>
             <label htmlFor='videos'>Video URLs (separate by comma)</label>
-            <input type='text' required id='videos' ref={showVideosInputRef} />
+            <input
+              autoComplete='off'
+              type='text'
+              required
+              id='videos'
+              name='videos'
+              ref={showVideosInputRef}
+            />
           </div>
-          <div className={classes.control}>
+          <div className='control'>
             <label htmlFor='day'>Day</label>
             <select ref={dayInputRef} name='day' id='day'>
               <option value='N/A'>N/A</option>
@@ -101,13 +151,14 @@ export default function AddShow() {
               <option value='Sunday'>Sunday</option>
             </select>
           </div>
-          <div className={classes.control}>
+          <div className='control'>
             <label htmlFor='startTime'>
               Start Time (24 HR)
               <br />
               Example: 1500
             </label>
             <input
+              autoComplete='off'
               ref={startTimeInputRef}
               name='startTime'
               id='startTime'
@@ -116,13 +167,14 @@ export default function AddShow() {
               max='2400'
             ></input>
           </div>
-          <div className={classes.control}>
+          <div className='control'>
             <label htmlFor='endTime'>
               End Time (24 HR)
               <br />
               Example: 1545
             </label>
             <input
+              autoComplete='off'
               ref={endTimeInputRef}
               name='endTime'
               id='endTime'
@@ -131,7 +183,7 @@ export default function AddShow() {
               max='2400'
             ></input>
           </div>
-          <div className={classes.control}>
+          <div className='control'>
             <label htmlFor='stage'>Stage</label>
             <select ref={stageInputRef} name='stage' id='stage'>
               <option value='N/A'>N/A</option>
@@ -142,9 +194,7 @@ export default function AddShow() {
               <option value='The Other Stage'>The Other Stage</option>
             </select>
           </div>
-          <div className={classes.actions}>
-            <Button onClick={submitHandler}>upload show data</Button>
-          </div>
+          <Button onClick={submitHandler}>upload show data</Button>
         </form>
       </Card>
     </div>

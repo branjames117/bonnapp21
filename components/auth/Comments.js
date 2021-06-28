@@ -69,35 +69,31 @@ export default function Comments(props) {
 
   return (
     <Card>
-      <Headline
-        className={classes.h2}
-        style={{ color: randomColorGenerator() }}
-      >
+      <Headline style={{ color: randomColorGenerator() }}>
         Comment Wall
       </Headline>
       {!session && (
-        <div className={classes.body}>
-          <Link href='/user/login'>Log in</Link> to leave comments!
-        </div>
+        <p>
+          <Link href='/login'>Log in</Link> to leave comments!
+        </p>
       )}
       {session && (
-        <form className={classes.form} onSubmit={addCommentHandler}>
-          <div className={classes.control}>
+        <form onSubmit={addCommentHandler}>
+          <div className='control'>
             <textarea
               id='text'
+              name='text'
               rows='4'
               ref={commentInputRef}
-              className={commentError ? classes.controlError : null}
+              className={commentError ? 'controlError' : null}
               onChange={() => setCommentError(false)}
             ></textarea>
           </div>
-          <div className={classes.actions}>
-            {!loading && <Button>leave comment</Button>}
-          </div>
+          {!loading && <Button>leave comment</Button>}
         </form>
       )}
       {commentError && (
-        <p className={classes.error}>
+        <p className='error'>
           Comment cannot be empty and must be less than 500 characters long.
         </p>
       )}

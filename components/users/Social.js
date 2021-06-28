@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import classes from './Social.module.css'
 
 export default function Social(props) {
   return (
@@ -7,7 +6,6 @@ export default function Social(props) {
       {props.facebookURL && (
         <Link href={`https://www.facebook.com/${props.facebookURL}`}>
           <svg
-            className={classes.svg}
             width='18'
             height='18'
             viewBox='0 0 1000 1000'
@@ -20,7 +18,6 @@ export default function Social(props) {
       {props.instaURL && (
         <Link href={`https://www.instagram.com/${props.instaURL}`}>
           <svg
-            className={classes.svg}
             width='18'
             height='18'
             viewBox='0 0 1000 1000'
@@ -33,7 +30,6 @@ export default function Social(props) {
       {props.twitterURL && (
         <Link href={`https://www.twitter.com/${props.twitterURL}`}>
           <svg
-            className={classes.svg}
             width='18'
             height='18'
             viewBox='0 0 1000 1000'

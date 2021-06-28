@@ -1,14 +1,14 @@
 import Head from 'next/head'
 import { getSession } from 'next-auth/client'
-import Login from '../../components/auth/Login'
+import Register from '/components/auth/Register'
 
-export default function LoginPage() {
+export default function RegisterPage() {
   return (
     <div style={{ flex: 1 }}>
       <Head>
-        <title>BonnApp21 - Login</title>
+        <title>BonnApp21 - Register</title>
       </Head>
-      <Login />
+      <Register />
     </div>
   )
 }
@@ -18,7 +18,7 @@ export async function getServerSideProps(context) {
 
   /* redirect to profile if user is already authorized */
   if (session) {
-    return { redirect: { destination: `/users/${session.user.name}` } }
+    return { redirect: { destination: `/user/${session.user.name}` } }
   }
 
   return {

@@ -1,37 +1,3 @@
-.container {
-  display: grid;
-  grid-template-columns: 300px 500px;
-}
-
-.h2:not(:first-child) {
-  margin-top: 20px;
-}
-
-.box:not(:last-child) {
-  margin-right: 10px;
-}
-
-.box:hover {
-  color: red;
-}
-
-.body {
-  margin: 20px 0;
-}
-
-.body .p:not(:first-child) {
-  margin-top: 20px;
-}
-
-.table {
-  margin-top: 20px;
-  width: 100%;
-}
-
-.videoBox {
-  text-align: center;
-}
-
 .videoContainer {
   display: flex;
   height: 400px;
