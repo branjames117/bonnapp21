@@ -97,7 +97,7 @@ the site's grid CSS even though its contained within */
   z-index: 100;
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1201px) {
   .slideMenu {
     display: none;
   }
