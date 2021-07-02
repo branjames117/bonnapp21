@@ -112,11 +112,9 @@ export default function Following(props) {
             ))}
           </ul>
         }
-        {props.myPage && (
-          <p>
-            <Link href={'/random-user'}>Show me a random profile!</Link>
-          </p>
-        )}
+        <p>
+          <Link href={'/random-user'}>Find a random Bonnaroovian.</Link>
+        </p>
       </div>
     </Card>
   )
