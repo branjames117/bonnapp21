@@ -1,7 +1,6 @@
 import { getSession } from 'next-auth/client'
 import { ObjectId } from 'bson'
 import { connectToDatabase } from '../../../lib/db'
-import { ObjectID } from 'mongodb'
 
 export default async function handler(req, res) {
   const session = await getSession({ req })
@@ -46,7 +45,6 @@ export default async function handler(req, res) {
     } else {
       res.status(201).json({ comments: comments })
     }
-
     return
   }
 
@@ -105,18 +103,23 @@ export default async function handler(req, res) {
       timestamp: new Date(),
     }
 
-    const result = await commentsCollection.insertOne(newComment)
+    await commentsCollection.insertOne(newComment)
+
+    const comments = await commentsCollection
+      .find({ pageID: pageID })
+      .sort({ timestamp: -1 })
+      .toArray()
 
     client.close()
 
-    if (!result.result.ok) {
+    if (!comments) {
       res.status(503).json({
-        message: 'Comment not created. The database encountered an error.',
+        comments: [],
+        message: 'Unable to retrieve comments.',
       })
     } else {
-      res.status(201).json({ message: 'Comment created.' })
+      res.status(201).json({ comments: comments })
     }
-
     return
   }
 
@@ -136,14 +139,21 @@ export default async function handler(req, res) {
       _id: ObjectId(commentID),
     })
 
+    const comments = await commentsCollection
+      .find({ pageID: pageID })
+      .sort({ timestamp: -1 })
+      .toArray()
+
     client.close()
 
-    if (!result.result.ok) {
+    if (!comments) {
       res.status(503).json({
-        message: 'Comment not deleted. The database encountered an error.',
+        comments: [],
+        message: 'Unable to retrieve comments.',
       })
     } else {
-      res.status(200).json({ message: 'Comment deleted.' })
+      res.status(201).json({ comments: comments })
     }
+    return
   }
 }

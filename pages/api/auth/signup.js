@@ -86,8 +86,6 @@ export default async function handler(req, res) {
     videoURL: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     friends: [],
     friendOf: [],
-    excited: [],
-    comments: [],
     friendsEnabled: 'true',
     commentsEnabled: 'true',
     joined: new Date().toISOString().slice(0, 10),

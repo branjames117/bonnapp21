@@ -566,7 +566,7 @@ export default function EditProfile(props) {
               </div>
               <div className='control'>
                 <label htmlFor='friendsEnabled'>
-                  Show friends on profile page:
+                  Show who you're following on profile page:
                 </label>
                 <select
                   onChange={inputChangeHandler}

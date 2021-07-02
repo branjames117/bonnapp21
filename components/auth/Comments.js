@@ -16,11 +16,14 @@ export default function Comments(props) {
 
   /* every time we go loading state, reload comments from API */
   useEffect(async () => {
+    setLoading(true)
+
     const response = await fetch(`/api/comments/${props._id}`)
+
     const data = await response.json()
     setComments(data.comments)
     setLoading(false)
-  }, [loading])
+  }, [props])
 
   async function addCommentHandler(e) {
     e.preventDefault()
@@ -41,30 +44,38 @@ export default function Comments(props) {
     }
 
     setLoading(true)
-    await fetch(`/api/comments/${props._id}`, {
+    const response = await fetch(`/api/comments/${props._id}`, {
       method: 'POST',
       body: JSON.stringify(commentData),
       headers: { 'Content-Type': 'application/json' },
     })
+    const data = await response.json()
 
     commentInputRef.current.value = ''
+    setComments(data.comments)
+    setLoading(false)
     return
   }
 
   async function deleteCommentHandler(e) {
+    setLoading(true)
     e.preventDefault()
-    setLoading((prevState) => !prevState)
 
     const commentData = {
       commentID: e.target.value,
       username: session.user.name,
     }
 
-    await fetch(`/api/comments/${props._id}`, {
+    const response = await fetch(`/api/comments/${props._id}`, {
       method: 'DELETE',
       body: JSON.stringify(commentData),
       headers: { 'Content-Type': 'application/json' },
     })
+    const data = await response.json()
+
+    setComments(data.comments)
+    setLoading(false)
+    return
   }
 
   return (
@@ -90,6 +101,7 @@ export default function Comments(props) {
             ></textarea>
           </div>
           {!loading && <Button>leave comment</Button>}
+          {loading && <p>Refreshing comments... so fresh soon...</p>}
         </form>
       )}
       {commentError && (

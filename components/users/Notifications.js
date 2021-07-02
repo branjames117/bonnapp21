@@ -12,14 +12,14 @@ export default function Notifications() {
 
   useEffect(async () => {
     setLoading(true)
-    const response = await fetch('/api/user/get-notifs')
+    const response = await fetch('/api/user/notifs')
     const data = await response.json()
     setNotifs(data.notifs)
     setLoading(false)
   }, [])
 
   async function onClearNotifications() {
-    const response = await fetch('/api/user/get-notifs', {
+    const response = await fetch('/api/user/notifs', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
     })

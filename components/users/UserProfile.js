@@ -2,8 +2,8 @@ import { useSession } from 'next-auth/client'
 import Card from '../layout/Card'
 import Main from './Main'
 import Notifications from './Notifications'
-import Excited from './Excited'
-import Friends from './Friends'
+import Schedule from './Schedule'
+import Following from './Following'
 import Comments from '../auth/Comments'
 import Video from './Video'
 import randomImageGenerator from '../../lib/random-images'
@@ -24,14 +24,10 @@ export default function UserProfile(props) {
           {/* LEFT-SIDE PANE */}
           <div>
             <Main user={props.user} myPage={myPage} />
-            <Excited
-              username={props.user.username}
-              myPage={myPage}
-              excited={props.user.excited}
-            />
+            <Schedule username={props.user.username} myPage={myPage} />
             {/* Only show this card if Friends is enabled */}
             {props.user.friendsEnabled === 'true' && (
-              <Friends user={props.user} session={session} myPage={myPage} />
+              <Following user={props.user} session={session} myPage={myPage} />
             )}
             {/* Only show this card if user is on own profile */}
             {myPage && <Notifications />}

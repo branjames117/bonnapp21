@@ -97,7 +97,7 @@ export default function EditShow(props) {
     <>
       {!session && (
         <p>
-          Something went wrong with your session. Please refresh this page to
+          Something went wrong with the session. Please refresh this page to
           reload your session.
         </p>
       )}

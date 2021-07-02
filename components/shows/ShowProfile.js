@@ -7,14 +7,13 @@ import randomImageGenerator from '../../lib/random-images'
 import { useEffect } from 'react'
 
 export default function ShowProfile(props) {
+  /* upon visiting the show's profile, clear out any notifications that user might have for that show's comment section */
   useEffect(async () => {
-    console.log('UseEffect happening')
-    const result = await fetch('/api/user/get-notifs', {
+    await fetch('/api/user/notifs', {
       method: 'PATCH',
       body: JSON.stringify(props.show.title),
       headers: { 'Content-Type': 'application/json' },
     })
-    console.log(result)
   }, [])
   return (
     <>
