@@ -38,7 +38,9 @@ export default function Notifications() {
         Comment Notifications {!loading && <span>({notifsTotal})</span>}
       </h2>
       {notifsTotal > 0 && (
-        <Button onClick={onClearNotifications}>clear notifications</Button>
+        <p>
+          <Button onClick={onClearNotifications}>clear notifications</Button>
+        </p>
       )}
       <div>
         {Object.keys(notifs).map((key) => (
