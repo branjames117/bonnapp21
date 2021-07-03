@@ -5,6 +5,7 @@ import classes from './Comments.module.css'
 import Card from '../layout/Card'
 import Headline from '../layout/Headline'
 import Button from '../layout/Button'
+import Spinner from '../layout/Spinner'
 import randomColorGenerator from '../../lib/random-colors'
 
 export default function Comments(props) {
@@ -101,7 +102,7 @@ export default function Comments(props) {
             ></textarea>
           </div>
           {!loading && <Button>leave comment</Button>}
-          {loading && <p>Refreshing comments... so fresh soon...</p>}
+          {loading && <Spinner />}
         </form>
       )}
       {commentError && (

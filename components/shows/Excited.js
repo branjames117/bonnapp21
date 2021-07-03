@@ -2,6 +2,7 @@ import { useSession } from 'next-auth/client'
 import Link from 'next/link'
 import Card from '../layout/Card'
 import Button from '../layout/Button'
+import Spinner from '../layout/Spinner'
 import randomColorGenerator from '../../lib/random-colors'
 import { useState, useEffect, useCallback } from 'react'
 
@@ -61,6 +62,7 @@ export default function Excited(props) {
   return (
     <Card>
       <h2 style={{ color: randomColorGenerator() }}>Who's Going?</h2>
+      {loading && <Spinner />}
       {!loading && session && !excitedUsers.includes(session.user.name) && (
         <p>
           <Button onClick={onAddExcitedUser}>i'll be there</Button>
@@ -89,7 +91,6 @@ export default function Excited(props) {
           </div>
         </div>
       )}
-      {loading && <p>Loading list of users...</p>}
     </Card>
   )
 }

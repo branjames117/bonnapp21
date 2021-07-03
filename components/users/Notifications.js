@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/client'
 import Button from '../layout/Button'
 import Card from '../layout/Card'
+import Spinner from '../layout/Spinner'
 import randomColorGenerator from '../../lib/random-colors'
 
 export default function Notifications() {
@@ -37,7 +38,9 @@ export default function Notifications() {
       <h2 style={{ color: randomColorGenerator() }}>
         Comment Notifications {!loading && <span>({notifsTotal})</span>}
       </h2>
-      {notifsTotal > 0 && (
+      {loading && <Spinner />}
+      {!loading && notifsTotal === 0 && <p>All caught up!</p>}
+      {!loading && notifsTotal > 0 && (
         <p>
           <Button onClick={onClearNotifications}>clear notifications</Button>
         </p>

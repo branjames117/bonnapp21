@@ -28,218 +28,222 @@ export default function Header() {
             </Link>
           </span>
         </div>
-        <div>
-          <div className={classes.fullMenu}>
-            <ul className={classes.navLinkList}>
-              <li>
-                <Link href='/shows/'>
-                  <span
-                    className={classes.navLink}
-                    style={{ color: randomColorGenerator() }}
-                  >
-                    Lineup
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link href='/genres'>
-                  <span
-                    className={classes.navLink}
-                    style={{ color: randomColorGenerator() }}
-                  >
-                    Genres
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link href='/random-show'>
-                  <span
-                    className={classes.navLink}
-                    style={{ color: randomColorGenerator() }}
-                  >
-                    Random
-                  </span>
-                </Link>
-              </li>
-              {/* render if no active session */}
-              {!session && (
-                <>
+        {!loading && (
+          <>
+            <div>
+              <div className={classes.fullMenu}>
+                <ul className={classes.navLinkList}>
                   <li>
-                    <Link href='/register'>
+                    <Link href='/shows/'>
                       <span
                         className={classes.navLink}
                         style={{ color: randomColorGenerator() }}
                       >
-                        Register
+                        Lineup
                       </span>
                     </Link>
                   </li>
                   <li>
-                    <Link href='/login'>
+                    <Link href='/genres'>
                       <span
                         className={classes.navLink}
                         style={{ color: randomColorGenerator() }}
                       >
-                        Login
+                        Genres
                       </span>
                     </Link>
                   </li>
-                </>
-              )}
-              {/* render if active session */}
-              {session && !loading && (
-                <>
                   <li>
-                    <Link href={`/user/${session.user.name}`}>
+                    <Link href='/random-show'>
                       <span
                         className={classes.navLink}
-                        style={{
-                          color: randomColorGenerator(),
-                        }}
+                        style={{ color: randomColorGenerator() }}
                       >
-                        My Profile
+                        Random
                       </span>
                     </Link>
                   </li>
-                  <li onClick={logoutHandler}>
-                    <span
-                      className={classes.navLink}
-                      style={{
-                        color: randomColorGenerator(),
-                        cursor: 'pointer',
-                      }}
-                    >
-                      Logout
-                    </span>
+                  {/* render if no active session */}
+                  {!session && (
+                    <>
+                      <li>
+                        <Link href='/register'>
+                          <span
+                            className={classes.navLink}
+                            style={{ color: randomColorGenerator() }}
+                          >
+                            Register
+                          </span>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href='/login'>
+                          <span
+                            className={classes.navLink}
+                            style={{ color: randomColorGenerator() }}
+                          >
+                            Login
+                          </span>
+                        </Link>
+                      </li>
+                    </>
+                  )}
+                  {/* render if active session */}
+                  {session && !loading && (
+                    <>
+                      <li>
+                        <Link href={`/user/${session.user.name}`}>
+                          <span
+                            className={classes.navLink}
+                            style={{
+                              color: randomColorGenerator(),
+                            }}
+                          >
+                            My Profile
+                          </span>
+                        </Link>
+                      </li>
+                      <li onClick={logoutHandler}>
+                        <span
+                          className={classes.navLink}
+                          style={{
+                            color: randomColorGenerator(),
+                            cursor: 'pointer',
+                          }}
+                        >
+                          Logout
+                        </span>
+                      </li>
+                    </>
+                  )}
+                </ul>
+              </div>
+              <div className={classes.miniMenu}>
+                <div
+                  className={classes.hamburger}
+                  onClick={() => setOpenMenu(!openMenu)}
+                >
+                  <div
+                    style={{
+                      backgroundColor: randomColorGenerator(),
+                    }}
+                    className={`${classes.line} ${classes.line1} ${
+                      openMenu ? classes.active : null
+                    }`}
+                  ></div>
+                  <div
+                    style={{
+                      backgroundColor: randomColorGenerator(),
+                    }}
+                    className={`${classes.line} ${classes.line2} ${
+                      openMenu ? classes.active : null
+                    }`}
+                  ></div>
+                  <div
+                    style={{
+                      backgroundColor: randomColorGenerator(),
+                    }}
+                    className={`${classes.line} ${classes.line3} ${
+                      openMenu ? classes.active : null
+                    }`}
+                  ></div>
+                </div>
+              </div>
+              <div
+                className={`${classes.slideMenu} ${
+                  openMenu ? classes.active : null
+                }`}
+                onClick={() => setOpenMenu(false)}
+              >
+                <ul className={classes.navLinkList}>
+                  <li>
+                    <Link href='/shows/'>
+                      <span
+                        className={classes.navLink}
+                        style={{ color: randomColorGenerator() }}
+                      >
+                        Lineup
+                      </span>
+                    </Link>
                   </li>
-                </>
-              )}
-            </ul>
-          </div>
-          <div className={classes.miniMenu}>
-            <div
-              className={classes.hamburger}
-              onClick={() => setOpenMenu(!openMenu)}
-            >
-              <div
-                style={{
-                  backgroundColor: randomColorGenerator(),
-                }}
-                className={`${classes.line} ${classes.line1} ${
-                  openMenu ? classes.active : null
-                }`}
-              ></div>
-              <div
-                style={{
-                  backgroundColor: randomColorGenerator(),
-                }}
-                className={`${classes.line} ${classes.line2} ${
-                  openMenu ? classes.active : null
-                }`}
-              ></div>
-              <div
-                style={{
-                  backgroundColor: randomColorGenerator(),
-                }}
-                className={`${classes.line} ${classes.line3} ${
-                  openMenu ? classes.active : null
-                }`}
-              ></div>
+                  <li>
+                    <Link href='/genres'>
+                      <span
+                        className={classes.navLink}
+                        style={{ color: randomColorGenerator() }}
+                      >
+                        Genres
+                      </span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href='/random-show'>
+                      <span
+                        className={classes.navLink}
+                        style={{ color: randomColorGenerator() }}
+                      >
+                        Random
+                      </span>
+                    </Link>
+                  </li>
+                  {/* render if no active session */}
+                  {!session && (
+                    <>
+                      <li>
+                        <Link href='/register'>
+                          <span
+                            className={classes.navLink}
+                            style={{ color: randomColorGenerator() }}
+                          >
+                            Register
+                          </span>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href='/login'>
+                          <span
+                            className={classes.navLink}
+                            style={{ color: randomColorGenerator() }}
+                          >
+                            Login
+                          </span>
+                        </Link>
+                      </li>
+                    </>
+                  )}
+                  {/* render if active session */}
+                  {session && !loading && (
+                    <>
+                      <li>
+                        <Link href={`/user/${session.user.name}`}>
+                          <span
+                            className={classes.navLink}
+                            style={{
+                              color: randomColorGenerator(),
+                            }}
+                          >
+                            My Profile
+                          </span>
+                        </Link>
+                      </li>
+                      <li onClick={logoutHandler}>
+                        <span
+                          className={classes.navLink}
+                          style={{
+                            color: randomColorGenerator(),
+                            cursor: 'pointer',
+                          }}
+                        >
+                          Logout
+                        </span>
+                      </li>
+                    </>
+                  )}
+                </ul>
+              </div>
             </div>
-          </div>
-          <div
-            className={`${classes.slideMenu} ${
-              openMenu ? classes.active : null
-            }`}
-            onClick={() => setOpenMenu(false)}
-          >
-            <ul className={classes.navLinkList}>
-              <li>
-                <Link href='/shows/'>
-                  <span
-                    className={classes.navLink}
-                    style={{ color: randomColorGenerator() }}
-                  >
-                    Lineup
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link href='/genres'>
-                  <span
-                    className={classes.navLink}
-                    style={{ color: randomColorGenerator() }}
-                  >
-                    Genres
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link href='/random-show'>
-                  <span
-                    className={classes.navLink}
-                    style={{ color: randomColorGenerator() }}
-                  >
-                    Random
-                  </span>
-                </Link>
-              </li>
-              {/* render if no active session */}
-              {!session && (
-                <>
-                  <li>
-                    <Link href='/register'>
-                      <span
-                        className={classes.navLink}
-                        style={{ color: randomColorGenerator() }}
-                      >
-                        Register
-                      </span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href='/login'>
-                      <span
-                        className={classes.navLink}
-                        style={{ color: randomColorGenerator() }}
-                      >
-                        Login
-                      </span>
-                    </Link>
-                  </li>
-                </>
-              )}
-              {/* render if active session */}
-              {session && !loading && (
-                <>
-                  <li>
-                    <Link href={`/user/${session.user.name}`}>
-                      <span
-                        className={classes.navLink}
-                        style={{
-                          color: randomColorGenerator(),
-                        }}
-                      >
-                        My Profile
-                      </span>
-                    </Link>
-                  </li>
-                  <li onClick={logoutHandler}>
-                    <span
-                      className={classes.navLink}
-                      style={{
-                        color: randomColorGenerator(),
-                        cursor: 'pointer',
-                      }}
-                    >
-                      Logout
-                    </span>
-                  </li>
-                </>
-              )}
-            </ul>
-          </div>
-        </div>
+          </>
+        )}
       </nav>
     </header>
   )

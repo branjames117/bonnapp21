@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useSession } from 'next-auth/client'
 import Card from '../layout/Card'
 import SmallButton from '../layout/SmallButton'
+import Spinner from '../layout/Spinner'
 import randomColorGenerator from '../../lib/random-colors'
 import { useState, useEffect } from 'react'
 
@@ -69,7 +70,7 @@ export default function Schedule(props) {
         {!props.myPage ? <>{props.username}'s</> : <>Your Show</>} Schedule
       </h2>
       <div>
-        {loading && <p>Putting together a schedule...</p>}
+        {loading && <Spinner />}
         {(!loading && isScheduleEmpty() && (
           <>
             {props.myPage ? (

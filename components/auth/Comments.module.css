@@ -3,10 +3,10 @@
 }
 
 .comment {
-  border-bottom: 2px solid yellow;
   border-radius: 15px;
   margin-top: 18px;
-  padding: 8px 8px 15px 8px;
+  background-color: rgba(255, 0, 242, 0.2);
+  padding: 0 18px 15px 18px;
 }
 
 .commentBody {

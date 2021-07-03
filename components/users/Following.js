@@ -3,6 +3,7 @@ import { useSession } from 'next-auth/client'
 import Card from '../layout/Card'
 import Button from '../layout/Button'
 import SmallButton from '../layout/SmallButton'
+import Spinner from '../layout/Spinner'
 import randomColorGenerator from '../../lib/random-colors'
 import { useEffect, useState } from 'react'
 
@@ -81,41 +82,46 @@ export default function Following(props) {
   return (
     <Card>
       <h2 style={{ color: randomColorGenerator() }}>Following</h2>
-      {session && !props.myPage && !friendOf.includes(session.user.name) && (
-        <p>
-          <Button onClick={onAddFriend}>follow them!</Button>
-        </p>
+      {loading && <Spinner />}
+      {!loading && (
+        <>
+          {session && !props.myPage && !friendOf.includes(session.user.name) && (
+            <p>
+              <Button onClick={onAddFriend}>follow them!</Button>
+            </p>
+          )}
+          {session && !props.myPage && friendOf.includes(session.user.name) && (
+            <p>
+              <Button onClick={onDeleteFriend}>unfollow them!</Button>
+            </p>
+          )}
+          <div>
+            {props.myPage && friends.length === 0 && (
+              <p>You're not following anyone yet!</p>
+            )}
+            {!props.myPage && friends.length === 0 && (
+              <p>They're not following anyone yet!</p>
+            )}
+            {
+              <ul>
+                {friends.map((friend, idx) => (
+                  <li key={idx}>
+                    {props.myPage && (
+                      <SmallButton value={friend} onClick={onDeleteFriend}>
+                        x
+                      </SmallButton>
+                    )}
+                    <Link href={`/user/${friend}`}>{friend}</Link>
+                  </li>
+                ))}
+              </ul>
+            }
+            <p>
+              <Link href={'/random-user'}>Find a random Bonnaroovian.</Link>
+            </p>
+          </div>
+        </>
       )}
-      {session && !props.myPage && friendOf.includes(session.user.name) && (
-        <p>
-          <Button onClick={onDeleteFriend}>unfollow them!</Button>
-        </p>
-      )}
-      <div>
-        {props.myPage && friends.length === 0 && (
-          <p>You're not following anyone yet!</p>
-        )}
-        {!props.myPage && friends.length === 0 && (
-          <p>They're not following anyone yet!</p>
-        )}
-        {
-          <ul>
-            {friends.map((friend, idx) => (
-              <li key={idx}>
-                {props.myPage && (
-                  <SmallButton value={friend} onClick={onDeleteFriend}>
-                    x
-                  </SmallButton>
-                )}
-                <Link href={`/user/${friend}`}>{friend}</Link>
-              </li>
-            ))}
-          </ul>
-        }
-        <p>
-          <Link href={'/random-user'}>Find a random Bonnaroovian.</Link>
-        </p>
-      </div>
     </Card>
   )
 }
