@@ -189,6 +189,7 @@ export default function AddShow() {
               <option value='N/A'>N/A</option>
               <option value='What Stage'>What Stage</option>
               <option value='Which Stage'>Which Stage</option>
+              <option value='Who Stage'>Who Stage</option>
               <option value='This Tent'>This Tent</option>
               <option value='That Tent'>That Tent</option>
               <option value='The Other Stage'>The Other Stage</option>

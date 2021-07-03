@@ -12,7 +12,7 @@ export default function Home() {
       <div>
         <Card>
           <h1 style={{ color: randomColorGenerator() }}>
-            {!session && !loading ? (
+            {!session ? (
               <>Welcome to BonnApp21</>
             ) : (
               <>Welcome Back to BonnApp21</>
@@ -36,7 +36,7 @@ export default function Home() {
             things.
           </p>
         </Card>
-        {(!session && !loading && (
+        {!session ? (
           <Card>
             <h2 style={{ color: randomColorGenerator() }}>
               Why You Should Register
@@ -54,7 +54,7 @@ export default function Home() {
               here.
             </p>
           </Card>
-        )) || (
+        ) : (
           <Card>
             <h2 style={{ color: randomColorGenerator() }}>
               Thank You for Signing Up
