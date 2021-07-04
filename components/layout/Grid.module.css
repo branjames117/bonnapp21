@@ -29,6 +29,30 @@ to NOT expand the size of my grid columns */
 
 @media screen and (max-width: 420px) {
   .grid {
-    grid-template-columns: 380px;
+    grid-template-columns: 395px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .grid {
+    grid-template-columns: 340px;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .grid {
+    grid-template-columns: 320px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .grid {
+    grid-template-columns: 315px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .grid {
+    grid-template-columns: 280px;
   }
 }

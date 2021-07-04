@@ -17,6 +17,15 @@
   text-overflow: ellipsis;
 }
 
+@media screen and (max-width: 420px) {
+  .comment {
+    padding: 0;
+  }
+  p.commentBody {
+    margin: 2px;
+  }
+}
+
 .commentAuthor {
   text-align: right;
 }

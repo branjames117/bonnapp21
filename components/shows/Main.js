@@ -2,6 +2,7 @@ import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Button from '../layout/Button'
+import InlineButton from '../layout/InlineButton'
 import Card from '../layout/Card'
 import randomColorGenerator from '../../lib/random-colors'
 
@@ -39,25 +40,44 @@ export default function Main(props) {
           </Button>
         </p>
       )}
+      <p>
+        {props.show.prevShow && props.show.prevShow !== '' && (
+          <InlineButton
+            onClick={() => router.push(`/shows/${props.show.prevShow}`)}
+          >
+            <>Prev. Show</>
+          </InlineButton>
+        )}
+        <InlineButton onClick={() => router.push('/random-show')}>
+          Shuffle
+        </InlineButton>
+        {props.show.nextShow && props.show.nextShow !== '' && (
+          <InlineButton
+            onClick={() => router.push(`/shows/${props.show.nextShow}`)}
+          >
+            <>Next Show</>
+          </InlineButton>
+        )}
+      </p>
       <h2 style={{ color: randomColorGenerator() }}>About the Show</h2>
       <p className='preline'>
         {props.show.bio} <Link href={props.show.wiki}>...read more.</Link>
       </p>
-
       {props.show.site && (
         <p>
           <Link href={props.show.site}>Check out their website!</Link>
         </p>
       )}
-
       <h2 style={{ color: randomColorGenerator() }}>Genres</h2>
-      <ul>
-        {props.show.genres.map((genre) => (
-          <li key={genre}>
-            <Link href={`/genres/${genre}`}>{genre}</Link>
-          </li>
-        ))}
-      </ul>
+      <p>
+        <ul>
+          {props.show.genres.map((genre) => (
+            <li key={genre}>
+              <Link href={`/genres/${genre}`}>{genre}</Link>
+            </li>
+          ))}
+        </ul>
+      </p>
     </Card>
   )
 }

@@ -190,6 +190,10 @@ export default function Register() {
             <p>
               Already registered? <Link href='/login'>Login instead.</Link>
             </p>
+            <p className='error'>
+              Don't forget your username and password, as these accounts are
+              throwaway and cannot be recovered if credentials are forgotten.
+            </p>
             {formSubmitted && APIError && (
               <p className='error'>
                 <strong>Error: API call failed.</strong>

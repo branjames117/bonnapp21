@@ -15,6 +15,8 @@ export default function EditShow(props) {
     title: '',
     displayTitle: '',
     genres: '',
+    prevShow: '',
+    nextShow: '',
     bio: '',
     videos: '',
     wiki: '',
@@ -28,6 +30,8 @@ export default function EditShow(props) {
   const [errors, setErrors] = useState({
     displayTitle: false,
     genres: false,
+    prevShow: false,
+    nextShow: false,
     bio: false,
     videos: false,
     wiki: false,
@@ -42,6 +46,8 @@ export default function EditShow(props) {
       title: props.show.title,
       displayTitle: props.show.displayTitle || '',
       genres: props.show.genres.toString(),
+      prevShow: props.show.prevShow || '',
+      nextShow: props.show.nextShow || '',
       bio: props.show.bio,
       videos: props.show.videos.toString(),
       wiki: props.show.wiki,
@@ -105,6 +111,26 @@ export default function EditShow(props) {
         setErrors((prevState) => ({
           ...prevState,
           genres: false,
+        }))
+        break
+      case 'prevShow':
+        setShowData((prevState) => ({
+          ...prevState,
+          prevShow: e.target.value,
+        }))
+        setErrors((prevState) => ({
+          ...prevState,
+          prevShow: false,
+        }))
+        break
+      case 'nextShow':
+        setShowData((prevState) => ({
+          ...prevState,
+          nextShow: e.target.value,
+        }))
+        setErrors((prevState) => ({
+          ...prevState,
+          nextShow: false,
         }))
         break
       case 'videos':
@@ -201,6 +227,28 @@ export default function EditShow(props) {
       setErrors((prevState) => ({
         ...prevState,
         genres: true,
+      }))
+    }
+
+    if (
+      showData.prevShow.trim() !== '' &&
+      showData.prevShow.trim().length > 100
+    ) {
+      validForm = false
+      setErrors((prevState) => ({
+        ...prevState,
+        prevShow: true,
+      }))
+    }
+
+    if (
+      showData.nextShow.trim() !== '' &&
+      showData.nextShow.trim().length > 100
+    ) {
+      validForm = false
+      setErrors((prevState) => ({
+        ...prevState,
+        nextShow: true,
       }))
     }
 
@@ -362,6 +410,45 @@ export default function EditShow(props) {
                 </div>
                 {errors.genres && (
                   <p className='error'>Genres must be below 100 characters.</p>
+                )}
+                <Headline style={{ color: randomColorGenerator() }}>
+                  Lineup Navigation
+                </Headline>
+                <div className='control'>
+                  <label htmlFor='prevShow'>Previous Show in Lineup</label>
+                  <input
+                    required
+                    onChange={inputChangeHandler}
+                    value={showData.prevShow}
+                    autoComplete='off'
+                    name='prevShow'
+                    id='prevShow'
+                    type='text'
+                    className={errors.prevShow ? 'controlError' : null}
+                  />
+                </div>
+                {errors.prevShow && (
+                  <p className='error'>
+                    Previous Show must be below 100 characters.
+                  </p>
+                )}
+                <div className='control'>
+                  <label htmlFor='nextShow'>Next Show in Lineup</label>
+                  <input
+                    required
+                    onChange={inputChangeHandler}
+                    value={showData.nextShow}
+                    autoComplete='off'
+                    name='nextShow'
+                    id='nextShow'
+                    type='text'
+                    className={errors.nextShow ? 'controlError' : null}
+                  />
+                </div>
+                {errors.nextShow && (
+                  <p className='error'>
+                    Next Show must be below 100 characters.
+                  </p>
                 )}
               </div>
             </Card>

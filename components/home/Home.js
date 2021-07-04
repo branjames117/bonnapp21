@@ -23,7 +23,7 @@ export default function Home() {
           <p>
             This is an unofficial Bonnaroo 2021 festival companion app, built
             from the ground up as a labor of love and provided to all
-            Bonnaroovians for the cost of a high-five if you see me at Centeroo.
+            Bonnaroovians.
           </p>
           <h2 style={{ color: randomColorGenerator() }}>But What's It Do</h2>
           <p>

@@ -1,5 +1,6 @@
-have it show the # of notifications in the header as well, next to MY PROFILE (1)
-
-have it so that you can go to a random user as well
-
 have it so that when someone "follows" you, you get a notification that that person is following you and you should follow them back
+
+have it so each show in the database has a prevShow and a nextShow for quicker navigation of the lineup
+
+password recovery
+-----------------
