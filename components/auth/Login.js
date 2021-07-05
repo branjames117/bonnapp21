@@ -64,8 +64,6 @@ export default function Login() {
 
     if (!validForm) return
 
-    console.log(userData)
-
     /* try block for logging in user */
     try {
       const result = await signIn('credentials', {
@@ -73,10 +71,6 @@ export default function Login() {
         username: username,
         password: password,
       })
-      console.log(username)
-
-      console.log(result)
-      console.log(result.error)
 
       /* if database connection issue, give that feedback */
       if (result.error === 'No connection to the database') {
@@ -102,7 +96,8 @@ export default function Login() {
       if (!result.error) {
         /* as long as signIn gave us no errors, reroute user to profile */
         setLoading(true)
-        router.replace(`/user/${username}`)
+        router.replace(`
+        /${username}`)
       } else {
         setAPIError(true)
       }

@@ -9,8 +9,6 @@ function sortShows(showArray) {
   showArray.sort((a, b) => {
     let fa = a.startTime,
       fb = b.startTime
-    console.log(fa)
-    console.log(fb)
     if (fa < fb) {
       return -1
     }

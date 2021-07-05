@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react'
 import { ThemeContext } from './ThemeContext'
-import classes from './InlineButton.module.css'
+import classes from './DarkModeButton.module.css'
 import randomColorGenerator from '../../lib/random-colors'
 
-export default function InlineButton(props) {
+export default function DarkModeButton(props) {
   const { darkTheme } = useContext(ThemeContext)
   const [buttonColor, setButtonColor] = useState({})
   useEffect(() => {

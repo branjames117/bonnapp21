@@ -2,15 +2,14 @@ import { useState } from 'react'
 import classes from './Video.module.css'
 import Card from '../../components/layout/Card'
 import randomColorGenerator from '../../lib/random-colors'
+import Headline from '../layout/Headline'
 
 export default function Video(props) {
   const [activeVideo, setActiveVideo] = useState(0)
 
   return (
     <Card>
-      <h2 className={classes.h2} style={{ color: randomColorGenerator() }}>
-        Check Out Their Music
-      </h2>
+      <Headline>Check Out Their Music</Headline>
       {activeVideo === 0 && (
         <div className={classes.videoContainer}>
           <div />

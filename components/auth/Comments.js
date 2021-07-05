@@ -1,6 +1,7 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useContext } from 'react'
 import { useSession } from 'next-auth/client'
 import Link from 'next/link'
+import { ThemeContext } from '../layout/ThemeContext'
 import classes from './Comments.module.css'
 import Card from '../layout/Card'
 import Headline from '../layout/Headline'
@@ -9,6 +10,7 @@ import Spinner from '../layout/Spinner'
 import randomColorGenerator from '../../lib/random-colors'
 
 export default function Comments(props) {
+  const { darkTheme } = useContext(ThemeContext)
   const [session, _] = useSession()
   const [comments, setComments] = useState([])
   const [commentError, setCommentError] = useState()
@@ -97,7 +99,7 @@ export default function Comments(props) {
               name='text'
               rows='4'
               ref={commentInputRef}
-              className={commentError ? 'controlError' : null}
+              className={commentError && !darkTheme ? 'controlError' : null}
               onChange={() => setCommentError(false)}
             ></textarea>
           </div>
@@ -114,7 +116,9 @@ export default function Comments(props) {
         <div className={classes.comments}>
           {comments.map((comment) => (
             <span key={comment._id}>
-              <div className={classes.comment}>
+              <div
+                className={darkTheme ? classes.darkComment : classes.comment}
+              >
                 <p className={classes.commentBody}>{comment.text}</p>
                 <div className={classes.commentAuthor}>
                   <Link href={`/user/${comment.username}`}>
@@ -128,7 +132,9 @@ export default function Comments(props) {
                         session.user.name === 'admin') && (
                         <>
                           <button
-                            className={classes.btn}
+                            className={
+                              darkTheme ? classes.darkBtn : classes.btn
+                            }
                             value={comment._id}
                             onClick={deleteCommentHandler}
                           >

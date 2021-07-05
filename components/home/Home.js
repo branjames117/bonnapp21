@@ -1,31 +1,35 @@
+import { useContext } from 'react'
+import { ThemeContext } from '../layout/ThemeContext'
 import { useSession } from 'next-auth/client'
 import Link from 'next/link'
 import Card from '../layout/Card'
-import randomColorGenerator from '../../lib/random-colors'
+import BigHeadline from '../layout/BigHeadline'
+import Headline from '../layout/Headline'
 import randomImageGenerator from '../../lib/random-images'
 
 export default function Home() {
+  const { darkTheme } = useContext(ThemeContext)
   const [session, loading] = useSession()
 
   return (
     <>
       <div>
         <Card>
-          <h1 style={{ color: randomColorGenerator() }}>
+          <BigHeadline>
             {!session ? (
               <>Welcome to BonnApp21</>
             ) : (
               <>Welcome Back to BonnApp21</>
             )}
-          </h1>
+          </BigHeadline>
 
-          <h2 style={{ color: randomColorGenerator() }}>What It Is</h2>
+          <Headline>What It Is</Headline>
           <p>
             This is an unofficial Bonnaroo 2021 festival companion app, built
             from the ground up as a labor of love and provided to all
             Bonnaroovians.
           </p>
-          <h2 style={{ color: randomColorGenerator() }}>But What's It Do</h2>
+          <Headline>But What's It Do</Headline>
           <p>
             You can check out the <Link href='/shows/'>Lineup</Link> for quick
             access to info about every show at the festival, including artist
@@ -38,9 +42,7 @@ export default function Home() {
         </Card>
         {!session ? (
           <Card>
-            <h2 style={{ color: randomColorGenerator() }}>
-              Why You Should Register
-            </h2>
+            <Headline>Why You Should Register</Headline>
             <p>
               <Link href='/register'>Register</Link> an account with only a
               username and a password to gain access to the app's social
@@ -56,9 +58,7 @@ export default function Home() {
           </Card>
         ) : (
           <Card>
-            <h2 style={{ color: randomColorGenerator() }}>
-              Thank You for Signing Up
-            </h2>
+            <Headline>Thank You for Signing Up</Headline>
             <p>
               As an authorized user, you can edit your profile to share a little
               bit about yourself, add friends, show your excitement for your
@@ -72,13 +72,13 @@ export default function Home() {
         )}
         {!loading && (
           <span className='hider'>
-            <Card>{randomImageGenerator()}</Card>
+            <Card>{randomImageGenerator(darkTheme)}</Card>
           </span>
         )}
       </div>
       <div>
         <Card>
-          <h2 style={{ color: randomColorGenerator() }}>How Was It Made</h2>
+          <Headline>How Was It Made</Headline>
           <p>
             Thanks for asking. I'm a self-taught web developer trying to build
             out a portfolio of cool projects that showcase what I'm learning to
@@ -102,11 +102,11 @@ export default function Home() {
         </Card>
         {!loading && (
           <span className='hider'>
-            <Card>{randomImageGenerator()}</Card>
+            <Card>{randomImageGenerator(darkTheme)}</Card>
           </span>
         )}
         <Card>
-          <h2 style={{ color: randomColorGenerator() }}>How You Can Help</h2>
+          <Headline>How You Can Help</Headline>
           <p>
             Spread the word and get your friends registered to the site. But you
             can also help by assisting me in refining the database. If a
@@ -118,7 +118,7 @@ export default function Home() {
           </p>
         </Card>
         <Card>
-          <h2 style={{ color: randomColorGenerator() }}>Legal</h2>
+          <Headline>Legal</Headline>
           <p>
             This site is not affiliated with the Bonnaroo Music Festival,
             Superfly Presents, or AC Entertainment. The official website for the

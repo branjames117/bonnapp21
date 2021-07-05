@@ -1,16 +1,20 @@
+import { useContext } from 'react'
+import { ThemeContext } from '../layout/ThemeContext'
 import Link from 'next/link'
 import classes from './GenreProfile.module.css'
+import BigHeadline from '../layout/BigHeadline'
+import Headline from '../layout/Headline'
 import Card from '../layout/Card'
-import randomColorGenerator from '../../lib/random-colors'
 import randomImageGenerator from '../../lib/random-images'
 
 export default function GenreProfile(props) {
+  const { darkTheme } = useContext(ThemeContext)
   return (
     <>
       <div>
         <Card>
-          <h1 style={{ color: randomColorGenerator() }}>Genre</h1>
-          <h2 style={{ color: randomColorGenerator() }}>What Is It?</h2>
+          <BigHeadline>Genre</BigHeadline>
+          <Headline>What Is It?</Headline>
           <p>
             A music genre is a conventional category that identifies some pieces
             of music as belonging to a shared tradition or set of conventions.
@@ -34,12 +38,12 @@ export default function GenreProfile(props) {
           </p>
         </Card>
         <span className='hider'>
-          <Card>{randomImageGenerator()}</Card>
+          <Card>{randomImageGenerator(darkTheme)}</Card>
         </span>
       </div>
       <div>
         <Card>
-          <h1 style={{ color: randomColorGenerator() }}>Pick Your Poison</h1>
+          <BigHeadline>Pick Your Poison</BigHeadline>
           {/* divide the list of genres into two columns */}
           <div className={classes.listSplitter}>
             <div>

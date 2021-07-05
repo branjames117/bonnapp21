@@ -4,9 +4,9 @@ import { useSession } from 'next-auth/client'
 import Button from '../layout/Button'
 import Card from '../layout/Card'
 import Spinner from '../layout/Spinner'
-import randomColorGenerator from '../../lib/random-colors'
+import Headline from '../layout/Headline'
 
-export default function Notifications() {
+export default function Notifications(props) {
   const [session, _] = useSession()
   const [notifs, setNotifs] = useState({})
   const [loading, setLoading] = useState(false)
@@ -17,7 +17,7 @@ export default function Notifications() {
     const data = await response.json()
     setNotifs(data.notifs)
     setLoading(false)
-  }, [])
+  }, [props])
 
   async function onClearNotifications() {
     const response = await fetch('/api/user/notifs', {
@@ -35,9 +35,9 @@ export default function Notifications() {
 
   return (
     <Card>
-      <h2 style={{ color: randomColorGenerator() }}>
+      <Headline>
         Comment Notifications {!loading && <span>({notifsTotal})</span>}
-      </h2>
+      </Headline>
       {loading && <Spinner />}
       {!loading && notifsTotal === 0 && <p>All caught up!</p>}
       {!loading && notifsTotal > 0 && (

@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+import { ThemeContext } from '../layout/ThemeContext'
 import Main from './Main'
 import Excited from './Excited'
 import Card from '../layout/Card'
@@ -7,6 +9,7 @@ import randomImageGenerator from '../../lib/random-images'
 import { useEffect } from 'react'
 
 export default function ShowProfile(props) {
+  const { darkTheme } = useContext(ThemeContext)
   /* upon visiting the show's profile, clear out any notifications that user might have for that show's comment section */
   useEffect(async () => {
     await fetch('/api/user/notifs', {
@@ -22,7 +25,7 @@ export default function ShowProfile(props) {
         <Main show={props.show} />
         <Excited show={props.show} />
         <span className='hider'>
-          <Card>{randomImageGenerator()}</Card>
+          <Card>{randomImageGenerator(darkTheme)}</Card>
         </span>
       </div>
       {/* RIGHT-SIDE PANE */}

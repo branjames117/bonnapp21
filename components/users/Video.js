@@ -1,11 +1,11 @@
 import classes from './Video.module.css'
 import Card from '../../components/layout/Card'
-import randomColorGenerator from '../../lib/random-colors'
+import Headline from '../layout/Headline'
 
 export default function Video(props) {
   return (
     <Card>
-      <h2 style={{ color: randomColorGenerator() }}>Listen to This</h2>
+      <Headline>Listen to This</Headline>
       <p className={classes.videoContainer}>
         <iframe
           className={classes.iframe}

@@ -1,21 +1,24 @@
+import { useContext } from 'react'
+import { ThemeContext } from '../layout/ThemeContext'
 import classes from './Bio.module.css'
 import Social from './Social'
-import randomColorGenerator from '../../lib/random-colors'
+import Headline from '../layout/Headline'
 
 export default function Bio(props) {
+  const { darkTheme } = useContext(ThemeContext)
   return (
     <>
-      <h2 style={{ color: randomColorGenerator() }}>
+      <Headline>
         About Me{' '}
         <Social
           facebookURL={props.user.facebookURL}
           instaURL={props.user.instaURL}
           twitterURL={props.user.twitterURL}
         />
-      </h2>
+      </Headline>
       <p className='preline'>{props.user.bio}</p>
       {/* Conditionally display available information */}
-      <table className={classes.bioTable}>
+      <table className={darkTheme ? classes.bioTableDark : classes.bioTable}>
         <tbody>
           {props.user.firstname && (
             <tr>

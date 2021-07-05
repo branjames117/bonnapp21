@@ -3,8 +3,8 @@ import { useSession } from 'next-auth/client'
 import Card from '../layout/Card'
 import SmallButton from '../layout/SmallButton'
 import Spinner from '../layout/Spinner'
-import randomColorGenerator from '../../lib/random-colors'
 import { useState, useEffect } from 'react'
+import Headline from '../layout/Headline'
 
 const daysOfRoo = ['Thursday', 'Friday', 'Saturday', 'Sunday', 'Who Stage']
 
@@ -49,7 +49,6 @@ export default function Schedule(props) {
     const data = await response.json()
 
     setShows(data.showSchedule)
-    console.log(shows)
     setLoading(false)
     return
   }
@@ -66,9 +65,9 @@ export default function Schedule(props) {
 
   return (
     <Card>
-      <h2 style={{ color: randomColorGenerator() }}>
+      <Headline>
         {!props.myPage ? <>{props.username}'s</> : <>Your Show</>} Schedule
-      </h2>
+      </Headline>
       <div>
         {loading && <Spinner />}
         {(!loading && isScheduleEmpty() && (

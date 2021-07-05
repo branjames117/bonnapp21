@@ -3,10 +3,22 @@
 }
 
 .comment {
-  border-radius: 15px;
-  margin-top: 18px;
+  border-radius: 5px;
+  margin-top: 15px;
   background-color: rgba(255, 0, 242, 0.2);
   padding: 0 18px 15px 18px;
+}
+
+.darkComment {
+  border-radius: 5px;
+  margin-top: 15px;
+  background-color: #ddd;
+  color: black;
+  padding: 0 18px 15px 18px;
+}
+
+.darkComment .commentAuthor a {
+  color: black;
 }
 
 .commentBody {
@@ -44,11 +56,25 @@
   border: 1px solid black;
   border-radius: 5px;
   padding: 2px;
+  margin-left: 4px;
   transition: 0.1s linear;
   font: inherit;
   cursor: pointer;
 }
 
-.btn:hover {
-  transform: scale(0.98);
+.darkBtn {
+  background-color: black;
+  color: #ddd;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 2px;
+  margin-left: 4px;
+  transition: 0.1s linear;
+  font: inherit;
+  cursor: pointer;
+}
+
+.btn:hover,
+.darkBtn:hover {
+  transform: scale(0.95);
 }

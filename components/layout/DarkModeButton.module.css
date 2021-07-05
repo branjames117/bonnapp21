@@ -1,0 +1,13 @@
+.btn {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px 7px;
+  transition: transform 0.1s linear;
+  font: inherit;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.btn:hover {
+  transform: scale(0.98);
+}

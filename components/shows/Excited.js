@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Card from '../layout/Card'
 import Button from '../layout/Button'
 import Spinner from '../layout/Spinner'
+import Headline from '../layout/Headline'
 import randomColorGenerator from '../../lib/random-colors'
 import { useState, useEffect, useCallback } from 'react'
 
@@ -57,11 +58,11 @@ export default function Excited(props) {
     const data = await response.json()
     setExcitedUsers(data.excitedUsers)
     setLoading(false)
-  }, [])
+  }, [props])
 
   return (
     <Card>
-      <h2 style={{ color: randomColorGenerator() }}>Who's Going?</h2>
+      <Headline>Who's Going?</Headline>
       {loading && <Spinner />}
       {!loading && session && !excitedUsers.includes(session.user.name) && (
         <p>

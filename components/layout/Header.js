@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { signout, useSession } from 'next-auth/client'
 import Link from 'next/link'
+import { ThemeContext } from './ThemeContext'
 import classes from './Header.module.css'
 import randomColorGenerator from '../../lib/random-colors'
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false)
   const [session, loading] = useSession()
+  const { darkTheme } = useContext(ThemeContext)
 
   function logoutHandler() {
     signout({ callbackUrl: '/' })
@@ -20,7 +22,11 @@ export default function Header() {
             <Link href='/'>
               <span
                 className={classes.navLink}
-                style={{ color: randomColorGenerator() }}
+                style={
+                  darkTheme
+                    ? { color: '#ddd' }
+                    : { color: randomColorGenerator() }
+                }
                 onClick={() => setOpenMenu(false)}
               >
                 BonnApp21
@@ -37,7 +43,11 @@ export default function Header() {
                     <Link href='/shows/'>
                       <span
                         className={classes.navLink}
-                        style={{ color: randomColorGenerator() }}
+                        style={
+                          darkTheme
+                            ? { color: '#ddd' }
+                            : { color: randomColorGenerator() }
+                        }
                       >
                         Lineup
                       </span>
@@ -47,7 +57,11 @@ export default function Header() {
                     <Link href='/genres'>
                       <span
                         className={classes.navLink}
-                        style={{ color: randomColorGenerator() }}
+                        style={
+                          darkTheme
+                            ? { color: '#ddd' }
+                            : { color: randomColorGenerator() }
+                        }
                       >
                         Genres
                       </span>
@@ -57,7 +71,11 @@ export default function Header() {
                     <Link href='/random-show'>
                       <span
                         className={classes.navLink}
-                        style={{ color: randomColorGenerator() }}
+                        style={
+                          darkTheme
+                            ? { color: '#ddd' }
+                            : { color: randomColorGenerator() }
+                        }
                       >
                         Random
                       </span>
@@ -70,7 +88,11 @@ export default function Header() {
                         <Link href='/register'>
                           <span
                             className={classes.navLink}
-                            style={{ color: randomColorGenerator() }}
+                            style={
+                              darkTheme
+                                ? { color: '#ddd' }
+                                : { color: randomColorGenerator() }
+                            }
                           >
                             Register
                           </span>
@@ -80,7 +102,11 @@ export default function Header() {
                         <Link href='/login'>
                           <span
                             className={classes.navLink}
-                            style={{ color: randomColorGenerator() }}
+                            style={
+                              darkTheme
+                                ? { color: '#ddd' }
+                                : { color: randomColorGenerator() }
+                            }
                           >
                             Login
                           </span>
@@ -95,9 +121,11 @@ export default function Header() {
                         <Link href={`/user/${session.user.name}`}>
                           <span
                             className={classes.navLink}
-                            style={{
-                              color: randomColorGenerator(),
-                            }}
+                            style={
+                              darkTheme
+                                ? { color: '#ddd' }
+                                : { color: randomColorGenerator() }
+                            }
                           >
                             My Profile
                           </span>
@@ -106,10 +134,14 @@ export default function Header() {
                       <li onClick={logoutHandler}>
                         <span
                           className={classes.navLink}
-                          style={{
-                            color: randomColorGenerator(),
-                            cursor: 'pointer',
-                          }}
+                          style={
+                            darkTheme
+                              ? { color: '#ddd', cursor: 'pointer' }
+                              : {
+                                  color: randomColorGenerator(),
+                                  cursor: 'pointer',
+                                }
+                          }
                         >
                           Logout
                         </span>
@@ -124,25 +156,37 @@ export default function Header() {
                   onClick={() => setOpenMenu(!openMenu)}
                 >
                   <div
-                    style={{
-                      backgroundColor: randomColorGenerator(),
-                    }}
+                    style={
+                      darkTheme
+                        ? { backgroundColor: '#ddd' }
+                        : {
+                            backgroundColor: randomColorGenerator(),
+                          }
+                    }
                     className={`${classes.line} ${classes.line1} ${
                       openMenu ? classes.active : null
                     }`}
                   ></div>
                   <div
-                    style={{
-                      backgroundColor: randomColorGenerator(),
-                    }}
+                    style={
+                      darkTheme
+                        ? { backgroundColor: '#ddd' }
+                        : {
+                            backgroundColor: randomColorGenerator(),
+                          }
+                    }
                     className={`${classes.line} ${classes.line2} ${
                       openMenu ? classes.active : null
                     }`}
                   ></div>
                   <div
-                    style={{
-                      backgroundColor: randomColorGenerator(),
-                    }}
+                    style={
+                      darkTheme
+                        ? { backgroundColor: '#ddd' }
+                        : {
+                            backgroundColor: randomColorGenerator(),
+                          }
+                    }
                     className={`${classes.line} ${classes.line3} ${
                       openMenu ? classes.active : null
                     }`}
@@ -160,7 +204,11 @@ export default function Header() {
                     <Link href='/shows/'>
                       <span
                         className={classes.navLink}
-                        style={{ color: randomColorGenerator() }}
+                        style={
+                          darkTheme
+                            ? { color: '#ddd' }
+                            : { color: randomColorGenerator() }
+                        }
                       >
                         Lineup
                       </span>
@@ -170,7 +218,11 @@ export default function Header() {
                     <Link href='/genres'>
                       <span
                         className={classes.navLink}
-                        style={{ color: randomColorGenerator() }}
+                        style={
+                          darkTheme
+                            ? { color: '#ddd' }
+                            : { color: randomColorGenerator() }
+                        }
                       >
                         Genres
                       </span>
@@ -180,7 +232,11 @@ export default function Header() {
                     <Link href='/random-show'>
                       <span
                         className={classes.navLink}
-                        style={{ color: randomColorGenerator() }}
+                        style={
+                          darkTheme
+                            ? { color: '#ddd' }
+                            : { color: randomColorGenerator() }
+                        }
                       >
                         Random
                       </span>
@@ -193,7 +249,11 @@ export default function Header() {
                         <Link href='/register'>
                           <span
                             className={classes.navLink}
-                            style={{ color: randomColorGenerator() }}
+                            style={
+                              darkTheme
+                                ? { color: '#ddd' }
+                                : { color: randomColorGenerator() }
+                            }
                           >
                             Register
                           </span>
@@ -203,7 +263,11 @@ export default function Header() {
                         <Link href='/login'>
                           <span
                             className={classes.navLink}
-                            style={{ color: randomColorGenerator() }}
+                            style={
+                              darkTheme
+                                ? { color: '#ddd' }
+                                : { color: randomColorGenerator() }
+                            }
                           >
                             Login
                           </span>
@@ -218,9 +282,11 @@ export default function Header() {
                         <Link href={`/user/${session.user.name}`}>
                           <span
                             className={classes.navLink}
-                            style={{
-                              color: randomColorGenerator(),
-                            }}
+                            style={
+                              darkTheme
+                                ? { color: '#ddd' }
+                                : { color: randomColorGenerator() }
+                            }
                           >
                             My Profile
                           </span>
@@ -229,10 +295,14 @@ export default function Header() {
                       <li onClick={logoutHandler}>
                         <span
                           className={classes.navLink}
-                          style={{
-                            color: randomColorGenerator(),
-                            cursor: 'pointer',
-                          }}
+                          style={
+                            darkTheme
+                              ? { color: '#ddd', cursor: 'pointer' }
+                              : {
+                                  color: randomColorGenerator(),
+                                  cursor: 'pointer',
+                                }
+                          }
                         >
                           Logout
                         </span>

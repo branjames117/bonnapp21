@@ -91,7 +91,7 @@ the site's grid CSS even though its contained within */
   background-color: rgba(0, 0, 0, 75%);
   position: fixed;
   top: 0;
-  padding: 0px 22px;
+  padding: 0 22px;
   width: 1200px;
   z-index: 100;
 }
@@ -102,6 +102,7 @@ the site's grid CSS even though its contained within */
   }
 }
 
+/* ipad pro */
 @media screen and (max-width: 1200px) {
   .fullMenu {
     display: none;
@@ -110,7 +111,20 @@ the site's grid CSS even though its contained within */
     display: inline-flex;
   }
   .header {
-    width: 600px;
+    width: 768px;
+  }
+}
+
+/* ipad */
+@media screen and (max-width: 768px) {
+  .header {
+    width: 768px;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .header {
+    width: 540px;
   }
 }
 
@@ -120,21 +134,44 @@ the site's grid CSS even though its contained within */
   }
 }
 
-@media screen and (max-width: 500px) {
+/* surface duo */
+@media screen and (max-width: 540px) {
+  .header {
+    width: 540px;
+  }
+}
+
+@media screen and (max-width: 520px) {
   .header {
     width: 440px;
   }
 }
 
-@media screen and (max-width: 420px) {
+/* iphone 6/7/8 plus */
+@media screen and (max-width: 414px) {
   .header {
-    width: 395px;
+    width: 414px;
   }
 }
 
+/* pixel 2 */
+@media screen and (max-width: 411px) {
+  .header {
+    width: 411px;
+  }
+}
+
+/* iphone 6/7/8/X */
+@media screen and (max-width: 375px) {
+  .header {
+    width: 375px;
+  }
+}
+
+/* galaxy s5 */
 @media screen and (max-width: 360px) {
   .header {
-    width: 340px;
+    width: 360px;
   }
 }
 
@@ -144,13 +181,21 @@ the site's grid CSS even though its contained within */
   }
 }
 
+/* iphone 5 */
 @media screen and (max-width: 320px) {
   .header {
-    width: 315px;
+    width: 320px;
   }
 }
 
 @media screen and (max-width: 300px) {
+  .header {
+    width: 280px;
+  }
+}
+
+/* galaxy fold */
+@media screen and (max-width: 280px) {
   .header {
     width: 280px;
   }

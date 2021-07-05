@@ -4,7 +4,7 @@ import Card from '../layout/Card'
 import Button from '../layout/Button'
 import SmallButton from '../layout/SmallButton'
 import Spinner from '../layout/Spinner'
-import randomColorGenerator from '../../lib/random-colors'
+import Headline from '../layout/Headline'
 import { useEffect, useState } from 'react'
 
 export default function Following(props) {
@@ -81,7 +81,7 @@ export default function Following(props) {
 
   return (
     <Card>
-      <h2 style={{ color: randomColorGenerator() }}>Following</h2>
+      <Headline>Following</Headline>
       {loading && <Spinner />}
       {!loading && (
         <>

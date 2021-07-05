@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import { useSession } from 'next-auth/client'
+import { ThemeContext } from '../layout/ThemeContext'
 import Card from '../layout/Card'
 import Main from './Main'
 import Notifications from './Notifications'
@@ -9,6 +11,7 @@ import Video from './Video'
 import randomImageGenerator from '../../lib/random-images'
 
 export default function UserProfile(props) {
+  const { darkTheme } = useContext(ThemeContext)
   const [session, loading] = useSession()
 
   /* logic to determine profile ownership */
@@ -32,7 +35,7 @@ export default function UserProfile(props) {
             {/* Only show this card if user is on own profile */}
             {myPage && <Notifications />}
             <span className='hider'>
-              <Card>{randomImageGenerator()}</Card>
+              <Card>{randomImageGenerator(darkTheme)}</Card>
             </span>
           </div>
 

@@ -9,9 +9,23 @@ to NOT expand the size of my grid columns */
   grid-template-columns: 500px 700px;
 }
 
+/* ipad pro */
 @media screen and (max-width: 1200px) {
   .grid {
-    grid-template-columns: 600px;
+    grid-template-columns: 768px;
+  }
+}
+
+/* ipad */
+@media screen and (max-width: 768px) {
+  .grid {
+    grid-template-columns: 768px;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .grid {
+    grid-template-columns: 540px;
   }
 }
 
@@ -21,21 +35,44 @@ to NOT expand the size of my grid columns */
   }
 }
 
-@media screen and (max-width: 500px) {
+/* surface duo */
+@media screen and (max-width: 540px) {
+  .grid {
+    grid-template-columns: 540px;
+  }
+}
+
+@media screen and (max-width: 520px) {
   .grid {
     grid-template-columns: 440px;
   }
 }
 
-@media screen and (max-width: 420px) {
+/* iphone 6/7/8 plus */
+@media screen and (max-width: 414px) {
   .grid {
-    grid-template-columns: 395px;
+    grid-template-columns: 414px;
   }
 }
 
+/* pixel 2 */
+@media screen and (max-width: 411px) {
+  .grid {
+    grid-template-columns: 411px;
+  }
+}
+
+/* iphone 6/7/8/X */
+@media screen and (max-width: 375px) {
+  .grid {
+    grid-template-columns: 375px;
+  }
+}
+
+/* galaxy s5 */
 @media screen and (max-width: 360px) {
   .grid {
-    grid-template-columns: 340px;
+    grid-template-columns: 360px;
   }
 }
 
@@ -45,13 +82,21 @@ to NOT expand the size of my grid columns */
   }
 }
 
+/* iphone 5 */
 @media screen and (max-width: 320px) {
   .grid {
-    grid-template-columns: 315px;
+    grid-template-columns: 320px;
   }
 }
 
 @media screen and (max-width: 300px) {
+  .grid {
+    grid-template-columns: 280px;
+  }
+}
+
+/* galaxy fold */
+@media screen and (max-width: 280px) {
   .grid {
     grid-template-columns: 280px;
   }

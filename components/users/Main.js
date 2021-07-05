@@ -2,8 +2,8 @@ import { useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import Card from '../layout/Card'
 import Button from '../layout/Button'
+import BigHeadline from '../layout/BigHeadline'
 import Bio from './Bio'
-import randomColorGenerator from '../../lib/random-colors'
 
 export default function Main(props) {
   const [session, _] = useSession()
@@ -11,7 +11,7 @@ export default function Main(props) {
 
   return (
     <Card>
-      <h1 style={{ color: randomColorGenerator() }}>{props.user.username}</h1>
+      <BigHeadline>{props.user.username}</BigHeadline>
       {props.myPage && (
         <Button onClick={() => router.push('/edit')}>edit profile</Button>
       )}

@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Button from '../layout/Button'
 import InlineButton from '../layout/InlineButton'
+import BigHeadline from '../layout/BigHeadline'
+import Headline from '../layout/Headline'
 import Card from '../layout/Card'
 import randomColorGenerator from '../../lib/random-colors'
 
@@ -12,13 +14,13 @@ export default function Main(props) {
 
   return (
     <Card>
-      <h1 style={{ color: randomColorGenerator() }}>
+      <BigHeadline>
         {props.show.displayTitle && props.show.displayTitle.length !== '' ? (
           <span>{props.show.displayTitle}</span>
         ) : (
           <span>{props.show.title}</span>
         )}
-      </h1>
+      </BigHeadline>
       <h3>
         {props.show.day && props.show.day !== 'N/A' && (
           <span>Playing {props.show.day}</span>
@@ -59,7 +61,7 @@ export default function Main(props) {
           </InlineButton>
         )}
       </p>
-      <h2 style={{ color: randomColorGenerator() }}>About the Show</h2>
+      <Headline>About the Show</Headline>
       <p className='preline'>
         {props.show.bio} <Link href={props.show.wiki}>...read more.</Link>
       </p>
@@ -68,7 +70,7 @@ export default function Main(props) {
           <Link href={props.show.site}>Check out their website!</Link>
         </p>
       )}
-      <h2 style={{ color: randomColorGenerator() }}>Genres</h2>
+      <Headline>Genres</Headline>
       <p>
         <ul>
           {props.show.genres.map((genre) => (
