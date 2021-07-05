@@ -97,7 +97,7 @@ export default function Login() {
         /* as long as signIn gave us no errors, reroute user to profile */
         setLoading(true)
         router.replace(`
-        /${username}`)
+        /user/${username}`)
       } else {
         setAPIError(true)
       }
