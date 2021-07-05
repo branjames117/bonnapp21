@@ -19,7 +19,10 @@ export default function Video(props) {
               className={classes.iframe}
               allowFullScreen='allowfullscreen'
               width='100%'
-              src={props.videos[0].replace('watch?v=', 'embed/')}
+              src={`${props.videos[0].replace(
+                'watch?v=',
+                'embed/'
+              )}?playsinline=1`}
               title='YouTube video player'
               allow='accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
             ></iframe>
@@ -40,7 +43,10 @@ export default function Video(props) {
               allowFullScreen='allowfullscreen'
               width='100%'
               height='450px'
-              src={props.videos[1].replace('watch?v=', 'embed/')}
+              src={`${props.videos[1].replace(
+                'watch?v=',
+                'embed/'
+              )}?playsinline=1`}
               title='YouTube video player'
               allow='accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
             ></iframe>
@@ -61,7 +67,10 @@ export default function Video(props) {
               allowFullScreen='allowfullscreen'
               width='100%'
               height='450px'
-              src={props.videos[2].replace('watch?v=', 'embed/')}
+              src={`${props.videos[2].replace(
+                'watch?v=',
+                'embed/'
+              )}?playsinline=1`}
               title='YouTube video player'
               allow='accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
             ></iframe>

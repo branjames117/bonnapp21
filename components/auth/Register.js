@@ -191,8 +191,8 @@ export default function Register() {
               Already registered? <Link href='/login'>Login instead.</Link>
             </p>
             <p className='error'>
-              Don't forget your username and password, as these accounts are
-              throwaway and cannot be recovered if credentials are forgotten.
+              These are throwaway accounts and cannot be recovered if
+              credentials are forgotten, so remember your username and password.
             </p>
             {formSubmitted && APIError && (
               <p className='error'>

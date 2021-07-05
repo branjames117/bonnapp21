@@ -62,7 +62,7 @@ export default function EditShow(props) {
     e.preventDefault()
     let validForm = true
 
-    if (genreData.def.trim() === '' || genreData.def.trim().length > 1000) {
+    if (genreData.def.trim() === '' || genreData.def.trim().length > 1500) {
       validForm = false
       setErrors((prevState) => ({
         ...prevState,
@@ -126,7 +126,7 @@ export default function EditShow(props) {
                   </div>
                   {errors.def && (
                     <p className='error'>
-                      Definition must be below 1,000 characters.
+                      Definition must be below 1,500 characters.
                     </p>
                   )}
                   <div className='control'>

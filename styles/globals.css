@@ -156,7 +156,31 @@ svg:hover {
 
 @media screen and (max-width: 420px) {
   .singularContainer {
-    grid-template-columns: 380px;
+    grid-template-columns: 395;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .singularContainer {
+    grid-template-columns: 340px;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .singularContainer {
+    grid-template-columns: 320px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .singularContainer {
+    grid-template-columns: 315px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .singularContainer {
+    grid-template-columns: 280px;
   }
 }
 

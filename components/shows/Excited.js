@@ -14,7 +14,7 @@ export default function Excited(props) {
   async function onAddExcitedUser() {
     setLoading(true)
     const excitedData = {
-      user: 'admin',
+      user: session.user.name,
       show: props.show.title,
     }
 

@@ -1,6 +1,0 @@
-have it so that when someone "follows" you, you get a notification that that person is following you and you should follow them back
-
-have it so each show in the database has a prevShow and a nextShow for quicker navigation of the lineup
-
-password recovery
------------------
