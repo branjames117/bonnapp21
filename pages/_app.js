@@ -14,24 +14,22 @@ export default function MyApp({ Component, pageProps }) {
 
   return (
     /* the Provider wrapper allows us to skip revalidations of active session */
-    <body className={darkTheme ? 'darkBody' : ''}>
-      <Provider session={pageProps.session}>
-        <ThemeContext.Provider value={{ darkTheme, setDarkTheme }}>
-          <Container>
-            <Head>
-              <title>BonnApp21</title>
-              <meta
-                name='description'
-                content='Plan your Bonnaroo 2021 festival experience!'
-              />
-              <link rel='icon' href='/favicon.ico' />
-            </Head>
-            <Header />
-            <Component {...pageProps} />
-            <Footer />
-          </Container>
-        </ThemeContext.Provider>
-      </Provider>
-    </body>
+    <Provider session={pageProps.session}>
+      <ThemeContext.Provider value={{ darkTheme, setDarkTheme }}>
+        <Container>
+          <Head>
+            <title>BonnApp21</title>
+            <meta
+              name='description'
+              content='Plan your Bonnaroo 2021 festival experience!'
+            />
+            <link rel='icon' href='/favicon.ico' />
+          </Head>
+          <Header />
+          <Component {...pageProps} />
+          <Footer />
+        </Container>
+      </ThemeContext.Provider>
+    </Provider>
   )
 }

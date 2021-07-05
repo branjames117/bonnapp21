@@ -1,11 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import classes from './Video.module.css'
 import Card from '../../components/layout/Card'
-import randomColorGenerator from '../../lib/random-colors'
 import Headline from '../layout/Headline'
 
 export default function Video(props) {
   const [activeVideo, setActiveVideo] = useState(0)
+
+  /* set active video back to 0 on new profile load */
+  useEffect(() => {
+    setActiveVideo(0)
+  }, [props])
 
   return (
     <Card>

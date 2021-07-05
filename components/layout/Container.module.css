@@ -8,3 +8,34 @@
   height: 100vh;
   min-height: 100vh;
 }
+
+.darkContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  padding-top: 65px;
+  margin: 0 auto;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.darkContainer a {
+  color: white;
+}
+
+.darkContainer iframe {
+  filter: grayscale(100%);
+}
+
+.darkContainer a:after {
+  content: '';
+  background-color: rgb(94, 94, 94);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  opacity: 0.5;
+  transition: width 0.15s linear;
+}
