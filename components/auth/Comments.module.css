@@ -37,7 +37,8 @@
   padding: 0 18px 15px 18px;
 }
 
-.darkComment .commentAuthor a {
+.darkComment .commentAuthor a,
+.darkReply .commentAuthor a {
   color: black;
 }
 
