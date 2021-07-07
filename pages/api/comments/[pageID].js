@@ -2,6 +2,38 @@ import { getSession } from 'next-auth/client'
 import { ObjectId } from 'bson'
 import { connectToDatabase } from '../../../lib/db'
 
+async function notifSetter(db, pageID) {
+  /* first check if comment belongs to a user profile */
+  const usersCollection = db.collection('users')
+  const notifyUser = await usersCollection.findOne({
+    _id: ObjectId(pageID),
+  })
+  if (notifyUser) {
+    /* user profile comment has been commented upon, so let's increment
+      the notifs object in that user's document only, since only that user
+      needs the notification, using the user's own ID */
+    await usersCollection.updateOne(
+      { _id: ObjectId(pageID) },
+      { $inc: { notifs: 1 } }
+    )
+  } else {
+    /* no user found, so check if it's a show profile being commented upon */
+    const showsCollection = db.collection('shows')
+    const notifyShow = await showsCollection.findOne({
+      _id: ObjectId(pageID),
+    })
+    if (notifyShow) {
+      /* it is, so let's loop through each of the "excitedUsers", add each of them
+        as a property in the show document's notifs field, and then increment each one */
+      notifyShow.excitedUsers.forEach(async (user) => {
+        const notifField = { $inc: {} }
+        notifField['$inc']['notifs.' + user] = 1
+        await showsCollection.updateOne({ _id: ObjectId(pageID) }, notifField)
+      })
+    }
+  }
+}
+
 export default async function handler(req, res) {
   const session = await getSession({ req })
   const pageID = req.query.pageID
@@ -63,37 +95,8 @@ export default async function handler(req, res) {
       return
     }
 
-    /* BEGIN NOTIFICATION SETTER */
-    /* first check if comment belongs to a user profile */
-    const usersCollection = db.collection('users')
-    const notifyUser = await usersCollection.findOne({
-      _id: ObjectId(pageID),
-    })
-    if (notifyUser) {
-      /* user profile comment has been commented upon, so let's increment
-      the notifs object in that user's document only, since only that user
-      needs the notification, using the user's own ID */
-      await usersCollection.updateOne(
-        { _id: ObjectId(pageID) },
-        { $inc: { notifs: 1 } }
-      )
-    } else {
-      /* no user found, so check if it's a show profile being commented upon */
-      const showsCollection = db.collection('shows')
-      const notifyShow = await showsCollection.findOne({
-        _id: ObjectId(pageID),
-      })
-      if (notifyShow) {
-        /* it is, so let's loop through each of the "excitedUsers", add each of them
-        as a property in the show document's notifs field, and then increment each one */
-        notifyShow.excitedUsers.forEach(async (user) => {
-          const notifField = { $inc: {} }
-          notifField['$inc']['notifs.' + user] = 1
-          await showsCollection.updateOne({ _id: ObjectId(pageID) }, notifField)
-        })
-      }
-    }
-    /* END NOTIFICATION SETTER */
+    /* update notifications */
+    notifSetter(db, pageID)
 
     /* create a new comment object */
     const newComment = {
@@ -185,6 +188,9 @@ export default async function handler(req, res) {
       res.status(422).json({ message: 'Invalid input.' })
       return
     }
+
+    /* update notifications */
+    notifSetter(db, pageID)
 
     const newReply = {
       id: ObjectId(),

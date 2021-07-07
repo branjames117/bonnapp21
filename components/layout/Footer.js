@@ -14,7 +14,7 @@ export default function Footer() {
             setDarkTheme(!darkTheme)
           }}
         >
-          {darkTheme ? 'go neon' : 'go ghost'}
+          {darkTheme ? 'neon mode' : 'ghost mode'}
         </DarkModeButton>
       </p>
       <p>

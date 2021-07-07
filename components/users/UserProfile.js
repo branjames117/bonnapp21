@@ -47,6 +47,9 @@ export default function UserProfile(props) {
             {props.user.commentsEnabled === 'true' && (
               <Comments _id={props.user._id} />
             )}
+            <span className='hider'>
+              <Card>{randomImageGenerator(darkTheme)}</Card>
+            </span>
           </div>
         </>
       )}
