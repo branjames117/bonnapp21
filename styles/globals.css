@@ -26,6 +26,20 @@ body {
   overflow-x: hidden; /* disable horizontal scroll */
 }
 
+.darkBody {
+  background-image: linear-gradient(
+    to bottom left,
+    black,
+    black,
+    black,
+    black,
+    black,
+    rgb(36, 36, 36),
+    rgb(66, 66, 66),
+    rgb(117, 117, 117)
+  );
+}
+
 h1 {
   font-size: 2.4rem;
   letter-spacing: -3px;

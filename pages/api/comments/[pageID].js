@@ -126,7 +126,7 @@ export default async function handler(req, res) {
   /* if DELETE method, delete the selected comment */
   if (req.method === 'DELETE') {
     /* object destructuring */
-    const { commentID, username } = req.body
+    const { commentID, replyID, username, deletingReply } = req.body
 
     /* only allow auth'd users to delete their own comments */
     if (!session || session.user.name !== username) {
@@ -134,11 +134,74 @@ export default async function handler(req, res) {
       return
     }
 
-    /* Use the $pull operator to remove the ID'd comment from the comments array */
-    const result = await commentsCollection.deleteOne({
-      _id: ObjectId(commentID),
-    })
+    /* delete the entire comment document if not deleting a reply */
+    if (!deletingReply) {
+      await commentsCollection.deleteOne({
+        _id: ObjectId(commentID),
+      })
+    }
 
+    /* pull from replies array only if deleting a reply */
+    if (deletingReply) {
+      const reply = await commentsCollection.updateOne(
+        {
+          _id: ObjectId(commentID),
+        },
+        {
+          $pull: { replies: { id: ObjectId(replyID) } },
+        }
+      )
+    }
+
+    const comments = await commentsCollection
+      .find({ pageID: pageID })
+      .sort({ timestamp: -1 })
+      .toArray()
+
+    client.close()
+
+    if (!comments) {
+      res.status(503).json({
+        comments: [],
+        message: 'Unable to retrieve comments.',
+      })
+    } else {
+      res.status(201).json({ comments: comments })
+    }
+    return
+  }
+
+  /* if method is PATCH, a reply is written */
+  if (req.method === 'PATCH') {
+    /* object destructuring */
+    const { commentID, username, text } = req.body
+
+    /* only allow auth'd users to post their own replies */
+    if (!session || session.user.name !== username) {
+      res.status(401).json({ message: 'Invalid credentials.' })
+      return
+    }
+    if (!username || !text || text.trim() === '' || text.trim().length > 500) {
+      res.status(422).json({ message: 'Invalid input.' })
+      return
+    }
+
+    const newReply = {
+      id: ObjectId(),
+      text,
+      username,
+      timestamp: new Date(),
+    }
+
+    /* Use the $push operator to remove the ID'd comment from the comments array */
+    const result = await commentsCollection.updateOne(
+      {
+        _id: ObjectId(commentID),
+      },
+      { $push: { replies: newReply } }
+    )
+
+    /* get the updated comments and send it back to the front end */
     const comments = await commentsCollection
       .find({ pageID: pageID })
       .sort({ timestamp: -1 })

@@ -2,6 +2,10 @@
   padding: 5px;
 }
 
+.replies {
+  padding: 5px 5px 5px 25px;
+}
+
 .comment {
   border-radius: 5px;
   margin-top: 15px;
@@ -12,6 +16,22 @@
 .darkComment {
   border-radius: 5px;
   margin-top: 15px;
+  background-color: #ddd;
+  color: black;
+  padding: 0 18px 15px 18px;
+}
+
+.reply {
+  border-radius: 5px;
+  margin: 15px 0 0 45px;
+  background-color: rgba(255, 0, 242, 0.2);
+  padding: 0 18px 15px 18px;
+  position: relative;
+}
+
+.darkReply {
+  border-radius: 5px;
+  margin: 15px 0 0 45px;
   background-color: #ddd;
   color: black;
   padding: 0 18px 15px 18px;
@@ -55,7 +75,7 @@
   background-color: rgb(255, 155, 41);
   border: 1px solid black;
   border-radius: 5px;
-  padding: 2px;
+  padding: 4px;
   margin-left: 4px;
   transition: 0.1s linear;
   font: inherit;
@@ -67,7 +87,7 @@
   color: #ddd;
   border: 1px solid black;
   border-radius: 5px;
-  padding: 2px;
+  padding: 4px;
   margin-left: 4px;
   transition: 0.1s linear;
   font: inherit;
