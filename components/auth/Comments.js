@@ -132,8 +132,6 @@ export default function Comments(props) {
       deletingReply: true,
     }
 
-    console.log(replyData)
-
     const response = await fetch(`/api/comments/${props._id}`, {
       method: 'DELETE',
       body: JSON.stringify(replyData),

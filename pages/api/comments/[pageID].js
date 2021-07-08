@@ -8,6 +8,7 @@ async function notifSetter(db, pageID) {
   const notifyUser = await usersCollection.findOne({
     _id: ObjectId(pageID),
   })
+
   if (notifyUser) {
     /* user profile comment has been commented upon, so let's increment
       the notifs object in that user's document only, since only that user
@@ -50,11 +51,11 @@ export default async function handler(req, res) {
   const client = await connectToDatabase()
   /* if db connection fails, respond with empty array */
   if (!client) {
+    client.close()
     res.status(503).json({
       message: 'Unable to access database.',
       comments: [],
     })
-    client.close()
     return
   }
   const db = client.db()
@@ -87,16 +88,18 @@ export default async function handler(req, res) {
     /* API protections - reject if no session, or if session name does not match
     comment author's name */
     if (!session || session.user.name !== username) {
-      res.status(401).json({ message: 'Invalid credentials.' })
+      client.close()
+      res.status(401).json({ message: 'Invalid credentials.', comments: [] })
       return
     }
     if (!username || !text || text.trim() === '' || text.trim().length > 500) {
-      res.status(422).json({ message: 'Invalid input.' })
+      client.close()
+      res.status(422).json({ message: 'Invalid input.', comments: [] })
       return
     }
 
     /* update notifications */
-    notifSetter(db, pageID)
+    await notifSetter(db, pageID)
 
     /* create a new comment object */
     const newComment = {
@@ -133,7 +136,8 @@ export default async function handler(req, res) {
 
     /* only allow auth'd users to delete their own comments */
     if (!session || session.user.name !== username) {
-      res.status(401).json({ message: 'Invalid credentials.' })
+      client.close()
+      res.status(401).json({ message: 'Invalid credentials.', comments: [] })
       return
     }
 
@@ -146,7 +150,7 @@ export default async function handler(req, res) {
 
     /* pull from replies array only if deleting a reply */
     if (deletingReply) {
-      const reply = await commentsCollection.updateOne(
+      await commentsCollection.updateOne(
         {
           _id: ObjectId(commentID),
         },
@@ -181,16 +185,18 @@ export default async function handler(req, res) {
 
     /* only allow auth'd users to post their own replies */
     if (!session || session.user.name !== username) {
-      res.status(401).json({ message: 'Invalid credentials.' })
+      client.close()
+      res.status(401).json({ message: 'Invalid credentials.', comments: [] })
       return
     }
     if (!username || !text || text.trim() === '' || text.trim().length > 500) {
-      res.status(422).json({ message: 'Invalid input.' })
+      client.close()
+      res.status(422).json({ message: 'Invalid input.', comments: [] })
       return
     }
 
     /* update notifications */
-    notifSetter(db, pageID)
+    await notifSetter(db, pageID)
 
     const newReply = {
       id: ObjectId(),
@@ -200,7 +206,7 @@ export default async function handler(req, res) {
     }
 
     /* Use the $push operator to remove the ID'd comment from the comments array */
-    const result = await commentsCollection.updateOne(
+    await commentsCollection.updateOne(
       {
         _id: ObjectId(commentID),
       },
