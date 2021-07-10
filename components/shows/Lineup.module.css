@@ -169,6 +169,10 @@
   color: yellow;
 }
 
+.innerContainer {
+  padding: 0 100px 100px;
+}
+
 .container {
   text-align: center;
   display: grid;
@@ -179,6 +183,9 @@
 @media screen and (max-width: 1200px) {
   .container {
     grid-template-columns: 768px;
+  }
+  .innerContainer {
+    padding: 0;
   }
 }
 
