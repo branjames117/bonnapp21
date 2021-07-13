@@ -39,6 +39,13 @@ export default function Home() {
             friends, only I don't want your personal information to sell you
             things.
           </p>
+          <p>
+            When the showtimes are announced, the database will be updated, and
+            all the shows you "follow" on your profile page will be organized
+            chronologically, including which stage to go to. This will be a
+            quick convenient schedule for you to refer to while you're at the
+            festival!
+          </p>
         </Card>
         {!session ? (
           <Card>
@@ -78,6 +85,19 @@ export default function Home() {
       </div>
       <div>
         <Card>
+          <Headline>Breaking News</Headline>
+          <h3>9 July 2021</h3>
+          <p>
+            Well, there were some lineup changes, so I've had to modify the
+            database. The big changes are as follows: Rufus du Sol replaces Lana
+            Del Rey, Khruangbin replaces Deftones, and Janelle Monae, King
+            Gizzard & the Lizard Wizard, and Nubya Garcia are all out for
+            reasons unknown. The other change is that everyone who was
+            previously only performing on the Who Stage have now been given
+            dates and are added to the regular lineup.
+          </p>
+        </Card>
+        <Card>
           <Headline>How Was It Made</Headline>
           <p>
             Thanks for asking. I'm a self-taught web developer trying to build
@@ -108,13 +128,14 @@ export default function Home() {
         <Card>
           <Headline>How You Can Help</Headline>
           <p>
-            Spread the word and get your friends registered to the site. But you
-            can also help by assisting me in refining the database. If a
-            performer was incorrectly documented, such as incorrect genre
-            identification, or if (OH NO!) something here breaks, then drop me
-            an email at{' '}
+            Spread the word and get your friends registered to the site. You can
+            also help me refine the database. If a performer was incorrectly
+            documented, such as incorrect genre identification, or if (OH NO!)
+            something here breaks, or if you just have a really cool idea you'd
+            like to see implemented, then drop me an email at{' '}
             <a href='mailto:branjames117@gmail.com'>branjames117@gmail.com</a>{' '}
-            so I can make the necessary repairs.
+            or leave a comment on the <Link href='/user/admin'>admin</Link>{' '}
+            profile page.
           </p>
         </Card>
         <Card>
