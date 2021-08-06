@@ -30,6 +30,9 @@ export default function Lineup() {
             <Link href='/shows/Big Something'>
               <span>Big Something</span>
             </Link>
+            <Link href='/shows/Blossom'>
+              <span>Blossom</span>
+            </Link>
             <Link href='/shows/Briston Maroney'>
               <span>Briston Maroney</span>
             </Link>
@@ -60,9 +63,6 @@ export default function Lineup() {
             <Link href='/shows/Scarypoolparty'>
               <span>Scarypoolparty</span>
             </Link>
-            <Link href='/shows/Spock'>
-              <span>Spock</span>
-            </Link>
             <Link href='/shows/Sweet Crude'>
               <span>Sweet Crude</span>
             </Link>
@@ -92,6 +92,9 @@ export default function Lineup() {
             </Link>
             <Link href={'/shows/The Lil Smokies'}>
               <span>The Lil Smokies</span>
+            </Link>
+            <Link href='/shows/Zach Bryan'>
+              <span>Zach Bryan</span>
             </Link>
           </div>
           <div className={classes.day}>Friday, &nbsp; Sept. &nbsp; 3</div>
@@ -142,6 +145,9 @@ export default function Lineup() {
             </Link>
             <Link href='/shows/Nelly'>
               <span>Nelly</span>
+            </Link>
+            <Link href='/shows/Mastodon'>
+              <span>Mastodon</span>
             </Link>
             <Link href='/shows/The Disco Biscuits'>
               <span>The Disco Biscuits</span>

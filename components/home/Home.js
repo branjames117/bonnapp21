@@ -86,6 +86,33 @@ export default function Home() {
       <div>
         <Card>
           <Headline>Breaking News</Headline>
+          <h3>5 August 2021</h3>
+          <p>
+            There have been a few more lineup changes. Blossom and Zach Bryan
+            will be there on Thursday, with Spock stepping out. Mastodon will be
+            there on Friday. No changes to Saturday or Sunday.
+          </p>
+          <p>
+            Furthermore, the "special guests" featured in Thursday's Grand Ole
+            Opry performance have been revealed: Tommy Emmanuel, Dom Flemons,
+            Chris Janson, Amythyst Kiah, Riders in the Sky, Maggie Rose, The
+            Travelin' McCourys, and Chris Shiflett, plus the Opry Square Dancers
+            and announcer Bill Cody. These performers will not get individual
+            pages in the database, but they will be referenced on Grand Ole
+            Opry's. For more information on each guest, hit that Google box.
+          </p>
+          <p>
+            This app is more or less finished as far as features go, but when
+            the official showtimes are released, along with stages, I'll upload
+            the database, and that information will automatically appear in the{' '}
+            <strong>Your Show Schedule</strong> section of your profile for each
+            performer you're following. This should help you plan your days on
+            the Farm and handle any scheduling conflicts that might arise.
+            Internet connections are shoddy out there, so be sure to take a
+            screenshot of your schedule for later reference, because you likely
+            won't be able to reach this website out in the boondocks of
+            Manchester.
+          </p>
           <h3>9 July 2021</h3>
           <p>
             Well, there were some lineup changes, so I've had to modify the
