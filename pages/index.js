@@ -1,12 +1,11 @@
-import Home from '../components/home/Home'
-import Grid from '../components/layout/Grid'
+import Lineup from '../components/shows/Lineup'
 
 // this is the home page of the website, the / route
 
 export default function HomePage() {
   return (
-    <Grid>
-      <Home />
-    </Grid>
+    <div style={{ flex: 1 }}>
+      <Lineup />
+    </div>
   )
 }

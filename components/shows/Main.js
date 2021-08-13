@@ -6,7 +6,7 @@ import InlineButton from '../layout/InlineButton'
 import BigHeadline from '../layout/BigHeadline'
 import Headline from '../layout/Headline'
 import Card from '../layout/Card'
-import randomColorGenerator from '../../lib/random-colors'
+import timeConverter from '../../lib/time-converter'
 
 export default function Main(props) {
   const [session, _] = useSession()
@@ -23,13 +23,20 @@ export default function Main(props) {
       </BigHeadline>
       <h3>
         {props.show.day && props.show.day !== 'N/A' && (
-          <span>Playing {props.show.day}</span>
+          <span>{props.show.day}</span>
         )}
         {props.show.stage && props.show.stage !== 'N/A' && (
-          <span> at {props.show.stage}</span>
+          <span> @ {props.show.stage}</span>
         )}
-        {props.show.startTime && <span> from {props.show.startTime}</span>}
-        {props.show.endTime && <span> to {props.show.endTime}</span>}
+        {props.show.startTime && (
+          <>
+            <br />
+            <span> {timeConverter(props.show.startTime)}</span>
+          </>
+        )}
+        {props.show.endTime && (
+          <span> - {timeConverter(props.show.endTime)}</span>
+        )}
       </h3>
       {session && session.user.name === 'admin' && (
         <p>

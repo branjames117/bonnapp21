@@ -5,6 +5,7 @@ import SmallButton from '../layout/SmallButton'
 import Spinner from '../layout/Spinner'
 import { useState, useEffect } from 'react'
 import Headline from '../layout/Headline'
+import timeConverter from '../../lib/time-converter'
 
 const daysOfRoo = ['Thursday', 'Friday', 'Saturday', 'Sunday', 'Who Stage']
 
@@ -112,7 +113,8 @@ export default function Schedule(props) {
                         )}
                         {show.startTime && show.endTime && (
                           <>
-                            {show.startTime} - {show.endTime}{' '}
+                            {timeConverter(show.startTime)} -{' '}
+                            {timeConverter(show.endTime)}{' '}
                           </>
                         )}
                         <Link href={`/shows/${show.title}`}>{show.title}</Link>

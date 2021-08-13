@@ -1,5 +1,5 @@
 .day {
-  letter-spacing: -5px;
+  letter-spacing: -4px;
   color: white;
   font-size: 2.2rem;
   text-transform: uppercase;
@@ -170,7 +170,7 @@
 }
 
 .innerContainer {
-  padding: 0 100px 100px;
+  padding: 15px 100px 45px;
 }
 
 .container {
@@ -185,7 +185,7 @@
     grid-template-columns: 768px;
   }
   .innerContainer {
-    padding: 0;
+    padding: 0 0 45px;
   }
 }
 

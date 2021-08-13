@@ -1,11 +1,15 @@
 import { useContext } from 'react'
 import { ThemeContext } from '../layout/ThemeContext'
+import { useSession } from 'next-auth/client'
 import classes from './Lineup.module.css'
 import Link from 'next/link'
 import Card from '../layout/Card'
 
 export default function Lineup() {
   const { darkTheme } = useContext(ThemeContext)
+
+  const [session, _] = useSession()
+
   return (
     <div className={classes.container}>
       <Card>
@@ -491,6 +495,26 @@ export default function Lineup() {
               <span>The Unlikely Candidates</span>
             </Link>
           </div>
+
+          {!session ? (
+            <>
+              <div className={classes.day}>Hey You, Join The App!</div>
+              <p>
+                <Link href='/register'>Register</Link> a forever-free account
+                with only a username and a password to gain access to the app's
+                social features, including friends, commenting on pages, and
+                planning your show schedule.
+              </p>
+              <p>
+                If you're going to Bonnaroo 2021 in September, and you don't
+                want to waste tedious hours researching each individual show,
+                then don't. The hard work has been done for you, and it's all
+                right here.
+              </p>
+            </>
+          ) : (
+            <div className={classes.day}>See You on the Farm!</div>
+          )}
         </div>
       </Card>
     </div>

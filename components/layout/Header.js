@@ -68,7 +68,7 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link href='/random-show'>
+                    <Link href='/about'>
                       <span
                         className={classes.navLink}
                         style={
@@ -77,7 +77,7 @@ export default function Header() {
                             : { color: randomColorGenerator() }
                         }
                       >
-                        Random
+                        About
                       </span>
                     </Link>
                   </li>
@@ -229,7 +229,7 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link href='/random-show'>
+                    <Link href='/about'>
                       <span
                         className={classes.navLink}
                         style={
@@ -238,7 +238,7 @@ export default function Header() {
                             : { color: randomColorGenerator() }
                         }
                       >
-                        Random
+                        About
                       </span>
                     </Link>
                   </li>

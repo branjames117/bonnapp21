@@ -86,7 +86,18 @@ export default function Home() {
       <div>
         <Card>
           <Headline>Breaking News</Headline>
-          <h3>5 August 2021</h3>
+          <h3> + + + 13 August 2021 + + + </h3>
+          <p>
+            Show times have been revealed and the BonnApp database has been
+            updated accordingly. I've also switched over from using a 24-hour
+            time format to the more U.S.-familiar 12-hour format, to improve the
+            readability of the schedule. Again, as a reminder, be sure to
+            screenshot your schedule before you get out there and find this app
+            inaccessible due to poor network availability. As a final change, I
+            made the lineup page the root route, since that's what everyone
+            wants to see when they come here anyway.
+          </p>
+          <h3> + + + 5 August 2021 + + + </h3>
           <p>
             There have been a few more lineup changes. Blossom and Zach Bryan
             will be there on Thursday, with Spock stepping out. Mastodon will be
@@ -113,7 +124,7 @@ export default function Home() {
             won't be able to reach this website out in the boondocks of
             Manchester.
           </p>
-          <h3>9 July 2021</h3>
+          <h3> + + + 9 July 2021 + + + </h3>
           <p>
             Well, there were some lineup changes, so I've had to modify the
             database. The big changes are as follows: Rufus du Sol replaces Lana
