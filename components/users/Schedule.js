@@ -118,6 +118,7 @@ export default function Schedule(props) {
                           </>
                         )}
                         <Link href={`/shows/${show.title}`}>{show.title}</Link>
+                        <span> @ {show.stage}</span>
                       </li>
                     ))}
                   </span>

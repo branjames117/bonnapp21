@@ -500,7 +500,8 @@ export default function Lineup() {
             <>
               <div className={classes.day}>Hey You, Join The App!</div>
               <p>
-                <Link href='/register'>Register</Link> a forever-free account
+                <Link href='/login'>Login</Link> if you're already a member or{' '}
+                <Link href='/register'>register</Link> a forever-free account
                 with only a username and a password to gain access to the app's
                 social features, including friends, commenting on pages, and
                 planning your show schedule.

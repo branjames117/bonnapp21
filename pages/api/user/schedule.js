@@ -70,7 +70,7 @@ export default async function handler(req, res) {
     /* get all the shows in which the user exists in the excitedUsers field */
     const fetchedShows = await showsCollection
       .find({ excitedUsers: username })
-      .project({ title: 1, day: 1, startTime: 1, endTime: 1, _id: 0 })
+      .project({ title: 1, day: 1, startTime: 1, endTime: 1, stage: 1, _id: 0 })
       .toArray()
 
     client.close()
