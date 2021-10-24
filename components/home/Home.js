@@ -86,6 +86,18 @@ export default function Home() {
       <div>
         <Card>
           <Headline>Breaking News</Headline>
+          <h3> + + + 24 October 2021 + + + </h3>
+          <p>
+            Well, at this point it's not news, but Bonnaroo 2021 was cancelled
+            for muddy campground conditions! Since then, I've been working
+            through the Vanderbilt Coding Boot Camp, developing my portfolio and
+            hard skills in the hopes of turning this web development passion of
+            mine into an actual career. I'll keep this website live, along with
+            the database storing user information, for posterity's sake. And
+            when Bonnaroo 2022 rolls around next year, the new-and-improved
+            BonnApp22 will be ready and waiting.
+          </p>
+          <p>See you then!</p>
           <h3> + + + 13 August 2021 + + + </h3>
           <p>
             Show times have been revealed and the BonnApp database has been
